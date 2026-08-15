@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "host_usage_semantics": "Codex reported cumulative session usage at the end of each turn; values are preserved as reported rather than presented as isolated turn cost.",
+  "command_count_semantics": "Count of completed command executions in that turn. Commands are summarized by purpose; raw commands and model transcripts are not published.",
+  "stage_purposes": {
+    "1": ["inspect seed", "frame experience", "implement", "focused verification"],
+    "2": ["inspect new evidence", "recheck affected decisions", "update behavior", "verify changed state"],
+    "3": ["inspect QA report", "repair affected boundaries", "run final browser checks", "review evidence"]
+  },
+  "candidates": {
+    "baseline-1": [
+      {"turn": 1, "completed_commands": 14, "skill_read_commands": 0, "usage": {"input_tokens": 345243, "cached_input_tokens": 304768, "output_tokens": 16149, "reasoning_output_tokens": 3463}},
+      {"turn": 2, "completed_commands": 16, "skill_read_commands": 0, "usage": {"input_tokens": 984583, "cached_input_tokens": 888064, "output_tokens": 37024, "reasoning_output_tokens": 7241}},
+      {"turn": 3, "completed_commands": 31, "skill_read_commands": 0, "usage": {"input_tokens": 3124645, "cached_input_tokens": 2915840, "output_tokens": 79598, "reasoning_output_tokens": 19771}}
+    ],
+    "baseline-2": [
+      {"turn": 1, "completed_commands": 8, "skill_read_commands": 0, "usage": {"input_tokens": 217810, "cached_input_tokens": 174080, "output_tokens": 16661, "reasoning_output_tokens": 5727}},
+      {"turn": 2, "completed_commands": 12, "skill_read_commands": 0, "usage": {"input_tokens": 706720, "cached_input_tokens": 616704, "output_tokens": 35244, "reasoning_output_tokens": 11783}},
+      {"turn": 3, "completed_commands": 20, "skill_read_commands": 0, "usage": {"input_tokens": 2107303, "cached_input_tokens": 1952768, "output_tokens": 55552, "reasoning_output_tokens": 21280}}
+    ],
+    "skilled-1": [
+      {"turn": 1, "completed_commands": 19, "skill_read_commands": 6, "usage": {"input_tokens": 463341, "cached_input_tokens": 411264, "output_tokens": 19085, "reasoning_output_tokens": 6201}},
+      {"turn": 2, "completed_commands": 16, "skill_read_commands": 2, "usage": {"input_tokens": 1173703, "cached_input_tokens": 1043456, "output_tokens": 36121, "reasoning_output_tokens": 12113}},
+      {"turn": 3, "completed_commands": 16, "skill_read_commands": 2, "usage": {"input_tokens": 2252347, "cached_input_tokens": 2032512, "output_tokens": 54186, "reasoning_output_tokens": 19916}}
+    ],
+    "skilled-2": [
+      {"turn": 1, "completed_commands": 24, "skill_read_commands": 7, "usage": {"input_tokens": 433409, "cached_input_tokens": 379520, "output_tokens": 20348, "reasoning_output_tokens": 6747}},
+      {"turn": 2, "completed_commands": 25, "skill_read_commands": 4, "usage": {"input_tokens": 1058218, "cached_input_tokens": 910464, "output_tokens": 47337, "reasoning_output_tokens": 16136}},
+      {"turn": 3, "completed_commands": 20, "skill_read_commands": 3, "usage": {"input_tokens": 2424148, "cached_input_tokens": 2185984, "output_tokens": 67470, "reasoning_output_tokens": 25885}}
+    ]
+  },
+  "private_reasoning_published": false,
+  "raw_transcripts_published": false
+}

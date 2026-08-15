@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bracken-rise",
+    "name": "Bracken Rise",
+    "difficulty": "steady",
+    "distance_km": 8.4,
+    "duration": "3 h 10",
+    "ascent_m": 410,
+    "weather": "Cloud lifting after 10:30",
+    "terrain": "Open ridge, wet stone on descent",
+    "signal": "Patchy beyond the north shoulder",
+    "status": "open"
+  },
+  {
+    "id": "rowan-loop",
+    "name": "Rowan Loop",
+    "difficulty": "easy",
+    "distance_km": 4.8,
+    "duration": "1 h 45",
+    "ascent_m": 120,
+    "weather": "Sheltered, light rain likely",
+    "terrain": "Woodland path and boardwalk",
+    "signal": "Reliable",
+    "status": "open"
+  },
+  {
+    "id": "tor-line",
+    "name": "Tor Line",
+    "difficulty": "hard",
+    "distance_km": 12.6,
+    "duration": "5 h 20",
+    "ascent_m": 780,
+    "weather": "Exposed gusts after 14:00",
+    "terrain": "Loose rock, two steep scrambles",
+    "signal": "None for 6 km",
+    "status": "open"
+  }
+]

@@ -1,5 +1,9 @@
 # Collection 1.1.0 release receipt
 
+> Historical receipt. The original TIDEGLASS showcase was superseded by the
+> repeated CAIRN study in Collection 1.2.0. This document preserves what 1.1.0
+> tested; use the current benchmark documentation for present evidence.
+
 Date: 2026-08-15
 
 ## Exact scope

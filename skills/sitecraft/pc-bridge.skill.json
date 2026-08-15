@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "intents": [
     "audit evolve or maintain SITECRAFT architecture continuity review evidence learning handoff routing and host integration without activating provider adapters",
     "plan design build repair audit or harden a website or web application",
@@ -88,6 +88,14 @@
       "terms": ["SITECRAFT architecture", "cross-skill architecture audit", "evolve SITECRAFT", "maintain SITECRAFT", "review provenance", "continuity system", "diagnostic evidence", "learning promotion"],
       "paths": [
         "references/architecture-maintenance-compact.md"
+      ]
+    },
+    {
+      "terms": ["re-enter SITECRAFT", "scope changed", "new evidence", "browser check failed", "resume website work", "stale handoff", "before completion", "nested website defect"],
+      "paths": [
+        "references/lifecycle-reentry.md",
+        "references/interaction-and-routing.md",
+        "references/evidence-and-qa.md"
       ]
     },
     {
@@ -375,6 +383,7 @@
           "label": "Frame purpose and map the experience",
           "required_references": [
             "references/interaction-and-routing.md",
+            "references/lifecycle-reentry.md",
             "references/experience-contract.md",
             "references/experience-mapping.md",
             "references/content-and-discoverability.md"
@@ -394,6 +403,7 @@
           "label": "Compose the visual grammar and choreograph behaviour",
           "required_references": [
             "references/visual-system.md",
+            "references/lifecycle-reentry.md",
             "references/generated-image-production-compact.md",
             "references/responsive-layout.md",
             "references/motion-and-interaction.md",
@@ -414,6 +424,7 @@
           "label": "Build in bounded passes and observe real output",
           "required_references": [
             "references/implementation-routing.md",
+            "references/lifecycle-reentry.md",
             "references/capability-palette-compact.md",
             "references/ai-builder-translation.md",
             "references/evidence-and-qa.md",
@@ -435,6 +446,7 @@
           "label": "Harden boundaries and verify the exact release state",
           "required_references": [
             "references/release-audit-compact.md",
+            "references/lifecycle-reentry.md",
             "references/content-and-discoverability.md",
             "references/evaluation-rubric.md",
             "references/failure-tests.md"

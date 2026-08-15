@@ -1,0 +1,96 @@
+{
+  "project": "cairn",
+  "candidate": "baseline-1",
+  "browser": "Google Chrome via Playwright",
+  "viewports": [
+    {
+      "name": "desktop-1440x1000",
+      "width": 1440,
+      "height": 1000,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "title": "CAIRN Field Plan",
+      "textLength": 3886,
+      "routes": 3,
+      "visibleControls": 18,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "title": "CAIRN Field Plan",
+      "textLength": 3886,
+      "routes": 3,
+      "visibleControls": 18,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "narrow-320x800",
+      "width": 320,
+      "height": 800,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "title": "CAIRN Field Plan",
+      "textLength": 3886,
+      "routes": 3,
+      "visibleControls": 18,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    }
+  ],
+  "staticFallback": {
+    "routeNames": [
+      "Bracken Rise",
+      "Rowan Loop",
+      "Tor Line"
+    ],
+    "passed": true
+  },
+  "interaction": {
+    "routeCount": 3,
+    "closedDisabled": false,
+    "closedNotSelected": false,
+    "confirmDisabledAfterClosed": false,
+    "confirmDisabledAfterGroup": false,
+    "closedCannotBecomePlan": true,
+    "summaryAfterClosedReview": "LIVE PLAN SUMMARY\n\nRowan Loop for a mixed group of 4 walkers. Meet at Lower gate car park by 09:30, keep a 12:00 turnaround, and expect sheltered, light rain likely, woodland path and boardwalk, and signal noted as reliable. Suitability: best fit. 0 of 4 essentials confirmed. Comparing Bracken Rise, but the active plan remains Rowan Loop. Notes: Keep the pace conversational. Regroup at every junction and before the descent.",
+    "closedReviewStatus": "Field plan confirmed: Rowan Loop for a mixed group of 4 walkers. Meet at Lower gate car park by 09:30 and turn back by 12:00.",
+    "groupUpdatesGuidance": true,
+    "arrowNavigation": true,
+    "activeId": "tor-line",
+    "selectedId": "tor-line",
+    "essentialCount": 4,
+    "invalidGuard": true,
+    "invalidFocus": true,
+    "invalidText": "Remaining essentials: Layer and waterproof packed; Water and food accounted for; At least one charged phone shared; Everyone knows the turnaround rule.",
+    "successSummary": true,
+    "successText": "Field plan confirmed: Tor Line for a group with a child of 4 walkers. Meet at Lower gate car park by 09:30 and turn back by 12:00.",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "outsideRequests": [],
+    "passed": true
+  },
+  "reducedMotion": {
+    "offenders": [],
+    "passed": true
+  },
+  "passed": true,
+  "evidenceBoundary": "Headless Chrome covers the listed viewports and scripted interactions; it is not screen-reader, native-device, production, or cross-browser evidence."
+}

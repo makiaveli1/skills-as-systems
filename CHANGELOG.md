@@ -1,5 +1,24 @@
 # Changelog
 
+## Collection 1.2.0 — 2026-08-15
+
+- SITECRAFT 0.4.0 and FOUNDRY 0.3.0 now remain active across the full work
+  lifecycle, with targeted re-entry when requirements, evidence, state,
+  failures, ownership, environment, capabilities, or handoffs change and before
+  completion.
+- Added compact lifecycle references and regression cases so hosts reopen only
+  the affected route or engineering mode instead of treating a skill as a
+  one-time opening prompt.
+- Replaced the original SITECRAFT showcase with the deeper CAIRN study: two runs
+  per condition, three changing stages, deterministic browser acceptance, and
+  blind visual review.
+- Published the mixed CAIRN result without inflating it: all candidates passed
+  functional checks; SITECRAFT averaged 22/25 versus 18.5/25, but the paired
+  results split and do not prove a repeatable output advantage.
+- Published the deeper FOUNDRY scenario and evaluator as work in progress. Its
+  interrupted pilot is excluded and no result is claimed before clean reruns.
+- Bumped the Claude Code collection plugin to 1.2.0.
+
 ## Collection 1.1.0 — 2026-08-15
 
 - Added reproducible, paired Codex benchmark showcases for SITECRAFT and FOUNDRY with frozen prompts, seeds, rubrics, independent checks, browser evidence, mutation tests, and honest parity results.

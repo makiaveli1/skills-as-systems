@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "study": "sitecraft-deep-baseline",
+  "date": "2026-08-15",
+  "host": {
+    "name": "Codex CLI",
+    "version": "0.147.0",
+    "model": "gpt-5.4",
+    "reasoning_effort": "high"
+  },
+  "skill": {
+    "name": "sitecraft",
+    "version": "0.4.0"
+  },
+  "design": {
+    "conditions": [
+      "baseline",
+      "named_skill"
+    ],
+    "replicates_per_condition": 2,
+    "turns_per_run": 3,
+    "competing_workflows": false
+  },
+  "candidates": {
+    "baseline-1": {
+      "condition": "baseline",
+      "static_acceptance": "pass",
+      "browser_acceptance": "pass",
+      "blind_label": "B",
+      "blind_visual_score": 15,
+      "blind_rank": 4
+    },
+    "baseline-2": {
+      "condition": "baseline",
+      "static_acceptance": "pass",
+      "browser_acceptance": "pass",
+      "blind_label": "D",
+      "blind_visual_score": 22,
+      "blind_rank": 2
+    },
+    "skilled-1": {
+      "condition": "named_skill",
+      "static_acceptance": "pass",
+      "browser_acceptance": "pass",
+      "blind_label": "C",
+      "blind_visual_score": 24,
+      "blind_rank": 1,
+      "skill_reopened_in_turns": [
+        1,
+        2,
+        3
+      ]
+    },
+    "skilled-2": {
+      "condition": "named_skill",
+      "static_acceptance": "pass",
+      "browser_acceptance": "pass",
+      "blind_label": "A",
+      "blind_visual_score": 20,
+      "blind_rank": 3,
+      "skill_reopened_in_turns": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "condition_summary": {
+    "baseline": {
+      "functional_passes": 2,
+      "functional_runs": 2,
+      "mean_blind_visual_score": 18.5
+    },
+    "named_skill": {
+      "functional_passes": 2,
+      "functional_runs": 2,
+      "mean_blind_visual_score": 22.0
+    },
+    "visual_score_difference": 3.5,
+    "paired_visual_differences": {
+      "replicate_1": 9,
+      "replicate_2": -2
+    },
+    "repeatable_visual_advantage": false
+  },
+  "decision": "inconclusive_for_repeatable_output_superiority",
+  "supported_conclusion": "On this evolving static web-product task, SITECRAFT preserved full functional acceptance, produced a higher average blind visual score, and remained active when evidence changed. The split repetitions do not satisfy the predeclared rule for calling a repeatable skill advantage.",
+  "limits": [
+    "Two replicates per condition do not prove universal superiority.",
+    "Headless Chrome does not establish screen-reader, native-device, production, or cross-browser behavior.",
+    "Visual review used one independent model review of desktop and mobile screenshots."
+  ],
+  "raw_reasoning_published": false
+}

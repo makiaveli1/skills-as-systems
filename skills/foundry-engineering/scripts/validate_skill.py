@@ -13,7 +13,7 @@ from typing import Any
 from validate_artifact import validate_file
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.2.1"
+VERSION = "0.3.0"
 REQUIRED_FILES = {
     "SKILL.md",
     "VERSION",
@@ -38,9 +38,11 @@ REQUIRED_FILES = {
     "tests/routing-cases.json",
     "tests/negative-routing-cases.json",
     "tests/evaluation-cases.json",
+    "tests/lifecycle-reentry-cases.json",
     "tests/test_package.py",
     "examples/scenario-walkthroughs.md",
     "bridge_v2_tests.py",
+    "references/lifecycle-reentry.md",
 }
 EXPECTED_WORKFLOWS = {
     "foundry-safe-change": ["understand-contract", "implement-bounded", "verify-challenge", "close-continue"],
@@ -119,8 +121,8 @@ def validate_skill_md(errors: list[str]) -> None:
         errors.append("SKILL.md name must be foundry-engineering")
     if len(frontmatter.get("description", "")) < 160:
         errors.append("SKILL.md description is too short for reliable engineering routing")
-    if len(text) > 10_250:
-        errors.append(f"SKILL.md exceeds the 10,250-character Fabric budget: {len(text)}")
+    if len(text) > 11_250:
+        errors.append(f"SKILL.md exceeds the 11,250-character Fabric budget: {len(text)}")
     if len(text.splitlines()) > 500:
         errors.append("SKILL.md exceeds the 500-line progressive-disclosure limit")
     for selector in re.findall(r"\]\(([^)]+)\)", text):
@@ -286,6 +288,18 @@ def validate_test_matrices(errors: list[str]) -> None:
             if not case.get(field):
                 errors.append(f"evaluation case {case.get('id')} lacks {field}")
 
+    lifecycle = load_json("tests/lifecycle-reentry-cases.json")
+    if not isinstance(lifecycle, list) or len(lifecycle) < 7:
+        errors.append("lifecycle re-entry matrix must contain at least seven cases")
+    else:
+        lifecycle_ids = [case.get("id", "") for case in lifecycle]
+        if len(set(lifecycle_ids)) != len(lifecycle_ids) or not all(lifecycle_ids):
+            errors.append("lifecycle re-entry cases need unique non-empty IDs")
+        for case in lifecycle:
+            for field in ("event", "expected_reentry", "must_preserve", "must_not"):
+                if not case.get(field):
+                    errors.append(f"lifecycle re-entry case {case.get('id')} lacks {field}")
+
 
 def validate_context_and_portability(errors: list[str]) -> None:
     compact_paths = sorted((ROOT / "references").glob("*-compact.md"))
@@ -358,6 +372,16 @@ def validate_governing_content(errors: list[str]) -> None:
     for source in ("SWE-bench", "RepoCoder", "NIST SP 800-218", "Google SRE", "Model Context Protocol"):
         if source not in research_text:
             errors.append(f"research basis missing: {source}")
+    lifecycle_text = (ROOT / "references" / "lifecycle-reentry.md").read_text(
+        encoding="utf-8-sig"
+    )
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8-sig")
+    openai_text = (ROOT / "agents" / "openai.yaml").read_text(encoding="utf-8-sig")
+    for phrase in ("before the first consequential edit", "before completion", "bounded child loop"):
+        if phrase.casefold() not in lifecycle_text.casefold():
+            errors.append(f"lifecycle-reentry.md missing governing phrase: {phrase}")
+    if "lifecycle re-entry" not in skill_text.casefold() or "Re-enter" not in openai_text:
+        errors.append("FOUNDRY core and Codex adapter must both enforce lifecycle re-entry")
 
 
 def validate() -> list[str]:

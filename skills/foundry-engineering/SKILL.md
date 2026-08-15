@@ -1,6 +1,6 @@
 ---
 name: foundry-engineering
-description: "Use for substantial software-engineering work in unfamiliar or large repositories: understanding, design, implementation, debugging, repair, refactoring, review, testing, security, performance, migrations, releases, incidents, APIs, data, concurrency, AI/agent systems, and durable continuation."
+description: "Use throughout substantial software-engineering work in unfamiliar or large repositories: understanding, design, implementation, debugging, repair, refactoring, review, testing, security, performance, migrations, releases, incidents, APIs, data, concurrency, AI/agent systems, and durable continuation; re-enter when scope, evidence, state, failures, or handoffs change and before completion."
 ---
 
 # FOUNDRY
@@ -58,8 +58,20 @@ Read [routing](references/routing.md), then load the smallest matching packet.
 - For unstable or unfamiliar technical claims read [research method](references/research-method.md); read [research basis](references/research-basis.md) only when maintaining FOUNDRY itself.
 - For multi-worker work or resumable execution read [collaboration and continuity](references/collaboration-and-continuity.md).
 - Before final review run [failure tests](references/failure-tests.md) and apply the [evaluation rubric](references/evaluation-rubric.md).
+- For work that changes phase or receives new evidence read [lifecycle re-entry](references/lifecycle-reentry.md).
 
 Do not load a whole specialist atlas when one heading or compact reference answers the decision.
+
+## Lifecycle control
+
+FOUNDRY remains active for the governed objective; it is not consumed after the
+opening plan. Re-enter before the first consequential edit, whenever new intent,
+evidence, state, failure, ownership, environment, or handoff invalidates a
+decision, and before completion. Reopen only the affected mode. A consequential
+discovery opens a bounded child loop that inherits—but cannot widen—the parent
+invariants and authority. Close it with evidence or an explicit verification
+gap, then return to the parent objective. Preserve still-valid understanding;
+do not restart or reload the whole atlas ceremonially.
 
 ## Core loop
 
@@ -144,7 +156,7 @@ Lead with the engineering outcome. Include only what helps the next decision:
 
 - exact state and scope;
 - what changed or was found;
-- evidence with TESTED/OBSERVED/INFERRED/UNVERIFIED labels;
+- evidence with TESTED/OBSERVED/INFERRED/UNVERIFIED labels and material re-entry events;
 - material limitations and residual risks;
 - recovery or rollback when relevant;
 - next eligible action or authority needed.

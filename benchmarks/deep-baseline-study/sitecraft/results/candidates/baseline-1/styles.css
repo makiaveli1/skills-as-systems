@@ -1,0 +1,700 @@
+:root {
+  --bg: #f2ead9;
+  --bg-deep: #e4d6bc;
+  --paper: rgba(248, 242, 229, 0.9);
+  --paper-strong: #f7f1e5;
+  --ink: #1e241d;
+  --muted: #5e6556;
+  --line: rgba(51, 59, 45, 0.18);
+  --line-strong: rgba(51, 59, 45, 0.35);
+  --accent: #2f5a44;
+  --accent-soft: #d8e2d7;
+  --warn: #70472b;
+  --shadow: 0 18px 45px rgba(52, 44, 26, 0.12);
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.4), transparent 35%),
+    linear-gradient(180deg, #d4c19d 0%, var(--bg) 26%, #efe5d2 100%);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.no-js .planner,
+.no-js .plan-builder {
+  display: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.page-shell {
+  width: calc(100% - 1.5rem);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+.page-shell,
+.layout,
+.panel,
+.controls-row,
+.route-list,
+.route-choice,
+.route-card,
+.guidance-box,
+.plan-summary,
+.backup-route,
+.manual-plan,
+.control-block,
+.check-copy,
+.route-choice-header,
+.route-choice-badges {
+  min-width: 0;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0.75rem 0 1rem;
+  padding: 1.4rem 1.2rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px);
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.34), transparent 60%),
+    linear-gradient(180deg, rgba(244, 235, 214, 0.92), rgba(234, 222, 198, 0.94));
+  box-shadow: var(--shadow);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -2rem -3rem auto;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 90, 68, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow,
+.section-mark,
+.route-card-kicker,
+.summary-label,
+.control-label,
+.condition-label,
+.route-status {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.92;
+  font-weight: 700;
+}
+
+.hero-copy {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1.25fr;
+  gap: 1rem;
+}
+
+.panel {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(251, 247, 240, 0.92), rgba(245, 237, 223, 0.96));
+  box-shadow: var(--shadow);
+}
+
+.planner,
+.plan-builder {
+  grid-column: span 1;
+}
+
+.panel-intro,
+.fallback-panel {
+  align-self: start;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.section-mark {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.signal-strip,
+.route-facts {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.signal-strip {
+  margin: 1rem 0 0;
+}
+
+.signal-strip div,
+.route-facts div {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.signal-strip dt,
+.route-facts dt {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.signal-strip dd,
+.route-facts dd {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+}
+
+.controls-row {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.group-needs {
+  margin: 0;
+  padding: 0.95rem 1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.group-needs-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+}
+
+.need-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.need-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.need-option span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6.4rem;
+  max-width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.72);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.need-option input:checked + span {
+  border-color: rgba(47, 90, 68, 0.55);
+  background: rgba(220, 232, 220, 0.95);
+}
+
+.need-option input:focus-visible + span {
+  outline: 3px solid rgba(47, 90, 68, 0.22);
+  outline-offset: 2px;
+}
+
+.control-block {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.control-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.control-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: rgba(255, 252, 246, 0.86);
+  color: var(--ink);
+}
+
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.route-choice:focus-visible,
+.confirm-button:focus-visible,
+.secondary-button:focus-visible {
+  outline: 3px solid rgba(47, 90, 68, 0.22);
+  outline-offset: 2px;
+}
+
+.route-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.route-choice {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(244, 237, 224, 0.92));
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.route-choice:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+}
+
+.route-choice[aria-pressed="true"] {
+  border-color: rgba(47, 90, 68, 0.5);
+  background:
+    linear-gradient(180deg, rgba(230, 240, 231, 0.95), rgba(214, 229, 216, 0.92));
+}
+
+.route-choice[hidden] {
+  display: none;
+}
+
+.route-choice-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.route-choice-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.route-choice strong {
+  font-size: 1.08rem;
+  overflow-wrap: anywhere;
+}
+
+.chip {
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.status-chip {
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.status-chip-open {
+  background: rgba(216, 233, 219, 0.92);
+  color: #214631;
+}
+
+.status-chip-closed {
+  background: rgba(235, 216, 202, 0.94);
+  color: #6b4122;
+}
+
+.route-choice-meta,
+.route-choice-note {
+  color: var(--muted);
+  font-size: 0.96rem;
+  overflow-wrap: anywhere;
+}
+
+.route-choice-fit {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.79rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.route-choice[data-route-status="closed"] {
+  border-style: dashed;
+}
+
+.route-choice.is-compare-only {
+  background:
+    linear-gradient(180deg, rgba(247, 239, 232, 0.96), rgba(240, 228, 214, 0.96));
+}
+
+.route-card {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(246, 241, 232, 0.98), rgba(238, 230, 212, 0.94));
+}
+
+.route-card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.route-card-kicker,
+.route-status,
+.summary-label {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+
+.route-card h3 {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+}
+
+.route-card-summary {
+  margin: 0.75rem 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.guidance-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.guidance-box {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.guidance-box p:last-child {
+  margin: 0.18rem 0 0;
+}
+
+.route-facts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 1rem;
+}
+
+.condition-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.condition-grid p {
+  margin: 0;
+}
+
+.condition-label {
+  margin-bottom: 0.18rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.essentials {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.essentials legend {
+  padding: 0 0.35rem;
+  font-weight: 700;
+}
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.check-copy {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.check-reason {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.check-row input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0.15rem 0 0;
+}
+
+.plan-summary {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(223, 232, 223, 0.75), rgba(241, 246, 236, 0.68));
+}
+
+#plan-summary-content {
+  margin-top: 0.55rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.action-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.confirm-button,
+.secondary-button {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.confirm-button {
+  background: var(--accent);
+  color: #f5f0e6;
+}
+
+.secondary-button {
+  background: rgba(255, 252, 246, 0.76);
+  color: var(--ink);
+}
+
+.confirm-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
+.plan-status {
+  min-height: 1.5rem;
+  margin: 0.9rem 0 0;
+  color: var(--warn);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.plan-status[data-state="success"] {
+  color: var(--accent);
+}
+
+.fallback-panel {
+  grid-column: 1 / -1;
+}
+
+.backup-routes {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.backup-route,
+.manual-plan {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.backup-route h3,
+.manual-plan p {
+  margin-top: 0;
+}
+
+.noscript-banner {
+  margin: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px solid #9a7f4f;
+  background: #f6e8c7;
+  color: #4e3924;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .fallback-panel {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: calc(100% - 0.75rem);
+    max-width: 40rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero,
+  .panel {
+    border-radius: 18px;
+  }
+
+  .hero {
+    padding: 1.2rem 1rem 1.4rem;
+  }
+
+  .form-grid,
+  .route-facts,
+  .guidance-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .action-row,
+  .route-choice-header,
+  .route-card-topline,
+  .group-needs-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .need-option,
+  .need-option span {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media print {
+  html {
+    background: #fff;
+  }
+
+  .page-shell {
+    width: auto;
+  }
+
+  .hero,
+  .panel {
+    box-shadow: none;
+  }
+
+  .action-row,
+  .fallback-panel {
+    display: none;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "project": "cairn",
+  "candidate": "skilled-2",
+  "checks": [
+    {
+      "name": "required_files",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "name": "automation_contract",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "name": "local_only",
+      "passed": true,
+      "external_references": []
+    },
+    {
+      "name": "fresh_route_data",
+      "passed": true,
+      "evidence": {
+        "ids": [
+          "bracken-rise",
+          "rowan-loop",
+          "tor-line"
+        ],
+        "statuses": {
+          "bracken-rise": "closed",
+          "rowan-loop": "open",
+          "tor-line": "open"
+        }
+      }
+    },
+    {
+      "name": "evidence_report",
+      "passed": true,
+      "signals": {
+        "tested": true,
+        "observed": true,
+        "unverified": true
+      }
+    }
+  ],
+  "passed": true
+}

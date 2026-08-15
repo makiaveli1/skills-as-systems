@@ -1,6 +1,6 @@
 interface:
   display_name: "SITECRAFT"
   short_description: "Design, build, audit, and harden web experiences"
-  default_prompt: "Use $sitecraft to turn this website goal, reference, or codebase into a distinctive, responsive, accessible, evidence-verified web experience."
+  default_prompt: "Use $sitecraft throughout this website task. Re-enter it when scope, evidence, project state, failures, or handoffs change and before completion; produce a distinctive, responsive, accessible, evidence-verified experience."
 policy:
   allow_implicit_invocation: true

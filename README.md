@@ -100,8 +100,8 @@ Capable hosts can also activate either skill automatically when the request matc
 
 | Skill | Version | Use it for | Central artifact |
 | --- | ---: | --- | --- |
-| [SITECRAFT](docs/sitecraft.md) | 0.3.1 | Websites, web applications, responsive experience, visual systems, interaction, accessibility, and release evidence | Experience Contract |
-| [FOUNDRY](docs/foundry.md) | 0.2.1 | Codebase understanding, implementation, debugging, testing, review, architecture, migrations, reliability, security, and performance | Change Contract |
+| [SITECRAFT](docs/sitecraft.md) | 0.4.0 | Websites, web applications, responsive experience, visual systems, interaction, accessibility, and release evidence | Experience Contract |
+| [FOUNDRY](docs/foundry.md) | 0.3.0 | Codebase understanding, implementation, debugging, testing, review, architecture, migrations, reliability, security, and performance | Change Contract |
 
 Use both when a task changes a web experience and the software system behind it.
 
@@ -116,6 +116,12 @@ Each skill separates six jobs that ordinary prompts often mix together:
 5. **Verify:** match every completion claim to appropriate evidence.
 6. **Continue:** leave compact state another agent or human can safely resume.
 
+The skill stays active for the whole piece of work. When requirements, evidence,
+project state, failures, or ownership change, the agent reopens only the affected
+part of the skill and checks its decision again. Before claiming completion, it
+returns once more to the relevant verification and failure tests. This keeps the
+method useful after the opening plan without repeatedly loading the whole skill.
+
 Detailed specialist references load only when needed. Failure tests target plausible-looking mistakes such as unnecessary rewrites, guessed capabilities, weakened tests, unsupported visual claims, and fake completion.
 
 Read [the architecture](docs/architecture.md) for the complete model or [the evaluation guide](docs/evaluation.md) for what the test suite does and does not prove.
@@ -124,20 +130,23 @@ Read [the architecture](docs/architecture.md) for the complete model or [the eva
 
 The repository includes frozen prompts, seeds, final projects, screenshots,
 deterministic evaluators, blind review, and machine-readable receipts from fresh
-paired Codex runs.
+Codex runs. We publish mixed results rather than turning them into marketing.
 
-| Showcase | Baseline | With skill | Honest result |
+| Study | Baseline | With skill | Honest result |
 | --- | ---: | ---: | --- |
-| [TIDEGLASS web experience](benchmarks/sitecraft-tideglass/) | 97.5 | 97 | High-quality parity; baseline led by 0.5 in one blind review. |
-| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100 | 100 | Correctness parity; FOUNDRY collected wider crash/concurrency evidence. |
-| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100 | 100 | Correctness parity; baseline carried broader permanent regression coverage. |
+| [CAIRN evolving web experience](benchmarks/deep-baseline-study/sitecraft/) | 18.5/25 average | 22/25 average | Both conditions passed every functional check. The two visual comparisons split, so the higher SITECRAFT average is promising but does not prove a repeatable output advantage. |
+| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100/100 | 100/100 | Earlier bounded example: correctness parity; FOUNDRY collected wider crash and concurrency evidence. |
+| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100/100 | 100/100 | Earlier bounded example: correctness parity; baseline carried broader permanent regression coverage. |
 
-![SITECRAFT TIDEGLASS desktop output](benchmarks/sitecraft-tideglass/evidence/with-sitecraft/desktop-1440x1000.png)
+![Highest-ranked blind CAIRN candidate](benchmarks/deep-baseline-study/sitecraft/results/evidence/skilled-1/desktop-1440x1000.png)
 
-These examples are not a leaderboard and do not prove universal uplift. They do
-show how to test skills without hiding a strong baseline. The first findings led
-to smaller SITECRAFT artifacts and stronger FOUNDRY package regressions. Read the
-[benchmark method and limitations](benchmarks/).
+The deeper CAIRN study used two runs per condition and three changing project
+stages. Both SITECRAFT runs reopened the skill after new evidence arrived and
+again before completion, which supports the new lifecycle behavior. One paired
+visual result favored SITECRAFT by 9 points; the other favored baseline by 2.
+The deeper FOUNDRY scenario is published but its interrupted pilot is excluded;
+no new result is claimed until clean runs are complete. Read the [method,
+evidence, and limitations](benchmarks/).
 
 ## Portable core, optional adapters
 

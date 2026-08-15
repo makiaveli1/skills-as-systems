@@ -1,0 +1,96 @@
+{
+  "project": "cairn",
+  "candidate": "skilled-2",
+  "browser": "Google Chrome via Playwright",
+  "viewports": [
+    {
+      "name": "desktop-1440x1000",
+      "width": 1440,
+      "height": 1000,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "title": "CAIRN Field Plan",
+      "textLength": 4359,
+      "routes": 3,
+      "visibleControls": 9,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "title": "CAIRN Field Plan",
+      "textLength": 4359,
+      "routes": 3,
+      "visibleControls": 9,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "narrow-320x800",
+      "width": 320,
+      "height": 800,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "title": "CAIRN Field Plan",
+      "textLength": 4359,
+      "routes": 3,
+      "visibleControls": 9,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    }
+  ],
+  "staticFallback": {
+    "routeNames": [
+      "Bracken Rise",
+      "Rowan Loop",
+      "Tor Line"
+    ],
+    "passed": true
+  },
+  "interaction": {
+    "routeCount": 3,
+    "closedDisabled": false,
+    "closedNotSelected": false,
+    "confirmDisabledAfterClosed": true,
+    "confirmDisabledAfterGroup": false,
+    "closedCannotBecomePlan": true,
+    "summaryAfterClosedReview": "SELECTED PLAN / MIXED PACE\n\nBracken Rise\n\nClosed today and removed from live planning, even though its terrain is still worth comparing.\n\nROUTE STATUS\nClosed today. A damaged footbridge has closed the north approach.\nSET-OFF WINDOW\nNo set-off window while the ranger closure remains in force.\nTIME ON GROUND\n3 h 10 across 8.4 km\nTERRAIN WATCH\nOpen ridge, wet stone on descent\nSIGNAL\nPatchy beyond the north shoulder\n\nWHY THIS ROUTE\n\nClosure reason: A damaged footbridge has closed the north approach.\n\nGROUP WATCHPOINT\n\nDo not brief this as the active plan; move the group back to an open route before agreeing timings.\n\nSHARE LINE\n\nBracken Rise is closed today because the damaged footbridge shuts the north approach. Compare it if useful, but do not plan around it.",
+    "closedReviewStatus": "Bracken Rise is closed today and cannot become the group plan. Compare it here, then choose an open route.",
+    "groupUpdatesGuidance": true,
+    "arrowNavigation": true,
+    "activeId": "tor-line",
+    "selectedId": "tor-line",
+    "essentialCount": 4,
+    "invalidGuard": true,
+    "invalidFocus": true,
+    "invalidText": "Still to check for Tor Line / Child in group: Do not treat openness as permission.; Protect the child’s footing first.; Keep signal-dependent safety assumptions out of the plan.; Move the group to Rowan Loop or stand down..",
+    "successSummary": true,
+    "successText": "Plan confirmed: Tor Line for Child in group. All essentials checked and ready to share.",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "outsideRequests": [],
+    "passed": true
+  },
+  "reducedMotion": {
+    "offenders": [],
+    "passed": true
+  },
+  "passed": true,
+  "evidenceBoundary": "Headless Chrome covers the listed viewports and scripted interactions; it is not screen-reader, native-device, production, or cross-browser evidence."
+}
