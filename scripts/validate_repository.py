@@ -35,9 +35,15 @@ REPOSITORY_REQUIRED = (
     "docs/foundry.md",
     "docs/release-1.0.0.md",
     "docs/release-1.0.1.md",
+    "docs/release-1.1.0.md",
+    "benchmarks/README.md",
+    "benchmarks/sitecraft-tideglass/results.json",
+    "benchmarks/foundry-ledger-repair/results.json",
+    "benchmarks/foundry-relaypack-boundary/results.json",
     "evaluations/cross-skill-routing.json",
     "scripts/install.py",
     "scripts/smoke_install.py",
+    "scripts/validate_benchmarks.py",
 )
 REPOSITORY_ONLY_NAMES = {
     "README.md",

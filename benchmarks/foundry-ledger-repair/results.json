@@ -1,0 +1,12 @@
+{
+  "benchmark": "foundry-ledger-repair",
+  "date": "2026-08-15",
+  "host": "Codex",
+  "model_note": "Both author conditions used fresh Codex agents with the same inherited model configuration. The exact model identifier was not surfaced to the benchmark artifact.",
+  "benchmarked_skill_version": "0.2.0",
+  "conditions": {
+    "baseline": {"skill_installed": false, "score": 100, "maximum": 100, "blocking_failures": []},
+    "with_foundry": {"skill_installed": true, "score": 100, "maximum": 100, "blocking_failures": []}
+  },
+  "conclusion": "Correctness parity on one bounded transaction repair; the FOUNDRY run collected wider crash and concurrency evidence."
+}

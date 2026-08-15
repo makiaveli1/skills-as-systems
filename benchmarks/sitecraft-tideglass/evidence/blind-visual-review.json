@@ -1,0 +1,68 @@
+{
+  "review_scope": {
+    "basis": "Blind visual review of every supplied PNG for desktop, 390px mobile, 320px narrow, reduced-motion, and final interaction states.",
+    "maximum_score_per_candidate": 45,
+    "areas": {
+      "purpose_and_hierarchy": 10,
+      "visual_system": 15,
+      "responsive_quality": 12,
+      "polish": 8
+    }
+  },
+  "candidates": {
+    "A": {
+      "purpose_and_hierarchy": {
+        "score": 9.0,
+        "max": 10,
+        "evidence": "The warning strip is unmistakable, the editorial lead is immediately legible, and the dark decision card gives the caution state and 06:40–08:10 window strong contrast. Time bands, observations, checklist, advisory, and local-demo form follow in a clear task sequence.",
+        "weaknesses": "On phones, the actual departure decision begins below a tall brand-and-lead block, so the fastest answer is not visible in the initial viewport. On desktop, current observations sit below the hero rather than alongside the primary decision."
+      },
+      "visual_system": {
+        "score": 14.0,
+        "max": 15,
+        "evidence": "A cohesive harbour-derived system combines the cream chart grid, deep teal, amber warnings, waterline/ring motifs, nautical icons, editorial serif headlines, and compact technical labels. Cards, rules, status dots, and rounded geometry are consistently applied without looking generic.",
+        "weaknesses": "The restrained card-based language is highly refined but a little more familiar than the strongest bespoke editorial systems, and some tiny uppercase/supporting labels lose force beside the oversized headlines."
+      },
+      "responsive_quality": {
+        "score": 12.0,
+        "max": 12,
+        "evidence": "All supplied widths remain composed with no visible horizontal overflow. The desktop grid becomes a clean single-column flow; tabs become large full-width touch targets; observations form a readable 2-by-2 grid even at 320px; checklist, advisory, form, and footer reflow deliberately. The reduced-motion rendering remains complete and visually stable.",
+        "weaknesses": "The 320px page is necessarily very long, and the top warning wraps to two lines, but neither issue damages comprehension or fit."
+      },
+      "polish": {
+        "score": 7.5,
+        "max": 8,
+        "evidence": "Fine-grained finish is visible in custom icons, checkbox/count treatment, selected-status color changes, helpful advisory copy, explicit local-only form disclosure, focused input treatment, and a clearly styled success result. Spacing, borders, corner radii, and typography remain coherent across every screenshot.",
+        "weaknesses": "In the final interaction screenshot, the visible skip link overlays and obscures part of the Wind observation, which weakens an otherwise very controlled state. A few secondary notes are quite small for glare-prone outdoor use."
+      },
+      "total": 42.5
+    },
+    "B": {
+      "purpose_and_hierarchy": {
+        "score": 9.5,
+        "max": 10,
+        "evidence": "The warning strip is dominant, and the wide desktop hero pairs the lead directly with a large operational panel containing the selected outlook, departure window, advisory, and all four observations. The numbered sequence from outlook to checklist, advisory, and notices is unusually easy to scan.",
+        "weaknesses": "On phones, the lead still fills most of the initial viewport before the decision panel appears. Several all-caps micro-labels are small enough to slow scanning in demanding outdoor conditions."
+      },
+      "visual_system": {
+        "score": 14.5,
+        "max": 15,
+        "evidence": "The industrial harbour-board grammar is highly distinctive: modular split panels, chart grid, serialized section labels, stencil/monospace readings, square status marks, angled logo, broad teal fields, and hazard-strip accents all feel derived from the briefing context. The system is consistent across default and hold states.",
+        "weaknesses": "The intentionally austere treatment occasionally becomes severe: fine rules, condensed mono labels, and sparse outlined boxes are less immediately friendly than the primary serif display language."
+      },
+      "responsive_quality": {
+        "score": 11.0,
+        "max": 12,
+        "evidence": "There is no visible overflow at 390px or 320px. The split desktop hero stacks logically, the observation matrix changes from 2-by-2 to a single column at 320px, time bands become full-width rows, and the footer and form collapse cleanly. Reduced-motion preserves the same readable layout.",
+        "weaknesses": "At 320px, the large 06:40–08:10 reading breaks across two lines and the observation panel becomes notably tall. The mobile composition relies on many hard-edged full-width bands, producing a heavier, longer reading rhythm than the desktop layout."
+      },
+      "polish": {
+        "score": 7.0,
+        "max": 8,
+        "evidence": "Default and final states are visually complete: the selected 09:00 hold state updates color, reading values, and status copy; the form failure is explicit and preserves the no-send/no-store boundary; focused control styling is visible; and the brand/footer treatment is resolved at every width.",
+        "weaknesses": "The visible skip link in the final interaction state overlaps the comparison area and partly crowds the first time band. The hazard stripe terminates somewhat abruptly on mobile, several support/error lines are very small, and the checklist lacks the extra completion affordance and feedback visible in A."
+      },
+      "total": 42.0
+    }
+  }
+}

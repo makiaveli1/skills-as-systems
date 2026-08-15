@@ -53,6 +53,33 @@ Before modification, state or record:
 
 A visual redesign request can justify broad change. A spacing fix cannot.
 
+## Artifact depth
+
+Match the contract to the durability of the work.
+
+Use a **compact working contract** for a bounded single surface when one worker can
+hold the state safely and there is no long-lived approval, asset lineage,
+multi-runtime ownership, or cross-session coordination requirement. Record only:
+
+- purpose and primary outcome;
+- protected trust/content/brand boundaries;
+- required states and responsive transformations;
+- material implementation choice, if any;
+- evidence needed and evidence actually observed;
+- remaining release condition.
+
+This may live in the run report or existing project documentation. Do not create a
+full schema-shaped JSON artifact solely because SITECRAFT is active.
+
+Create or update the full **Experience Contract** when its machine-readable
+durability earns its cost: multiple surfaces or routes, consequential generated
+assets, shared runtime ownership, repeated handoffs, approval lineage, staged
+release, or an existing contract that is already canonical. Start with the
+smallest relevant sections and add optional systems only when they are real.
+
+An existing authoritative contract remains authoritative. The threshold controls
+whether to create one, not whether an agent may ignore one already in use.
+
 ## Route mesh
 
 Treat Frame, Map, Compose, Choreograph, Build, Observe, and Harden as a connected decision flow rather than separate documents.

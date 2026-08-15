@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "tideglass-departure-board",
+  "project": "TIDEGLASS / East Breakwater",
+  "revision": 1,
+  "status": "implemented_unverified",
+  "workflow_state": {
+    "frame_map": "passed",
+    "compose_choreograph": "passed",
+    "build_observe": "warnings",
+    "harden_release": "warnings"
+  },
+  "updated_at": "2026-08-15",
+  "purpose": {
+    "public_purpose": "Demonstrate a clear fictional harbour departure briefing.",
+    "primary_outcome": "A small-boat crew can identify the morning's most sensible demonstration departure window and the checks to make before leaving.",
+    "secondary_outcomes": [
+      "Compare three time bands without losing the current decision context.",
+      "Exercise a local-only notice form without transmitting or retaining an address."
+    ],
+    "success_signals": [
+      "The decision, best window, observations, and checklist are visible in one continuous page.",
+      "Time selection works with touch, pointer, and keyboard and exposes selected state.",
+      "The demonstration trust boundary remains unmistakable."
+    ],
+    "trust_requirements": [
+      "State that all data is demonstration data and not for navigation at the top of the page.",
+      "Do not claim live feeds, safety, transmission, or retention."
+    ]
+  },
+  "audience": {
+    "primary": "Small-boat crews checking conditions before a morning departure.",
+    "context_of_use": "Often outdoors on a phone, potentially in glare or while wearing gloves.",
+    "needs": [
+      "High contrast and large touch targets.",
+      "Fast scanning of decision, time, and numeric observations.",
+      "A concise pre-departure checklist."
+    ],
+    "risks": [
+      "Fictional data being mistaken for navigation advice.",
+      "State changes that rely on animation or colour alone.",
+      "Dense values overflowing on a 320 CSS-pixel viewport."
+    ]
+  },
+  "experience_map": {
+    "surfaces": [
+      {
+        "id": "departure-briefing",
+        "route": "index.html",
+        "purpose": "Answer whether there is a sensible demonstration departure window and what to check.",
+        "primary_action": "Select a time band to compare the morning outlook.",
+        "secondary_actions": [
+          "Read the checklist.",
+          "Run the local notice-form demonstration."
+        ],
+        "states": [
+          "Now caution",
+          "07:00 best window",
+          "09:00 hold",
+          "form empty",
+          "form invalid",
+          "form submitting",
+          "form success",
+          "form failure"
+        ],
+        "content_authority": [
+          "BRIEF.md"
+        ]
+      }
+    ],
+    "primary_journeys": [
+      "Read trust boundary, decision, and best window; compare time bands; complete the four departure checks.",
+      "Enter an email; receive local validation, progress, and completion or failure feedback."
+    ],
+    "completion_path": "The user understands the fictional morning window and has a four-item check sequence before departure.",
+    "navigation_model": "A single linear public information page with no route changes.",
+    "content_hierarchy": [
+      "Demonstration boundary",
+      "Current decision and best window",
+      "Observations",
+      "Time comparison",
+      "Checklist and advisory",
+      "Local form"
+    ]
+  },
+  "visual_grammar": {
+    "dominant_idea": "A weathered harbour instrument board translated into a crisp public information sheet.",
+    "typography_roles": [
+      "System serif for large editorial decisions and section headings.",
+      "System sans serif for instructions and controls.",
+      "System monospace for times, observations, and issue labels."
+    ],
+    "colour_roles": [
+      "Warm off-white canvas for glare-aware reading.",
+      "Deep blue-black for primary ink and the instrument panel.",
+      "Harbour teal for advisory structure and selected controls.",
+      "Amber for caution and active decision weight.",
+      "Green and red variants for best-window and hold states."
+    ],
+    "layout_rules": [
+      "The briefing pairs an editorial lead with a dense observation panel on wide screens and stacks them on smaller screens.",
+      "Rules and alignment communicate hierarchy before card decoration.",
+      "Time controls remain one scan row on desktop and become full-width rows on narrow screens."
+    ],
+    "spacing_density": "Spacious around the primary decision, compact within observations and checklist rows.",
+    "imagery_treatment": "No external or generated imagery; CSS grid lines and signal marks provide place-specific texture.",
+    "component_language": [
+      "Square-edged framed controls with clear selected, focus, and status marks.",
+      "Large tabular values and explicit text labels; colour is always redundant."
+    ],
+    "anti_patterns": [
+      "No glass effects, generic card grid, stock photography, or decorative dashboards.",
+      "No information conveyed only through colour or animation.",
+      "No invented safety or live-data claims."
+    ],
+    "direction_selection": {
+      "mode": "not_needed",
+      "reason": "The audience, harbour context, trust boundary, and data hierarchy provide a strong direction.",
+      "directions": [],
+      "selected_id": null,
+      "reopen_conditions": [
+        "Owner supplies an approved brand foundation or reference system that changes the hierarchy."
+      ]
+    }
+  },
+  "behaviour": {
+    "interaction_rules": [
+      "Time bands are tabs with click, touch, arrow-key, Home, and End selection.",
+      "Selection updates decision text and all displayed observation fields from one local data object.",
+      "The form validates locally, simulates progress, then resolves to success or a documented deterministic failure."
+    ],
+    "transition_grammar": [
+      "State updates are immediate; the interface does not require animated continuity."
+    ],
+    "scroll_rules": [
+      "Native vertical scrolling only; no scroll interception."
+    ],
+    "motion_purposes": [
+      "Only native smooth anchor scrolling is used to preserve orientation."
+    ],
+    "reduced_motion": [
+      "Smooth scrolling is disabled and all transitions or animations are reduced to effectively zero duration."
+    ],
+    "focus_behaviour": [
+      "All interactive elements have a high-contrast visible focus outline.",
+      "Tab selection moves focus with the active tab.",
+      "Validation returns focus to the email field."
+    ],
+    "loading_error_feedback": [
+      "Submitting disables the field and button, marks the form busy, and announces local-only progress.",
+      "Empty, invalid, success, and failure messages use a polite live region."
+    ],
+    "prohibited_motion": [
+      "No autoplay, looping, parallax, or content reveal motion."
+    ]
+  },
+  "responsive_contract": {
+    "compositions": [
+      {
+        "name": "Wide briefing",
+        "trigger": "Above 62rem",
+        "layout_changes": [
+          "Lead and observation panel share a two-column composition.",
+          "Checklist and advisory share a two-column composition."
+        ],
+        "interaction_changes": []
+      },
+      {
+        "name": "Stacked briefing",
+        "trigger": "At or below 62rem",
+        "layout_changes": [
+          "Lead, observation, checklist, advisory, and notice regions stack in reading order."
+        ],
+        "interaction_changes": []
+      },
+      {
+        "name": "Narrow controls",
+        "trigger": "At or below 42rem",
+        "layout_changes": [
+          "Time bands and form controls become full-width rows.",
+          "Footer content stacks."
+        ],
+        "interaction_changes": [
+          "Time bands retain tab keyboard behaviour and grow vertically for touch."
+        ]
+      }
+    ],
+    "reflow_320_css_px": [
+      "No horizontal scrolling.",
+      "Observations stack to one column below 24rem.",
+      "Long values and text wrap without clipping.",
+      "All controls retain at least 44 CSS-pixel height."
+    ],
+    "intrinsic_media_rules": [
+      "No media assets are used."
+    ]
+  },
+  "implementation": {
+    "architecture": "Static semantic HTML with one stylesheet and one dependency-free JavaScript state layer.",
+    "framework": null,
+    "conventions": [
+      "Content and default state are complete in HTML before JavaScript runs.",
+      "CSS custom properties own the visual roles.",
+      "JavaScript changes text content, ARIA state, focus, and local form state only."
+    ],
+    "protected_foundations": [
+      "BRIEF.md content and trust boundary.",
+      "Native browser zoom and user font preferences.",
+      "No external network dependencies."
+    ],
+    "editable_areas": [
+      "index.html",
+      "styles.css",
+      "app.js"
+    ],
+    "capability_plan": [
+      {
+        "id": "decision-state",
+        "need": "Accessible local comparison among three time bands.",
+        "capability_class": "client-state",
+        "selected_route": "Plain JavaScript with semantic tab buttons and one local state object.",
+        "reason": "The behaviour is small and does not justify a framework or dependency.",
+        "rejected_routes": [
+          "External component library or application framework."
+        ],
+        "integration_boundary": [
+          "Only the decision and observation DOM nodes are updated."
+        ],
+        "loading_strategy": [],
+        "fallback": "The default Now state and all three band summaries remain readable without JavaScript.",
+        "risks": [
+          "ARIA state and visible values could diverge if updated separately."
+        ],
+        "evidence_required": [
+          "Keyboard path and selected-state inspection.",
+          "Value comparison for all three bands."
+        ]
+      },
+      {
+        "id": "notice-form",
+        "need": "Demonstrate useful local email form states without transmission or retention.",
+        "capability_class": "semantic-ui",
+        "selected_route": "Native email validity plus a short local JavaScript timer and live status text.",
+        "reason": "It preserves familiar form controls and makes the trust boundary inspectable.",
+        "rejected_routes": [
+          "Network request, persistence, or third-party form service."
+        ],
+        "integration_boundary": [
+          "No fetch, storage, cookies, or analytics."
+        ],
+        "loading_strategy": [],
+        "fallback": "The static form copy still states that no address is transmitted or retained.",
+        "risks": [
+          "Simulated progress could be mistaken for a real submission without explicit copy."
+        ],
+        "evidence_required": [
+          "Empty, invalid, submitting, success, and deterministic failure checks.",
+          "Public source inspection for network and storage calls."
+        ]
+      }
+    ],
+    "runtime_orchestration": {
+      "mode": "single_runtime",
+      "ownership": [
+        {
+          "concern": "application-state",
+          "scope": "Time-band and form demonstration state.",
+          "owner": "app.js",
+          "related_decision_ids": [
+            "decision-state",
+            "notice-form"
+          ],
+          "rule": "JavaScript owns only ephemeral local state; HTML owns content and initial readability."
+        }
+      ],
+      "bridges": [],
+      "shared_rules": [
+        "ARIA and visible state change in the same function."
+      ],
+      "prohibited_conflicts": [
+        "No second runtime, network state, or persistent state."
+      ]
+    },
+    "dependencies": [],
+    "browser_support": [
+      "Modern browsers with CSS Grid, custom properties, and standard DOM APIs."
+    ],
+    "public_private_boundary": [
+      "The public build contains only fictional brief data and local interaction logic.",
+      "No secrets, user data persistence, network endpoints, or private debug material."
+    ],
+    "rollback_boundary": "Remove index.html, styles.css, app.js, README.md, EXPERIENCE-CONTRACT.json, and RUN-REPORT.md to return to the brief-only workspace."
+  },
+  "evidence_contract": {
+    "required_views": [
+      "Wide desktop",
+      "Standard desktop",
+      "Short laptop",
+      "Tablet or intermediate",
+      "Narrow mobile",
+      "320 CSS-pixel reflow",
+      "Default motion",
+      "Reduced motion"
+    ],
+    "required_interactions": [
+      "Pointer and keyboard selection for all three time bands.",
+      "Form empty, invalid, submitting, success, and failure paths."
+    ],
+    "accessibility_checks": [
+      "Semantic source and label relationships.",
+      "Visible keyboard focus and tab roving behaviour.",
+      "Live state announcements.",
+      "Zoom, reduced motion, forced colours, and 320-pixel reflow."
+    ],
+    "performance_checks": [
+      "Public file size and absence of external dependencies.",
+      "Browser rendering and interaction responsiveness."
+    ],
+    "security_checks": [
+      "Search source for network, storage, secret, and tracking mechanisms."
+    ],
+    "visual_baselines": [],
+    "reviewers": [
+      "Automated structural self-check",
+      "Human owner review pending"
+    ],
+    "support_claim_rule": "Claim only the exact local environment and states actually observed.",
+    "freshness_rule": "Any implementation change stales affected evidence until checks are repeated."
+  },
+  "release_state": {
+    "approval": "not_requested",
+    "verification": "partial",
+    "blockers": [
+      "Visual and interaction review in a real browser is still required."
+    ],
+    "approved_revision": null,
+    "release_evidence": []
+  },
+  "revision_history": [
+    {
+      "revision": 1,
+      "summary": "Initial build contract for the static TIDEGLASS departure board.",
+      "authority": "BRIEF.md and SITECRAFT implementation pass",
+      "evidence": [
+        "Source files in workspace root"
+      ],
+      "staled_evidence": []
+    }
+  ]
+}

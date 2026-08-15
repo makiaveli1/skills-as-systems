@@ -1,5 +1,13 @@
 # Changelog
 
+## Collection 1.1.0 — 2026-08-15
+
+- Added reproducible, paired Codex benchmark showcases for SITECRAFT and FOUNDRY with frozen prompts, seeds, rubrics, independent checks, browser evidence, mutation tests, and honest parity results.
+- SITECRAFT 0.3.1 adds an explicit artifact-depth threshold so bounded single-surface work uses a compact contract instead of producing schema-shaped paperwork without a durability need.
+- FOUNDRY 0.2.1 strengthens packaging repairs: permanent regressions now need to build, inspect, install, and exercise the incident-relevant artifact contract without source-tree leakage.
+- Added final projects and evidence receipts suitable for independent reruns; private reasoning transcripts and installed skill copies remain excluded.
+- Bumped the Claude Code collection plugin to 1.1.0.
+
 ## Collection 1.0.1 — 2026-08-15
 
 - Corrected every public author, owner, copyright, PC Bridge, and Git attribution to **MAKIAVELI**.

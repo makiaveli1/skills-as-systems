@@ -1,0 +1,189 @@
+{
+  "benchmark": "foundry-relaypack-boundary",
+  "score": 100,
+  "maximum_score": 100,
+  "blocking_failures": [],
+  "checks": [
+    {
+      "name": "source_baseline",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "evidence": {
+        "command": [
+          "/Library/Developer/CommandLineTools/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "returncode": 0,
+        "output": "test_known_route (test_relaypack.RelaypackTests) ... ok\ntest_unknown_route (test_relaypack.RelaypackTests) ... ok\ntest_installed_console_command_loads_packaged_routes (test_wheel.WheelTests) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 8.927s\n\nOK\n"
+      }
+    },
+    {
+      "name": "wheel_build",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "evidence": {
+        "build": {
+          "command": [
+            "/Library/Developer/CommandLineTools/usr/bin/python3",
+            "-m",
+            "pip",
+            "wheel",
+            ".",
+            "--no-build-isolation",
+            "--no-deps",
+            "--wheel-dir",
+            "<TMP>/wheels"
+          ],
+          "returncode": 0,
+          "output": "WARNING: The directory '<HOME>/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\nProcessing <TMP>/build-checkout\n  DEPRECATION: A future pip version will change local packages to be built in-place without first copying to a temporary directory. We recommend you use --use-feature=in-tree-build to test your packages with this new behavior before it becomes the default.\n   pip 21.3 will remove support for this functionality. You can find discussion regarding this at https://github.com/pypa/pip/issues/7555.\n    Preparing wheel metadata: started\n    Preparing wheel metadata: finished with status 'done'\nBuilding wheels for collected packages: relaypack-demo\n  Building wheel for relaypack-demo (PEP 517): started\n  Building wheel for relaypack-demo (PEP 517): finished with status 'done'\n  Created wheel for relaypack-demo: filename=relaypack_demo-0.1.0-py3-none-any.whl size=2283 sha256=ec01a673dcbea3818130f15df6ffd0cb7683611319bc8cd7f1dc8fc40b1c7227\n  Stored in directory: <TMP>/wheels/44/4d/35/5bca00ac02fef483bed141039257804c9d514f8296439a36cd\nSuccessfully built relaypack-demo\n"
+        },
+        "venv": {
+          "command": [
+            "/Library/Developer/CommandLineTools/usr/bin/python3",
+            "-m",
+            "venv",
+            "<TMP>/venv"
+          ],
+          "returncode": 0,
+          "output": ""
+        },
+        "install": {
+          "command": [
+            "<TMP>/venv/bin/pip",
+            "install",
+            "--no-deps",
+            "<TMP>/wheels/relaypack_demo-0.1.0-py3-none-any.whl"
+          ],
+          "returncode": 0,
+          "output": "WARNING: The directory '<HOME>/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\nProcessing <TMP>/wheels/relaypack_demo-0.1.0-py3-none-any.whl\nInstalling collected packages: relaypack-demo\nSuccessfully installed relaypack-demo-0.1.0\n"
+        }
+      }
+    },
+    {
+      "name": "package_data",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "evidence": {
+        "wheel_members": [
+          "relaypack/__init__.py",
+          "relaypack/cli.py",
+          "relaypack/routes.json",
+          "relaypack_demo-0.1.0.dist-info/METADATA",
+          "relaypack_demo-0.1.0.dist-info/WHEEL",
+          "relaypack_demo-0.1.0.dist-info/entry_points.txt",
+          "relaypack_demo-0.1.0.dist-info/top_level.txt",
+          "relaypack_demo-0.1.0.dist-info/RECORD"
+        ]
+      }
+    },
+    {
+      "name": "installed_api",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "evidence": {
+        "command": [
+          "<TMP>/venv/bin/python",
+          "-c",
+          "from relaypack import render_route; print(render_route('alpha'))"
+        ],
+        "returncode": 0,
+        "output": "route alpha -> https://api.example.test/v1\n"
+      }
+    },
+    {
+      "name": "installed_cli",
+      "points": 15,
+      "earned": 15,
+      "passed": true,
+      "evidence": {
+        "command": [
+          "<TMP>/venv/bin/relaypack",
+          "alpha"
+        ],
+        "returncode": 0,
+        "output": "route alpha -> https://api.example.test/v1\n"
+      }
+    },
+    {
+      "name": "unknown_route",
+      "points": 5,
+      "earned": 5,
+      "passed": true,
+      "evidence": {
+        "api": {
+          "command": [
+            "<TMP>/venv/bin/python",
+            "-c",
+            "from relaypack import render_route; render_route('missing')"
+          ],
+          "returncode": 1,
+          "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<TMP>/venv/lib/python3.9/site-packages/relaypack/cli.py\", line 15, in render_route\n    return f\"route {name} -> {routes[name]}\"\nKeyError: 'missing'\n"
+        },
+        "cli": {
+          "command": [
+            "<TMP>/venv/bin/relaypack",
+            "missing"
+          ],
+          "returncode": 2,
+          "output": "usage: relaypack [-h] name\nrelaypack: error: unknown route: missing\n"
+        }
+      }
+    },
+    {
+      "name": "regression_mutation",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "evidence": {
+        "command": [
+          "/Library/Developer/CommandLineTools/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "returncode": 1,
+        "output": "test_known_route (test_relaypack.RelaypackTests) ... ok\ntest_unknown_route (test_relaypack.RelaypackTests) ... ok\ntest_installed_console_command_loads_packaged_routes (test_wheel.WheelTests) ... ERROR\n\n======================================================================\nERROR: test_installed_console_command_loads_packaged_routes (test_wheel.WheelTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<TMP>/seed/tests/test_wheel.py\", line 62, in test_installed_console_command_loads_packaged_routes\n    completed = subprocess.run(\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py\", line 528, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['<TMP>/venv/bin/relaypack', 'alpha']' returned non-zero exit status 1.\n\n----------------------------------------------------------------------\nRan 3 tests in 4.652s\n\nFAILED (errors=1)\n"
+      }
+    },
+    {
+      "name": "scope",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "evidence": {
+        "changed_files": [
+          "RUN-REPORT.md",
+          "config/routes.json",
+          "setup.cfg",
+          "src/relaypack/cli.py",
+          "src/relaypack/routes.json",
+          "tests/test_wheel.py"
+        ],
+        "runtime_dependency_added": false
+      }
+    },
+    {
+      "name": "evidence",
+      "points": 10,
+      "earned": 10,
+      "passed": true,
+      "evidence": {
+        "path": "RUN-REPORT.md",
+        "required_signals_present": true
+      }
+    }
+  ],
+  "evidence_boundary": "TESTED locally with source tests, a built wheel, an isolated virtual environment, and installed API/CLI subprocesses. No registry publication or cross-platform install was observed."
+}

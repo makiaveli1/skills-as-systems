@@ -87,6 +87,12 @@ syntax/type → focused behavior → regression → integration → build/packag
 
 Claims are labelled TESTED, OBSERVED, INFERRED, or UNVERIFIED. A unit test cannot prove a deployed integration; a benchmark without a baseline cannot prove improvement; a scanner cannot prove security.
 
+For packaging incidents, the regression must live at the artifact boundary. It
+builds and inspects the distributable, installs without source-tree leakage, and
+exercises the incident-relevant public success and failure contracts. A separate
+evaluation receipt may widen that proof, but it cannot replace the test that
+travels with the package.
+
 ### 6. Challenge and close
 
 Run relevant vetoes: wrong owner, hidden scope, compatibility drift, weakened tests, unhappy paths, concurrency, stale state, recovery, security, integration reality, and rollback feasibility. Inspect the final diff and leave exact evidence, limitations, residual risk, and next action.

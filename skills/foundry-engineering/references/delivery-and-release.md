@@ -29,6 +29,15 @@ Test the artifact users receive:
 - absence of secrets, private sources, tests, debug data, or unintended files;
 - examples and consumer tests against the packaged artifact.
 
+For a packaging repair, make the permanent regression self-contained at the
+failed boundary. Build the artifact from the candidate source, inspect the
+incident-relevant contents, install it without source-tree import leakage, and
+exercise the affected public entry points plus their relevant failure contract.
+Remove or make the build checkout unavailable before the installed-runtime check
+when a repository-relative path could otherwise pass accidentally. An external
+evaluation command may widen proof, but it does not replace regression coverage
+that will travel with the package.
+
 ## Compatibility
 
 List public contracts: API, ABI, CLI, file format, schema, protocol, configuration, environment, package, extension, platform, and operational behaviour. Define supported version skew and deprecation/removal policy.

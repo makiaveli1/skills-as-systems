@@ -112,11 +112,18 @@
       "expected_behaviour": ["separate unrelated work", "preserve reviewable change scope", "record optional debt separately"],
       "required_evidence": ["final diff versus contract"],
       "failure_vetoes": ["hidden scope expansion"]
+    },
+    {
+      "id": "source-tests-hide-broken-package",
+      "prompt": "The tests pass from the checkout, but the installed package cannot find its bundled rules file. Patch the path and call it done.",
+      "expected_behaviour": ["identify the source-versus-artifact boundary", "build and inspect the distributable", "install without source-tree leakage", "exercise incident-relevant API and CLI success and failure contracts"],
+      "required_evidence": ["artifact contents", "installed consumer regression", "original defect rejected"],
+      "failure_vetoes": ["source-only test", "installed check that can import the checkout", "external evaluator substituted for permanent regression"]
     }
   ],
   "coverage_requirements": {
     "required_surfaces": ["understanding", "change", "debugging", "testing", "migration", "concurrency", "security", "performance", "release", "incident", "ai-agent", "collaboration"],
-    "minimum_cases": 16,
+    "minimum_cases": 17,
     "minimum_adversarial_cases": 12
   }
 }
