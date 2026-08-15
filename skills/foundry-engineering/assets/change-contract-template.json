@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-change-contract",
+  "contract_id": "change-replace-me",
+  "revision": 1,
+  "project_ref": "project-replace-me",
+  "state_ref": "state-replace-me",
+  "system_map_ref": "",
+  "mode": "implement",
+  "status": "draft",
+  "objective": {
+    "outcome": "replace-me",
+    "non_goals": []
+  },
+  "baseline": {
+    "current_behaviour": ["replace-me"],
+    "evidence_refs": [],
+    "reproduction_status": "not_applicable",
+    "limitations": []
+  },
+  "target": {
+    "expected_behaviour": ["replace-me"],
+    "failure_cases": []
+  },
+  "invariants": [
+    {
+      "invariant_id": "invariant-replace-me",
+      "statement": "replace-me",
+      "evidence_required": ["replace-me"]
+    }
+  ],
+  "ownership": {
+    "behaviour_owner": "replace-me",
+    "state_or_data_owners": [],
+    "integration_boundaries": []
+  },
+  "surfaces": {
+    "allowed": ["replace-me"],
+    "affected": [],
+    "forbidden": [],
+    "generated_or_external": []
+  },
+  "risks": [],
+  "verification_plan": [
+    {
+      "claim_id": "claim-replace-me",
+      "claim": "replace-me",
+      "risk_ids": [],
+      "invariant_ids": ["invariant-replace-me"],
+      "evidence_kind": ["replace-me"],
+      "pass_condition": "replace-me"
+    }
+  ],
+  "recovery": {
+    "strategy": "not_needed",
+    "steps": [],
+    "data_reconciliation": [],
+    "abort_conditions": []
+  },
+  "authority": {
+    "current_scope": [],
+    "additional_approval_required": [],
+    "permissions_carried_by_contract": false
+  },
+  "updated_at": "2000-01-01T00:00:00Z"
+}

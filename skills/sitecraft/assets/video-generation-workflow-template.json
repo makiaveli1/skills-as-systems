@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "unassigned-video-asset",
+  "route_decision": "blocked",
+  "stage_state": {
+    "asset_plan": "not_started",
+    "provider_inspection": "not_started",
+    "generation_readiness": "not_started",
+    "review_delivery": "not_started"
+  },
+  "asset_plan": {
+    "website_surface": "No website surface has been assigned.",
+    "website_role": "No generated-video role has been approved.",
+    "why_generated_motion": "Generated motion has not yet been justified for this asset.",
+    "generation_class": "other",
+    "fallback": "Use the approved non-generated website fallback until a generated-video route is justified.",
+    "reduced_motion_equivalent": "Use the approved static or reduced-motion composition.",
+    "hard_quality_floors": ["Define asset-specific hard quality floors before generation authority is requested."],
+    "max_attempts": 1,
+    "max_status_polls_per_attempt": 12,
+    "credit_budget": null,
+    "provider_interaction_boundary": "No provider interaction is authorized by this template.",
+    "host_can_inspect_result": false,
+    "prompt_ready": false,
+    "references_ready": false
+  },
+  "provider_inspection": {
+    "required": true,
+    "catalogue_discovered": false,
+    "current_source_used": false,
+    "model_requirements_known": false,
+    "provider": null,
+    "model": null,
+    "settings_summary": [],
+    "inspection_authority_scope": "Not requested.",
+    "inspection_credit_status": "unknown",
+    "generation_performed_during_inspection": false
+  },
+  "generation_readiness": {
+    "ready": false,
+    "provider_model_frozen": false,
+    "settings_checked_against_contract": false,
+    "exact_attempt_scope": "Not ready.",
+    "spend_boundary": "No generation spend is authorized.",
+    "interaction_boundary": "No generation or polling is authorized.",
+    "reapproval_triggers": ["Any move from planning or inspection into generation requires explicit live authority."],
+    "generation_authority_state": "not_requested",
+    "status_poll_policy": "No polling until a generation attempt has been explicitly authorized and started."
+  },
+  "review_delivery": {
+    "attempt_count": 0,
+    "artifact_reference": null,
+    "actual_artifact_inspected": false,
+    "hard_floors_passed": false,
+    "decision": "not_started",
+    "defects": [],
+    "targeted_change": null,
+    "credits_reported": null,
+    "delivery_verified": false,
+    "responsive_delivery_verified": false,
+    "performance_budget_verified": false,
+    "media_accessibility_verified": false,
+    "reduced_motion_verified": false,
+    "evidence_refs": [],
+    "owner_approval": "not_requested"
+  }
+}

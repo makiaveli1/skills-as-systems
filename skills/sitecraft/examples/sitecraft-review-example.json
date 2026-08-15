@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "review_id": "fieldhouse-contract-review-v1",
+  "project": "Fieldhouse Workshops",
+  "contract_revision": 1,
+  "exact_state": {
+    "identity": "experience-contract-example sha256:9c5ece0217ab6641e8745a722da9abba932e8d69813b0cac74b79dab5cdb7cb7",
+    "environment": "contract-only example; no rendered build",
+    "observed_at": "2026-08-04",
+    "url_or_artifact": "examples/experience-contract-example.json"
+  },
+  "review_type": "concept",
+  "review_provenance": [
+    {
+      "id": "contract-self-review",
+      "kind": "self_review",
+      "reviewer": "SITECRAFT review author",
+      "build_relation": "same_context",
+      "independence": "not_independent",
+      "scope": ["Contract coherence, declared floors, and specification defects only"],
+      "evidence_refs": ["Experience Contract revision 1"]
+    },
+    {
+      "id": "schema-validation-check",
+      "kind": "automated_evidence_check",
+      "reviewer": "Bundled SITECRAFT artifact validator",
+      "build_relation": "automated_system",
+      "independence": "automated_check",
+      "scope": ["Schema and semantic validation only; this is not a visual, interaction, human, or independent creative review"],
+      "evidence_refs": ["Schema validation receipt"]
+    }
+  ],
+  "evidence_scope": {
+    "included": [
+      "Experience Contract revision 1",
+      "Schema validation receipt"
+    ],
+    "missing": [
+      "Implementation",
+      "Rendered screenshots",
+      "Interaction recordings",
+      "Accessibility test results",
+      "Performance measurements",
+      "Security and deployment review"
+    ],
+    "stale": [],
+    "limitations": [
+      "Scores describe the build specification, not a website implementation"
+    ]
+  },
+  "capability_scope": {
+    "reviewed_ids": [
+      "list-detail-continuity",
+      "programme-filter-state"
+    ],
+    "unreviewed_ids": [],
+    "notes": [
+      "The capability decisions are reviewed as specification choices only; runtime evidence does not exist yet."
+    ]
+  },
+  "scores": {
+    "purpose_trust": {
+      "score": 4,
+      "rationale": "The contract defines the visitor, booking outcome, practical decision information, and anti-coercion trust requirements.",
+      "evidence": ["purpose", "audience", "trust_requirements"]
+    },
+    "experience_architecture": {
+      "score": 4,
+      "rationale": "Home, list, detail, booking, waitlist, loading, error, and success states form a coherent journey.",
+      "evidence": ["experience_map.surfaces", "experience_map.primary_journeys"]
+    },
+    "visual_grammar": {
+      "score": 4,
+      "rationale": "The workshop noticeboard concept connects editorial imagery with scheduling rules and explicit anti-patterns.",
+      "evidence": ["visual_grammar"]
+    },
+    "content_discoverability": {
+      "score": 3,
+      "rationale": "Content authority and hierarchy are defined, but route metadata, search intent, structured data, and localisation remain unspecified.",
+      "evidence": ["experience_map.content_hierarchy", "experience_map.surfaces"]
+    },
+    "responsive_composition": {
+      "score": 4,
+      "rationale": "Wide, short-laptop, narrow, artwork, and 320 CSS-pixel behaviour are explicitly described.",
+      "evidence": ["responsive_contract"]
+    },
+    "interaction_motion": {
+      "score": 4,
+      "rationale": "Motion has continuity and feedback purposes, while focus and reduced-motion equivalents are declared.",
+      "evidence": ["behaviour"]
+    },
+    "accessibility": {
+      "score": 3,
+      "rationale": "The contract includes keyboard, focus, form, reflow, contrast, and reduced-motion checks, but no implementation evidence exists.",
+      "evidence": ["evidence_contract.accessibility_checks"]
+    },
+    "performance": {
+      "score": 2,
+      "rationale": "Relevant checks are named but no budgets, implementation, trace, or field measurements exist.",
+      "evidence": ["evidence_contract.performance_checks"]
+    },
+    "security_privacy": {
+      "score": 3,
+      "rationale": "Private attendee data and credentials are separated conceptually, but authorization and deployment behaviour are untested.",
+      "evidence": ["implementation.public_private_boundary", "evidence_contract.security_checks"]
+    },
+    "maintainability_ownership": {
+      "score": 3,
+      "rationale": "Protected foundations and rollback are identified, while framework-specific component ownership is deliberately pending.",
+      "evidence": ["implementation"]
+    },
+    "evidence_quality": {
+      "score": 2,
+      "rationale": "The contract and schema are current, but rendered and functional evidence is intentionally absent.",
+      "evidence": ["evidence_scope"]
+    }
+  },
+  "blocking_floors": [
+    {
+      "id": "implementation-evidence",
+      "status": "unknown",
+      "reason": "No build exists, so implementation and release floors cannot be tested.",
+      "evidence": [],
+      "capability_decision_ids": [
+        "list-detail-continuity",
+        "programme-filter-state"
+      ]
+    },
+    {
+      "id": "owner-release-approval",
+      "status": "not_applicable",
+      "reason": "This is a concept review, not a release request.",
+      "evidence": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "content-metadata-gap",
+      "severity": "medium",
+      "area": "content_discoverability",
+      "observed": "The contract has content hierarchy but no route-level metadata or structured-data plan.",
+      "expected": "Public workshop routes should define titles, descriptions, canonical URLs, social previews, indexing intent, and truthful structured data.",
+      "consequence": "The implemented site could be coherent visually but incomplete for sharing and discovery.",
+      "repair": "Add route metadata and content lifecycle decisions before Build/Observe is marked passed.",
+      "verification": [
+        "Inspect rendered head metadata",
+        "Validate structured data",
+        "Review social-preview crops"
+      ],
+      "evidence": ["experience-contract-example.json"]
+    }
+  ],
+  "strengths_to_preserve": [
+    "Practical booking information precedes long editorial description",
+    "Protected imagery and focal crops are explicit",
+    "Reduced-motion and focus behaviour are part of the contract",
+    "Private attendee details remain outside the public client"
+  ],
+  "repair_plan": [
+    {
+      "order": 1,
+      "outcome": "Complete route-level content, metadata, and localisation decisions.",
+      "scope": [
+        "Experience Contract content and implementation sections"
+      ],
+      "acceptance": [
+        "Every public route has metadata and index intent",
+        "Social-preview assets have approved crops",
+        "Language and direction strategy is recorded"
+      ],
+      "evidence_to_refresh": [
+        "Concept review"
+      ]
+    }
+  ],
+  "readiness": "buildable",
+  "decision": {
+    "status": "conditional",
+    "summary": "The contract is strong enough to begin implementation, but content/discoverability decisions should be completed before the build is treated as review-ready.",
+    "next_authority": "Project owner or SITECRAFT Build/Observe stage",
+    "accepted_risks": []
+  }
+}

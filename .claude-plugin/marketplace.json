@@ -1,0 +1,29 @@
+{
+  "name": "skills-as-systems",
+  "owner": {
+    "name": "MAKIAVELI"
+  },
+  "metadata": {
+    "description": "A collection of portable skills designed as tested operating systems for judgment."
+  },
+  "plugins": [
+    {
+      "name": "skills-as-systems",
+      "source": "./",
+      "description": "SITECRAFT and FOUNDRY as one portable Claude Code plugin.",
+      "version": "1.0.1",
+      "author": {
+        "name": "MAKIAVELI"
+      },
+      "homepage": "https://github.com/makiaveli1/skills-as-systems",
+      "repository": "https://github.com/makiaveli1/skills-as-systems",
+      "license": "Apache-2.0",
+      "category": "development",
+      "tags": [
+        "agent-skills",
+        "web-design",
+        "software-engineering"
+      ]
+    }
+  ]
+}

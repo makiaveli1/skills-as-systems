@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sitecraft.local/schemas/video-generation-workflow.schema.json",
+  "title": "SITECRAFT Generated Video Production Workflow",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "asset_id",
+    "route_decision",
+    "stage_state",
+    "asset_plan",
+    "provider_inspection",
+    "generation_readiness",
+    "review_delivery"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "asset_id": {"type": "string", "minLength": 1},
+    "route_decision": {"enum": ["generated_video", "non_generated_fallback", "blocked"]},
+    "stage_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_plan", "provider_inspection", "generation_readiness", "review_delivery"],
+      "properties": {
+        "asset_plan": {"enum": ["not_started", "active", "passed", "warnings", "blocked"]},
+        "provider_inspection": {"enum": ["not_started", "active", "passed", "warnings", "blocked", "not_required"]},
+        "generation_readiness": {"enum": ["not_started", "active", "passed", "warnings", "blocked", "not_required"]},
+        "review_delivery": {"enum": ["not_started", "active", "passed", "warnings", "blocked", "not_required"]}
+      }
+    },
+    "asset_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "website_surface",
+        "website_role",
+        "why_generated_motion",
+        "generation_class",
+        "fallback",
+        "reduced_motion_equivalent",
+        "hard_quality_floors",
+        "max_attempts",
+        "max_status_polls_per_attempt",
+        "host_can_inspect_result",
+        "prompt_ready",
+        "references_ready"
+      ],
+      "properties": {
+        "website_surface": {"type": "string", "minLength": 1},
+        "website_role": {"type": "string", "minLength": 1},
+        "why_generated_motion": {"type": "string", "minLength": 1},
+        "generation_class": {"enum": ["image-conditioned", "text-conditioned", "video-conditioned-editing", "other", "not-required"]},
+        "fallback": {"type": "string", "minLength": 1},
+        "reduced_motion_equivalent": {"type": "string", "minLength": 1},
+        "hard_quality_floors": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "max_attempts": {"type": "integer", "minimum": 1, "maximum": 6},
+        "max_status_polls_per_attempt": {"type": "integer", "minimum": 1, "maximum": 30},
+        "credit_budget": {"type": ["number", "null"], "minimum": 0},
+        "provider_interaction_boundary": {"type": "string"},
+        "host_can_inspect_result": {"type": "boolean"},
+        "prompt_ready": {"type": "boolean"},
+        "references_ready": {"type": "boolean"}
+      }
+    },
+    "provider_inspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "catalogue_discovered",
+        "current_source_used",
+        "model_requirements_known",
+        "generation_performed_during_inspection",
+        "inspection_authority_scope",
+        "settings_summary"
+      ],
+      "properties": {
+        "required": {"type": "boolean"},
+        "catalogue_discovered": {"type": "boolean"},
+        "current_source_used": {"type": "boolean"},
+        "model_requirements_known": {"type": "boolean"},
+        "provider": {"type": ["string", "null"]},
+        "model": {"type": ["string", "null"]},
+        "settings_summary": {"type": "array", "items": {"type": "string"}},
+        "inspection_authority_scope": {"type": "string"},
+        "inspection_credit_status": {"enum": ["not_applicable", "known", "unknown"]},
+        "generation_performed_during_inspection": {"type": "boolean"}
+      }
+    },
+    "generation_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ready",
+        "provider_model_frozen",
+        "settings_checked_against_contract",
+        "exact_attempt_scope",
+        "spend_boundary",
+        "interaction_boundary",
+        "reapproval_triggers",
+        "generation_authority_state",
+        "status_poll_policy"
+      ],
+      "properties": {
+        "ready": {"type": "boolean"},
+        "provider_model_frozen": {"type": "boolean"},
+        "settings_checked_against_contract": {"type": "boolean"},
+        "exact_attempt_scope": {"type": "string", "minLength": 1},
+        "spend_boundary": {"type": "string", "minLength": 1},
+        "interaction_boundary": {"type": "string", "minLength": 1},
+        "reapproval_triggers": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "generation_authority_state": {"enum": ["not_requested", "requested", "approved", "denied", "expired"]},
+        "status_poll_policy": {"type": "string", "minLength": 1}
+      }
+    },
+    "review_delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_count",
+        "actual_artifact_inspected",
+        "hard_floors_passed",
+        "decision",
+        "defects",
+        "delivery_verified",
+        "responsive_delivery_verified",
+        "performance_budget_verified",
+        "media_accessibility_verified",
+        "reduced_motion_verified",
+        "evidence_refs",
+        "owner_approval"
+      ],
+      "properties": {
+        "attempt_count": {"type": "integer", "minimum": 0, "maximum": 6},
+        "artifact_reference": {"type": ["string", "null"]},
+        "actual_artifact_inspected": {"type": "boolean"},
+        "hard_floors_passed": {"type": "boolean"},
+        "decision": {"enum": ["not_started", "accepted", "regenerate", "fallback", "provider_change", "human_review", "blocked"]},
+        "defects": {"type": "array", "items": {"type": "string"}},
+        "targeted_change": {"type": ["string", "null"]},
+        "credits_reported": {"type": ["number", "null"], "minimum": 0},
+        "delivery_verified": {"type": "boolean"},
+        "responsive_delivery_verified": {"type": "boolean"},
+        "performance_budget_verified": {"type": "boolean"},
+        "media_accessibility_verified": {"type": "boolean"},
+        "reduced_motion_verified": {"type": "boolean"},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "owner_approval": {"enum": ["not_requested", "pending", "approved", "rejected", "not_required"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "route_decision": {"const": "generated_video"},
+          "generation_readiness": {
+            "properties": {"ready": {"const": true}},
+            "required": ["ready"]
+          }
+        },
+        "required": ["route_decision", "generation_readiness"]
+      },
+      "then": {
+        "properties": {
+          "asset_plan": {
+            "properties": {
+              "host_can_inspect_result": {"const": true},
+              "prompt_ready": {"const": true},
+              "references_ready": {"const": true}
+            }
+          },
+          "provider_inspection": {
+            "properties": {
+              "catalogue_discovered": {"const": true},
+              "current_source_used": {"const": true},
+              "model_requirements_known": {"const": true},
+              "provider": {"type": "string", "minLength": 1},
+              "model": {"type": "string", "minLength": 1},
+              "settings_summary": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "generation_performed_during_inspection": {"const": false}
+            }
+          },
+          "generation_readiness": {
+            "properties": {
+              "provider_model_frozen": {"const": true},
+              "settings_checked_against_contract": {"const": true}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_delivery": {
+            "properties": {"decision": {"const": "accepted"}},
+            "required": ["decision"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review_delivery": {
+            "properties": {
+              "artifact_reference": {"type": "string", "minLength": 1},
+              "actual_artifact_inspected": {"const": true},
+              "hard_floors_passed": {"const": true},
+              "delivery_verified": {"const": true},
+              "responsive_delivery_verified": {"const": true},
+              "performance_budget_verified": {"const": true},
+              "media_accessibility_verified": {"const": true},
+              "reduced_motion_verified": {"const": true},
+              "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "owner_approval": {"enum": ["approved", "not_required"]}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

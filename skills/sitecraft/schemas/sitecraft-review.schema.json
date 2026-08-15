@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sitecraft.local/schemas/sitecraft-review.schema.json",
+  "title": "SITECRAFT Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_id",
+    "project",
+    "contract_revision",
+    "exact_state",
+    "review_type",
+    "evidence_scope",
+    "scores",
+    "blocking_floors",
+    "findings",
+    "strengths_to_preserve",
+    "readiness",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "review_id": {"type": "string", "minLength": 1},
+    "project": {"type": "string", "minLength": 1},
+    "contract_revision": {"type": "integer", "minimum": 1},
+    "exact_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "environment", "observed_at"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1},
+        "environment": {"type": "string", "minLength": 1},
+        "observed_at": {"type": "string", "minLength": 1},
+        "url_or_artifact": {"type": ["string", "null"]}
+      }
+    },
+    "review_type": {
+      "enum": ["concept", "implementation", "visual", "interaction", "accessibility", "performance", "security", "release", "integrated"]
+    },
+    "review_provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "reviewer", "build_relation", "independence", "scope"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["self_review", "fresh_context_review", "independent_agent_review", "human_owner_review", "automated_evidence_check"]},
+          "reviewer": {"type": "string", "minLength": 1},
+          "build_relation": {"enum": ["same_context", "same_actor_fresh_context", "separate_actor", "human_owner", "automated_system"]},
+          "independence": {"enum": ["not_independent", "fresh_context_only", "independent", "human_authority", "automated_check"]},
+          "scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "evidence_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "missing", "stale"],
+      "properties": {
+        "included": {"type": "array", "items": {"type": "string"}},
+        "missing": {"type": "array", "items": {"type": "string"}},
+        "stale": {"type": "array", "items": {"type": "string"}},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "capability_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewed_ids", "unreviewed_ids"],
+      "properties": {
+        "reviewed_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "unreviewed_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose_trust",
+        "experience_architecture",
+        "visual_grammar",
+        "content_discoverability",
+        "responsive_composition",
+        "interaction_motion",
+        "accessibility",
+        "performance",
+        "security_privacy",
+        "maintainability_ownership",
+        "evidence_quality"
+      ],
+      "properties": {
+        "purpose_trust": {"$ref": "#/$defs/scoredArea"},
+        "experience_architecture": {"$ref": "#/$defs/scoredArea"},
+        "visual_grammar": {"$ref": "#/$defs/scoredArea"},
+        "content_discoverability": {"$ref": "#/$defs/scoredArea"},
+        "responsive_composition": {"$ref": "#/$defs/scoredArea"},
+        "interaction_motion": {"$ref": "#/$defs/scoredArea"},
+        "accessibility": {"$ref": "#/$defs/scoredArea"},
+        "performance": {"$ref": "#/$defs/scoredArea"},
+        "security_privacy": {"$ref": "#/$defs/scoredArea"},
+        "maintainability_ownership": {"$ref": "#/$defs/scoredArea"},
+        "evidence_quality": {"$ref": "#/$defs/scoredArea"}
+      }
+    },
+    "blocking_floors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "reason"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pass", "fail", "unknown", "not_applicable"]},
+          "reason": {"type": "string"},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "capability_decision_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    },
+    "strengths_to_preserve": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "repair_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["order", "outcome", "scope", "acceptance", "evidence_to_refresh"],
+        "properties": {
+          "order": {"type": "integer", "minimum": 1},
+          "outcome": {"type": "string", "minLength": 1},
+          "scope": {"type": "array", "items": {"type": "string"}},
+          "acceptance": {"type": "array", "items": {"type": "string"}},
+          "evidence_to_refresh": {"type": "array", "items": {"type": "string"}},
+          "capability_decision_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "readiness": {
+      "enum": ["concept_only", "buildable", "implemented_unverified", "repair_required", "ready_for_owner_review", "approved_for_release", "released_verified"]
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "summary", "next_authority"],
+      "properties": {
+        "status": {"enum": ["advisory", "blocked", "conditional", "pass", "approved", "rejected"]},
+        "summary": {"type": "string", "minLength": 1},
+        "next_authority": {"type": ["string", "null"]},
+        "accepted_risks": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "scoredArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "rationale", "evidence"],
+      "properties": {
+        "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 5},
+        "rationale": {"type": "string"},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "severity", "area", "observed", "expected", "consequence", "repair", "verification"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["critical", "high", "medium", "low", "note"]},
+        "area": {"type": "string", "minLength": 1},
+        "observed": {"type": "string", "minLength": 1},
+        "expected": {"type": "string", "minLength": 1},
+        "consequence": {"type": "string", "minLength": 1},
+        "repair": {"type": "string", "minLength": 1},
+        "verification": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "capability_decision_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

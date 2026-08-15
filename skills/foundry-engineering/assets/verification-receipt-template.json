@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-verification-receipt",
+  "receipt_id": "verification-replace-me",
+  "project_ref": "project-replace-me",
+  "contract_ref": "",
+  "state": {
+    "state_ref": "state-replace-me",
+    "revision": "",
+    "dirty_state": "unknown",
+    "dirty_summary": [],
+    "artifact_refs": [],
+    "evidence_freshness": "unknown"
+  },
+  "checks": [
+    {
+      "check_id": "check-replace-me",
+      "claim_ids": ["claim-replace-me"],
+      "kind": "other",
+      "action": "replace-me",
+      "environment": "replace-me",
+      "boundary": "not_applicable",
+      "outcome": "not_run",
+      "evidence_ref": "replace-me",
+      "limitations": []
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-replace-me",
+      "statement": "replace-me",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "limitations": []
+    }
+  ],
+  "review_provenance": [],
+  "verdict": "blocked",
+  "residual_risks": [],
+  "created_at": "2000-01-01T00:00:00Z"
+}

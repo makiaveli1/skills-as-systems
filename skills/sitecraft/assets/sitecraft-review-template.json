@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "review_id": "replace-me",
+  "project": "replace-me",
+  "contract_revision": 1,
+  "exact_state": {
+    "identity": "unverified",
+    "environment": "unverified",
+    "observed_at": "",
+    "url_or_artifact": null
+  },
+  "review_type": "integrated",
+  "review_provenance": [],
+  "evidence_scope": {
+    "included": [],
+    "missing": [],
+    "stale": [],
+    "limitations": []
+  },
+  "capability_scope": {
+    "reviewed_ids": [],
+    "unreviewed_ids": [],
+    "notes": []
+  },
+  "scores": {
+    "purpose_trust": {"score": null, "rationale": "", "evidence": []},
+    "experience_architecture": {"score": null, "rationale": "", "evidence": []},
+    "visual_grammar": {"score": null, "rationale": "", "evidence": []},
+    "content_discoverability": {"score": null, "rationale": "", "evidence": []},
+    "responsive_composition": {"score": null, "rationale": "", "evidence": []},
+    "interaction_motion": {"score": null, "rationale": "", "evidence": []},
+    "accessibility": {"score": null, "rationale": "", "evidence": []},
+    "performance": {"score": null, "rationale": "", "evidence": []},
+    "security_privacy": {"score": null, "rationale": "", "evidence": []},
+    "maintainability_ownership": {"score": null, "rationale": "", "evidence": []},
+    "evidence_quality": {"score": null, "rationale": "", "evidence": []}
+  },
+  "blocking_floors": [],
+  "findings": [],
+  "strengths_to_preserve": [],
+  "repair_plan": [],
+  "readiness": "concept_only",
+  "decision": {
+    "status": "advisory",
+    "summary": "",
+    "next_authority": null,
+    "accepted_risks": []
+  }
+}

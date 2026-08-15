@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-change-contract",
+  "contract_id": "change-example-cli-timeout",
+  "revision": 1,
+  "project_ref": "example-sync-tool",
+  "state_ref": "revision-example-4f2a",
+  "system_map_ref": "examples/system-map-example.json",
+  "mode": "implement",
+  "status": "ready",
+  "objective": {
+    "outcome": "Allow CLI users to set a positive per-request timeout while preserving all library defaults and retry behaviour.",
+    "non_goals": ["Change retry policy", "Change SyncClient public defaults", "Replace the transport"]
+  },
+  "baseline": {
+    "current_behaviour": ["The CLI constructs SyncClient without an explicit timeout.", "Invalid CLI arguments exit before a request."],
+    "evidence_refs": ["src/sync_tool/cli.py", "tests/cli"],
+    "reproduction_status": "not_applicable",
+    "limitations": []
+  },
+  "target": {
+    "expected_behaviour": ["--timeout accepts positive seconds and reaches the transport call.", "Omitting --timeout preserves the existing library default."],
+    "failure_cases": ["Zero, negative, or non-numeric timeout values fail before client construction."]
+  },
+  "invariants": [
+    {
+      "invariant_id": "invariant-library-default",
+      "statement": "SyncClient's public default timeout is unchanged.",
+      "evidence_required": ["focused client default regression test"]
+    },
+    {
+      "invariant_id": "invariant-retry",
+      "statement": "Retry count and retry ownership are unchanged.",
+      "evidence_required": ["existing retry tests"]
+    }
+  ],
+  "ownership": {
+    "behaviour_owner": "sync_tool.cli",
+    "state_or_data_owners": ["SyncClient owns the transport timeout application"],
+    "integration_boundaries": ["CLI to SyncClient construction", "SyncClient to HTTP transport"]
+  },
+  "surfaces": {
+    "allowed": ["src/sync_tool/cli.py", "tests/cli/test_timeout.py"],
+    "affected": ["SyncClient constructor usage", "package console smoke test"],
+    "forbidden": ["src/sync_tool/retry.py", "SyncClient default arguments", "unrelated formatting"],
+    "generated_or_external": ["dist/"]
+  },
+  "risks": [
+    {
+      "risk_id": "risk-default-drift",
+      "condition": "The explicit CLI option changes the default used by library callers.",
+      "consequence": "Backward compatibility breaks silently.",
+      "mitigation": "Keep the default in SyncClient unchanged and pass the CLI value only when present.",
+      "evidence_required": ["default regression test", "CLI explicit-value test"]
+    }
+  ],
+  "verification_plan": [
+    {
+      "claim_id": "claim-timeout-flag",
+      "claim": "A positive CLI timeout reaches the transport call.",
+      "risk_ids": [],
+      "invariant_ids": [],
+      "evidence_kind": ["focused test"],
+      "pass_condition": "The transport receives the exact parsed timeout."
+    },
+    {
+      "claim_id": "claim-default-preserved",
+      "claim": "Omitting the flag preserves existing library behaviour.",
+      "risk_ids": ["risk-default-drift"],
+      "invariant_ids": ["invariant-library-default", "invariant-retry"],
+      "evidence_kind": ["regression tests", "final diff inspection"],
+      "pass_condition": "Existing client and retry tests pass and no default/retry code changes."
+    }
+  ],
+  "recovery": {
+    "strategy": "source_rollback",
+    "steps": ["Revert the bounded CLI and test changes."],
+    "data_reconciliation": [],
+    "abort_conditions": ["The change requires modifying the library default or retry owner."]
+  },
+  "authority": {
+    "current_scope": ["Modify the two allowed files and run local tests."],
+    "additional_approval_required": ["Publishing a package or changing the public SyncClient API."],
+    "permissions_carried_by_contract": false
+  },
+  "updated_at": "2026-08-15T10:05:00Z"
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "FOUNDRY"
+  short_description: "Understand, change, debug, and verify software safely"
+  default_prompt: "Use $foundry-engineering to understand this software system, choose the smallest coherent intervention, implement deliberately, and verify the exact result with evidence."
+policy:
+  allow_implicit_invocation: true

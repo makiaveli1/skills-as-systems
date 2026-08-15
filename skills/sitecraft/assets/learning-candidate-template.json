@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "sitecraft-learning-candidate",
+  "learning_id": "replace-me",
+  "source_project": "replace-me",
+  "status": "candidate",
+  "user_verdict": "not_recorded",
+  "evidence": ["Record project-local evidence before considering promotion."],
+  "proposed_lesson": "Describe the project-local lesson to test before any promotion.",
+  "scope": "Project-local until contrasting evidence and promotion approval exist.",
+  "counterexample_risks": ["State at least one plausible situation where this lesson could fail or become harmful."],
+  "contrast_evidence": [],
+  "external_evidence": [],
+  "promotion_target": null,
+  "source_preserved": true,
+  "notes": []
+}

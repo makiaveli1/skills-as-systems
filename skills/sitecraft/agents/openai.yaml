@@ -1,0 +1,6 @@
+interface:
+  display_name: "SITECRAFT"
+  short_description: "Design, build, audit, and harden web experiences"
+  default_prompt: "Use $sitecraft to turn this website goal, reference, or codebase into a distinctive, responsive, accessible, evidence-verified web experience."
+policy:
+  allow_implicit_invocation: true

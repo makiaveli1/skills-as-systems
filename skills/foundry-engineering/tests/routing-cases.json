@@ -1,0 +1,200 @@
+[
+  {
+    "id": "large-unfamiliar-repository",
+    "request": "Understand this large monorepo and explain how a checkout request reaches payment, persistence, and fulfilment before proposing any change.",
+    "modes": ["Explore"],
+    "risk": "high",
+    "required_references": ["understanding-compact", "codebase-understanding", "interfaces-and-services", "data-and-migrations"],
+    "max_references": 5,
+    "must_not": ["load the entire repository", "confuse imports with runtime ownership", "propose code before the behavioural path is mapped"]
+  },
+  {
+    "id": "small-feature-narrow-change",
+    "request": "Add a --timeout flag to this CLI without changing library defaults or refactoring the command framework.",
+    "modes": ["Implement", "Test"],
+    "risk": "medium",
+    "required_references": ["understanding-compact", "change-compact", "interfaces-and-services", "verification-compact"],
+    "max_references": 5,
+    "must_not": ["rewrite the CLI framework", "change public library defaults", "add a dependency without evidence"]
+  },
+  {
+    "id": "difficult-failing-test",
+    "request": "This integration test fails intermittently after the queue consumer rewrite. Find the real cause and repair it; do not just rerun it until green.",
+    "modes": ["Debug", "Repair", "Test"],
+    "risk": "high",
+    "required_references": ["debugging-and-repair", "concurrency-and-distributed-state", "testing-and-evidence"],
+    "max_references": 5,
+    "must_not": ["add a sleep", "blindly increase retries", "quarantine the test"]
+  },
+  {
+    "id": "environment-versus-code",
+    "request": "The build fails only on one developer machine but CI is green. Diagnose whether code, dependencies, configuration, permissions, or environment is responsible.",
+    "modes": ["Debug"],
+    "risk": "medium",
+    "required_references": ["debugging-and-repair", "delivery-and-release", "research-method"],
+    "max_references": 5,
+    "must_not": ["recreate the environment without preserving evidence", "assume the code is wrong", "upgrade every dependency"]
+  },
+  {
+    "id": "safe-database-migration",
+    "request": "Move 300 million active rows from a legacy status column to a new state model with old and new application versions live during rollout.",
+    "modes": ["Migration", "Release"],
+    "risk": "critical",
+    "required_references": ["data-and-migrations", "concurrency-and-distributed-state", "change-discipline", "testing-and-evidence", "delivery-and-release"],
+    "max_references": 7,
+    "must_not": ["one-shot rewrite the table", "ignore mixed-version writers", "call command success data correctness"]
+  },
+  {
+    "id": "concurrency-bug",
+    "request": "Two workers occasionally charge the same idempotency key after a timeout. Reproduce the race, define the actual guarantee, and fix the owning boundary.",
+    "modes": ["Debug", "Repair"],
+    "risk": "critical",
+    "required_references": ["debugging-and-repair", "concurrency-and-distributed-state", "data-and-migrations", "testing-and-evidence"],
+    "max_references": 6,
+    "must_not": ["promise exactly once without mechanism", "assume timeout means no charge", "use a process-local lock without checking all writers"]
+  },
+  {
+    "id": "risky-pr-review",
+    "request": "Review this pull request that changes authentication, token refresh, and tenant cache keys. Do not modify it.",
+    "modes": ["Review", "Security"],
+    "risk": "critical",
+    "required_references": ["review-and-refactoring", "security-engineering", "concurrency-and-distributed-state", "failure-tests"],
+    "max_references": 6,
+    "must_not": ["focus on style before authorization", "state speculative findings as facts", "implement fixes"]
+  },
+  {
+    "id": "measured-performance",
+    "request": "Reduce p99 search latency for realistic enterprise datasets and prove the improvement without changing ranking correctness.",
+    "modes": ["Performance", "Implement", "Test"],
+    "risk": "high",
+    "required_references": ["performance-engineering", "testing-and-evidence", "change-compact"],
+    "max_references": 5,
+    "must_not": ["optimize before profiling", "use a tiny microbenchmark as product proof", "ignore correctness or memory cost"]
+  },
+  {
+    "id": "api-security-boundary",
+    "request": "Harden this document-download API against cross-tenant access, path traversal, and token replay, then verify the real boundary.",
+    "modes": ["Security", "Repair", "Test"],
+    "risk": "critical",
+    "required_references": ["security-engineering", "interfaces-and-services", "testing-and-evidence", "change-discipline"],
+    "max_references": 6,
+    "must_not": ["authorize only in the UI", "invent custom cryptography", "claim security from a scanner alone"]
+  },
+  {
+    "id": "broken-build",
+    "request": "Repair the release build after a toolchain upgrade. Local incremental builds pass but clean CI packages are missing generated resources.",
+    "modes": ["Debug", "Repair", "Release"],
+    "risk": "high",
+    "required_references": ["debugging-and-repair", "delivery-and-release", "testing-and-evidence"],
+    "max_references": 5,
+    "must_not": ["commit generated output without finding the source step", "disable the clean build", "test only from the source tree"]
+  },
+  {
+    "id": "legacy-refactor",
+    "request": "Split this legacy billing module so invoice calculation and payment orchestration can change independently, with no behavioural change in this release.",
+    "modes": ["Refactor", "Review"],
+    "risk": "high",
+    "required_references": ["review-and-refactoring", "codebase-understanding", "testing-and-evidence", "change-discipline"],
+    "max_references": 6,
+    "must_not": ["silently fix business rules", "introduce a generic framework", "move code without consumer characterization"]
+  },
+  {
+    "id": "greenfield-service",
+    "request": "Design and build a small service that accepts signed webhooks, deduplicates them, and exposes processing status. Start from requirements, not a preferred stack.",
+    "modes": ["Design", "Implement"],
+    "risk": "high",
+    "required_references": ["architecture-and-design", "interfaces-and-services", "security-engineering", "concurrency-and-distributed-state", "testing-and-evidence"],
+    "max_references": 7,
+    "must_not": ["start with microservices", "put idempotency only in memory", "select technology before the contract"]
+  },
+  {
+    "id": "desktop-app-change",
+    "request": "Add autosave recovery to this desktop editor across crash, restart, and application update without corrupting user documents.",
+    "modes": ["Design", "Implement", "Recovery"],
+    "risk": "critical",
+    "required_references": ["user-facing-software", "data-and-migrations", "reliability-and-incidents", "testing-and-evidence"],
+    "max_references": 6,
+    "must_not": ["overwrite the only user file", "ignore process interruption", "test only an in-memory model"]
+  },
+  {
+    "id": "polyglot-monorepo",
+    "request": "Change a protobuf contract used by Go services, a Kotlin worker, and a TypeScript client while preserving mixed-version rollout.",
+    "modes": ["Explore", "Migration", "Release"],
+    "risk": "critical",
+    "required_references": ["codebase-understanding", "interfaces-and-services", "delivery-and-release", "testing-and-evidence"],
+    "max_references": 6,
+    "must_not": ["assume generated code is the source", "update one consumer only", "break older readers during rollout"]
+  },
+  {
+    "id": "interrupted-implementation",
+    "request": "Continue the partially implemented export feature after context loss. Several files are dirty and the previous handoff may be stale.",
+    "modes": ["Explore", "Implement"],
+    "risk": "high",
+    "required_references": ["collaboration-and-continuity", "understanding-compact", "change-compact", "verification-compact"],
+    "max_references": 6,
+    "must_not": ["trust the handoff over current files", "discard dirty changes", "re-run paid or destructive effects blindly"]
+  },
+  {
+    "id": "worker-handoff",
+    "request": "Hand the database backfill implementation to another agent while keeping schema ownership, verification, and rollout decisions canonical.",
+    "modes": ["Migration"],
+    "risk": "high",
+    "required_references": ["collaboration-and-continuity", "data-and-migrations", "change-discipline"],
+    "max_references": 5,
+    "must_not": ["paste a giant transcript", "transfer permissions", "duplicate canonical migration truth"]
+  },
+  {
+    "id": "concurrent-worker-drift",
+    "request": "Another worker changed the same parser files after my plan was written. Reconcile safely before continuing.",
+    "modes": ["Explore", "Review"],
+    "risk": "high",
+    "required_references": ["collaboration-and-continuity", "change-discipline", "understanding-compact"],
+    "max_references": 5,
+    "must_not": ["overwrite the new state", "assume a clean tree means release", "apply the stale patch"]
+  },
+  {
+    "id": "blocked-dependency-independent-work",
+    "request": "The external sandbox needed for payment verification is unavailable. Continue any safe independent work and leave the blocked proof explicit.",
+    "modes": ["Implement", "Test"],
+    "risk": "high",
+    "required_references": ["collaboration-and-continuity", "testing-and-evidence", "interfaces-and-services"],
+    "max_references": 5,
+    "must_not": ["idle all work", "fake the live result", "claim the payment integration is complete"]
+  },
+  {
+    "id": "reject-unnecessary-rewrite",
+    "request": "Upgrade this small validation function by replacing the whole application framework with the latest stack so it is modern.",
+    "modes": ["Review", "Implement"],
+    "risk": "medium",
+    "required_references": ["change-compact", "architecture-and-design", "failure-tests"],
+    "max_references": 5,
+    "must_not": ["accept the rewrite premise", "add dependency churn", "change unrelated architecture"]
+  },
+  {
+    "id": "unit-green-integration-broken",
+    "request": "The new serializer's unit tests pass, but the published client rejects the real response. Diagnose and fix the product path.",
+    "modes": ["Debug", "Repair", "Test"],
+    "risk": "high",
+    "required_references": ["debugging-and-repair", "interfaces-and-services", "testing-and-evidence"],
+    "max_references": 5,
+    "must_not": ["declare the serializer correct from unit tests", "mock the published client", "change the client contract silently"]
+  },
+  {
+    "id": "ai-agent-tool-system",
+    "request": "Build an agent that reads support tickets and may issue refunds through tools, with prompt-injection resistance, approvals, durable action identity, and evaluations.",
+    "modes": ["Design", "Security", "Test"],
+    "risk": "critical",
+    "required_references": ["ai-and-agent-systems", "security-engineering", "interfaces-and-services", "testing-and-evidence", "reliability-and-incidents"],
+    "max_references": 7,
+    "must_not": ["put refund authority in the prompt", "trust ticket content as instructions", "duplicate refunds on retry"]
+  },
+  {
+    "id": "production-incident",
+    "request": "Production writes are timing out after a deployment and queue depth is rising. Stabilize impact, preserve evidence, and determine whether rollback is data-safe.",
+    "modes": ["Incident", "Debug", "Recovery"],
+    "risk": "critical",
+    "required_references": ["reliability-and-incidents", "debugging-and-repair", "data-and-migrations", "concurrency-and-distributed-state"],
+    "max_references": 6,
+    "must_not": ["perform speculative cleanup", "destroy diagnostic state", "rollback without checking data compatibility"]
+  }
+]

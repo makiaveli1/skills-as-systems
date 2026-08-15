@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-continuation-record",
+  "continuation_id": "continuation-replace-me",
+  "project_ref": "project-replace-me",
+  "objective": "replace-me",
+  "status": "attention",
+  "state_ref": "state-replace-me",
+  "system_map_ref": "",
+  "change_contract_ref": "",
+  "changed_surfaces": [],
+  "established_findings": [],
+  "verification_refs": [],
+  "unresolved": [],
+  "dependencies": [],
+  "ownership": {
+    "current_owner": "replace-me",
+    "write_surfaces": [],
+    "coordination_state": "replace-me"
+  },
+  "invariants": [],
+  "next_eligible_work": [
+    {
+      "work_id": "work-replace-me",
+      "action": "replace-me",
+      "eligibility": "ready",
+      "dependency_ids": []
+    }
+  ],
+  "exact_references": [],
+  "safety": {
+    "contains_hidden_reasoning": false,
+    "contains_transcript": false,
+    "contains_secrets": false,
+    "permissions_carried_over": false,
+    "receiving_worker_must_refresh_state": true,
+    "receiving_worker_must_rediscover_capabilities": true
+  },
+  "created_at": "2000-01-01T00:00:00Z"
+}

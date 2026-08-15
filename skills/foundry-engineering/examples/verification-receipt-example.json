@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-verification-receipt",
+  "receipt_id": "verification-example-cli-timeout",
+  "project_ref": "example-sync-tool",
+  "contract_ref": "examples/change-contract-example.json",
+  "state": {
+    "state_ref": "working-tree-example-7b31",
+    "revision": "7b31-example",
+    "dirty_state": "dirty",
+    "dirty_summary": ["src/sync_tool/cli.py modified", "tests/cli/test_timeout.py added"],
+    "artifact_refs": ["example-sync-tool-0.8.1.dev0-py3-none-any.whl"],
+    "evidence_freshness": "current"
+  },
+  "checks": [
+    {
+      "check_id": "check-focused-timeout",
+      "claim_ids": ["claim-timeout-flag", "claim-invalid-timeout"],
+      "kind": "focused",
+      "action": "Run focused CLI timeout tests.",
+      "environment": "Python 3.12 on Linux x86_64, locked test dependencies",
+      "boundary": "simulated",
+      "outcome": "passed",
+      "evidence_ref": "evidence/pytest-cli-timeout.txt",
+      "limitations": ["HTTP transport was replaced by a recording fake."]
+    },
+    {
+      "check_id": "check-regression-client",
+      "claim_ids": ["claim-default-preserved"],
+      "kind": "regression",
+      "action": "Run existing client and retry tests.",
+      "environment": "Python 3.12 on Linux x86_64, locked test dependencies",
+      "boundary": "simulated",
+      "outcome": "passed",
+      "evidence_ref": "evidence/pytest-client-retry.txt",
+      "limitations": []
+    },
+    {
+      "check_id": "check-installed-cli",
+      "claim_ids": ["claim-installed-cli"],
+      "kind": "package",
+      "action": "Install the built wheel in a clean environment and inspect --help plus invalid-value exit status.",
+      "environment": "Python 3.12 clean virtual environment on Linux x86_64",
+      "boundary": "real",
+      "outcome": "passed",
+      "evidence_ref": "evidence/installed-cli-smoke.txt",
+      "limitations": ["macOS and Windows installed artifacts were not run."]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-timeout-flag",
+      "statement": "A positive CLI timeout is parsed and passed to the transport boundary.",
+      "status": "TESTED",
+      "evidence_ids": ["check-focused-timeout"],
+      "limitations": ["The external HTTP transport was not contacted."]
+    },
+    {
+      "claim_id": "claim-invalid-timeout",
+      "statement": "Invalid timeout values fail before client construction.",
+      "status": "TESTED",
+      "evidence_ids": ["check-focused-timeout"],
+      "limitations": []
+    },
+    {
+      "claim_id": "claim-default-preserved",
+      "statement": "Library timeout defaults and retry behaviour remain unchanged.",
+      "status": "TESTED",
+      "evidence_ids": ["check-regression-client"],
+      "limitations": []
+    },
+    {
+      "claim_id": "claim-installed-cli",
+      "statement": "The built Linux wheel exposes the new flag and invalid-value behaviour.",
+      "status": "OBSERVED",
+      "evidence_ids": ["check-installed-cli"],
+      "limitations": ["No Windows or macOS package observation."]
+    },
+    {
+      "claim_id": "claim-cross-platform",
+      "statement": "The installed CLI behaves identically on every supported platform.",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "limitations": ["Only Linux x86_64 was observed."]
+    }
+  ],
+  "review_provenance": [
+    {
+      "review_id": "review-self-diff",
+      "kind": "self",
+      "reviewer": "implementation worker",
+      "scope": "Final diff versus Change Contract",
+      "verdict": "not_approval"
+    },
+    {
+      "review_id": "review-automated-package",
+      "kind": "automated",
+      "reviewer": "package test workflow",
+      "scope": "Linux package and regression checks",
+      "verdict": "passed"
+    }
+  ],
+  "verdict": "passed_with_limits",
+  "residual_risks": ["Cross-platform package behaviour remains unverified."],
+  "created_at": "2026-08-15T10:30:00Z"
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "elementary-syntax-question",
+    "request": "What does a for loop do? I only need a short explanation.",
+    "expected": "exclude_foundry",
+    "reason_contains": "stable elementary programming explanation"
+  },
+  {
+    "id": "fiction-writing",
+    "request": "Write a short fictional story about a winter journey.",
+    "expected": "exclude_foundry",
+    "reason_contains": "creative writing"
+  },
+  {
+    "id": "visual-website-only",
+    "request": "Create the visual direction and hero composition for a fashion website; no code or engineering work is requested.",
+    "expected": "exclude_foundry",
+    "reason_contains": "visual experience design"
+  },
+  {
+    "id": "spreadsheet-analysis",
+    "request": "Summarize sales by region in this Excel workbook.",
+    "expected": "exclude_foundry",
+    "reason_contains": "spreadsheet work"
+  },
+  {
+    "id": "device-support",
+    "request": "My phone will not connect to Wi-Fi; walk me through ordinary device settings.",
+    "expected": "exclude_foundry",
+    "reason_contains": "consumer device support"
+  },
+  {
+    "id": "pure-copy-edit",
+    "request": "Rewrite this product announcement to sound warmer. Do not change any software.",
+    "expected": "exclude_foundry",
+    "reason_contains": "writing only"
+  }
+]

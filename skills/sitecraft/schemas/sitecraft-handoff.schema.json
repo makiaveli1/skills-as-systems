@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sitecraft.local/schemas/sitecraft-handoff.schema.json",
+  "title": "SITECRAFT Handoff Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_type",
+    "handoff_id",
+    "project",
+    "contract",
+    "scope",
+    "execution",
+    "coordination",
+    "state",
+    "safety"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "packet_type": {"const": "sitecraft-handoff"},
+    "handoff_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": ["string", "null"]},
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "identity": {"type": ["string", "null"]},
+        "workspace_reference": {"type": ["string", "null"]}
+      }
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "revision"],
+      "properties": {
+        "reference": {"type": "string", "minLength": 1},
+        "revision": {"type": "integer", "minimum": 1},
+        "status": {"type": ["string", "null"]},
+        "build_fingerprint": {"type": ["string", "null"]},
+        "capability_decision_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "continuity_anchor_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "continuity_state_dimension_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "objective", "current_routes", "protected_foundations", "change_boundary"],
+      "properties": {
+        "mode": {"enum": ["Sketch", "Make", "Repair", "Audit", "Evolve"]},
+        "objective": {"type": "string", "minLength": 1},
+        "current_routes": {"type": "array", "items": {"enum": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe", "Harden"]}},
+        "protected_foundations": {"type": "array", "items": {"type": "string"}},
+        "change_boundary": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_host", "receiving_host_must_rediscover_capabilities"],
+      "properties": {
+        "source_host": {"type": "string", "minLength": 1},
+        "intended_target_host": {"type": ["string", "null"]},
+        "source_host_profile_summary": {"type": "array", "items": {"type": "string"}},
+        "receiving_host_must_rediscover_capabilities": {"const": true}
+      }
+    },
+    "coordination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workspace_mode", "checkout_status", "current_owner", "receiver_write_policy", "coordination_receipts", "receiving_host_must_confirm_checkout_before_write"],
+      "properties": {
+        "workspace_mode": {"enum": ["isolated", "shared", "unknown"]},
+        "checkout_reference": {"type": ["string", "null"]},
+        "checkout_status": {"enum": ["not_shared", "free", "reserved", "blocked", "revalidate_required"]},
+        "current_owner": {"type": ["string", "null"]},
+        "receiver_write_policy": {"enum": ["allowed_after_revalidation", "read_only_until_handoff", "blocked"]},
+        "coordination_receipts": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "receiving_host_must_confirm_checkout_before_write": {"const": true}
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["changed_paths", "verification_receipts", "evidence_refs", "blockers", "unverified", "next_action"],
+      "properties": {
+        "changed_paths": {"type": "array", "items": {"type": "string"}},
+        "verification_receipts": {"type": "array", "items": {"type": "string"}},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "blockers": {"type": "array", "items": {"type": "string"}},
+        "unverified": {"type": "array", "items": {"type": "string"}},
+        "next_action": {"type": "string", "minLength": 1}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contains_hidden_reasoning", "contains_private_transcript", "contains_secrets", "permissions_carried_over"],
+      "properties": {
+        "contains_hidden_reasoning": {"const": false},
+        "contains_private_transcript": {"const": false},
+        "contains_secrets": {"const": false},
+        "permissions_carried_over": {"const": false}
+      }
+    }
+  }
+}

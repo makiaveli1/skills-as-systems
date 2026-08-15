@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-system-map",
+  "map_id": "map-replace-me",
+  "project": {
+    "name": "replace-me",
+    "root_ref": "workspace-relative-root",
+    "repository_ref": ""
+  },
+  "captured_state": {
+    "state_ref": "state-replace-me",
+    "revision": "",
+    "branch_or_worktree": "",
+    "dirty_state": "unknown",
+    "dirty_summary": [],
+    "coordination_ref": "",
+    "freshness": "unknown"
+  },
+  "scope": {
+    "objective": "replace-me",
+    "included": [],
+    "excluded": []
+  },
+  "repository": {
+    "languages_runtimes": [],
+    "build_package_systems": [],
+    "boundaries": [],
+    "entry_points": [],
+    "tests_and_verification": [],
+    "deployment_release": [],
+    "generated_or_external": []
+  },
+  "subsystems": [
+    {
+      "subsystem_id": "subsystem-replace-me",
+      "purpose": "replace-me",
+      "entry_points": [],
+      "owns": [],
+      "dependencies": [],
+      "state_and_data": [],
+      "external_interfaces": [],
+      "tests_and_operations": [],
+      "evidence_refs": []
+    }
+  ],
+  "behavioural_paths": [
+    {
+      "path_id": "path-replace-me",
+      "trigger": "replace-me",
+      "owner": "subsystem-replace-me",
+      "steps": [],
+      "state_and_side_effects": [],
+      "failure_paths": [],
+      "evidence_refs": []
+    }
+  ],
+  "change_surface": {
+    "direct": [],
+    "affected": [],
+    "protected": [],
+    "generated_or_external": []
+  },
+  "risk_surface": [],
+  "knowledge": [
+    {
+      "claim_id": "knowledge-replace-me",
+      "statement": "replace-me",
+      "status": "UNKNOWN",
+      "evidence_refs": [],
+      "impact_if_wrong": "replace-me",
+      "next_check": ""
+    }
+  ],
+  "sufficiency": {
+    "sufficient_for_action": false,
+    "reason": "replace-me",
+    "remaining_material_unknowns": []
+  },
+  "updated_at": "2000-01-01T00:00:00Z"
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundry.engineering/schemas/verification-receipt.schema.json",
+  "title": "FOUNDRY Verification Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "receipt_id",
+    "project_ref",
+    "state",
+    "checks",
+    "claims",
+    "review_provenance",
+    "verdict",
+    "residual_risks",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "artifact_type": { "const": "foundry-verification-receipt" },
+    "receipt_id": { "$ref": "#/$defs/id" },
+    "project_ref": { "$ref": "#/$defs/nonempty" },
+    "contract_ref": { "type": "string" },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_ref", "dirty_state", "artifact_refs", "evidence_freshness"],
+      "properties": {
+        "state_ref": { "$ref": "#/$defs/nonempty" },
+        "revision": { "type": "string" },
+        "dirty_state": { "enum": ["clean", "dirty", "unknown"] },
+        "dirty_summary": { "$ref": "#/$defs/string_list" },
+        "artifact_refs": { "$ref": "#/$defs/string_list" },
+        "evidence_freshness": { "enum": ["current", "partially_stale", "stale", "unknown"] }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" },
+      "minItems": 1
+    },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" },
+      "minItems": 1
+    },
+    "review_provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["review_id", "kind", "reviewer", "scope", "verdict"],
+        "properties": {
+          "review_id": { "$ref": "#/$defs/id" },
+          "kind": { "enum": ["self", "fresh_context", "independent_agent", "human_owner", "automated"] },
+          "reviewer": { "$ref": "#/$defs/nonempty" },
+          "scope": { "$ref": "#/$defs/nonempty" },
+          "verdict": { "enum": ["passed", "warnings", "failed", "not_approval"] }
+        }
+      }
+    },
+    "verdict": { "enum": ["passed", "passed_with_limits", "partial", "failed", "blocked"] },
+    "residual_risks": { "$ref": "#/$defs/string_list" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$" },
+    "nonempty": { "type": "string", "minLength": 1 },
+    "string_list": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "claim_ids", "kind", "action", "environment", "boundary", "outcome", "evidence_ref", "limitations"],
+      "properties": {
+        "check_id": { "$ref": "#/$defs/id" },
+        "claim_ids": { "type": "array", "items": { "$ref": "#/$defs/id" }, "minItems": 1, "uniqueItems": true },
+        "kind": { "enum": ["syntax", "format", "compile", "type", "static", "focused", "regression", "integration", "contract", "system", "build", "package", "runtime", "state", "security", "performance", "reliability", "accessibility", "concurrency", "recovery", "review", "exact_state", "other"] },
+        "action": { "$ref": "#/$defs/nonempty" },
+        "environment": { "$ref": "#/$defs/nonempty" },
+        "boundary": { "enum": ["real", "simulated", "mixed", "not_applicable"] },
+        "outcome": { "enum": ["passed", "failed", "blocked", "not_run"] },
+        "evidence_ref": { "$ref": "#/$defs/nonempty" },
+        "limitations": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "statement", "status", "evidence_ids", "limitations"],
+      "properties": {
+        "claim_id": { "$ref": "#/$defs/id" },
+        "statement": { "$ref": "#/$defs/nonempty" },
+        "status": { "enum": ["TESTED", "OBSERVED", "INFERRED", "UNVERIFIED"] },
+        "evidence_ids": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "limitations": { "$ref": "#/$defs/string_list" }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[project]
+name = "sitecraft-skill"
+version = "0.3.0"
+description = "Portable SITECRAFT website strategy, design, implementation, and evidence skill package."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.sitecraft]
+validator = "scripts/validate_skill.py"
+test_entry = "bridge_v2_tests.py"

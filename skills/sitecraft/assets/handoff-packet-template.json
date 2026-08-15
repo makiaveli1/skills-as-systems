@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "packet_type": "sitecraft-handoff",
+  "handoff_id": "",
+  "generated_at": null,
+  "project": {
+    "name": "",
+    "identity": null,
+    "workspace_reference": null
+  },
+  "contract": {
+    "reference": "contracts/experience-contract.json",
+    "revision": 1,
+    "status": null,
+    "build_fingerprint": null,
+    "capability_decision_ids": [],
+    "continuity_anchor_ids": [],
+    "continuity_state_dimension_ids": []
+  },
+  "scope": {
+    "mode": "Make",
+    "objective": "",
+    "current_routes": [],
+    "protected_foundations": [],
+    "change_boundary": []
+  },
+  "execution": {
+    "source_host": "unknown",
+    "intended_target_host": null,
+    "source_host_profile_summary": [],
+    "receiving_host_must_rediscover_capabilities": true
+  },
+  "coordination": {
+    "workspace_mode": "unknown",
+    "checkout_reference": null,
+    "checkout_status": "revalidate_required",
+    "current_owner": null,
+    "receiver_write_policy": "read_only_until_handoff",
+    "coordination_receipts": [],
+    "receiving_host_must_confirm_checkout_before_write": true
+  },
+  "state": {
+    "changed_paths": [],
+    "verification_receipts": [],
+    "evidence_refs": [],
+    "blockers": [],
+    "unverified": [],
+    "next_action": "Review the referenced Experience Contract, re-discover the receiving host capabilities, verify the current project state, then continue only the next bounded action."
+  },
+  "safety": {
+    "contains_hidden_reasoning": false,
+    "contains_private_transcript": false,
+    "contains_secrets": false,
+    "permissions_carried_over": false
+  }
+}

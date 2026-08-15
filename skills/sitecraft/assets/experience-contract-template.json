@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "replace-me",
+  "project": "replace-me",
+  "revision": 1,
+  "status": "draft",
+  "workflow_state": {
+    "frame_map": "not_started",
+    "compose_choreograph": "not_started",
+    "build_observe": "not_started",
+    "harden_release": "not_started"
+  },
+  "owner": "",
+  "target_release": null,
+  "updated_at": "",
+  "purpose": {
+    "public_purpose": "",
+    "primary_outcome": "",
+    "secondary_outcomes": [],
+    "success_signals": [""],
+    "trust_requirements": []
+  },
+  "audience": {
+    "primary": "",
+    "secondary": [],
+    "context_of_use": "",
+    "needs": [],
+    "risks": []
+  },
+  "experience_map": {
+    "surfaces": [
+      {
+        "id": "replace-me",
+        "route": null,
+        "purpose": "",
+        "primary_action": "",
+        "secondary_actions": [],
+        "states": ["default"],
+        "content_authority": []
+      }
+    ],
+    "primary_journeys": [""],
+    "completion_path": "",
+    "navigation_model": "",
+    "content_hierarchy": []
+  },
+  "visual_grammar": {
+    "dominant_idea": "",
+    "typography_roles": [""],
+    "colour_roles": [""],
+    "layout_rules": [""],
+    "spacing_density": "",
+    "imagery_treatment": "",
+    "component_language": [],
+    "anti_patterns": [""],
+    "creative_distinction": null
+  },
+  "behaviour": {
+    "interaction_rules": [""],
+    "transition_grammar": [],
+    "scroll_rules": [],
+    "motion_purposes": [""],
+    "reduced_motion": [""],
+    "focus_behaviour": [""],
+    "loading_error_feedback": [],
+    "prohibited_motion": []
+  },
+  "asset_lineage": {
+    "ledger_path": "assets/asset-ledger.csv",
+    "records": [],
+    "rules": [
+      "Track consequential media handoffs with stable asset IDs; trivial implementation files do not require lineage records.",
+      "parent_asset_ids mean direct derivation such as crop, edit, animation, transcode or delivery derivative; reference_asset_ids mean influence without direct derivation.",
+      "Use the same asset ID when image, video, motion, the asset ledger and evidence refer to the same production asset."
+    ]
+  },
+  "image_system": {
+    "scope": "none",
+    "asset_roles": [],
+    "reference_roles": [],
+    "production_stages": [
+      "Map image needs before generation.",
+      "Approve the still master before motion or final derivatives."
+    ],
+    "generation_routes": [],
+    "execution_policy": {
+      "production_pack_path": "prompts/image-generation-pack.md",
+      "distinct_asset_per_job": true,
+      "independent_jobs_may_parallelize": true,
+      "dependent_jobs_require_approved_inputs": true,
+      "derivatives_restart_from_declared_parent": true,
+      "iteration_rule": "Repair one diagnosed defect at a time and repeat protected invariants on every edit iteration.",
+      "project_bound_persistence": true,
+      "non_destructive_outputs": true,
+      "host_reference_rule": "A local path is not automatically an image-model input; the executing host must confirm each required reference is actually available to the generator before the job is ready."
+    },
+    "production_jobs": [],
+    "preservation_rules": [],
+    "derivative_rules": [],
+    "motion_handoff": [],
+    "delivery": [
+      "No generated or sourced image production is currently required."
+    ],
+    "accessibility": [],
+    "performance": [],
+    "lineage": [],
+    "evidence": [
+      "Image scope must be reviewed before Compose / Choreograph is approved."
+    ]
+  },
+  "video_system": {
+    "scope": "none",
+    "asset_roles": [],
+    "reference_roles": [],
+    "generation_policy": {
+      "provider_strategy": "Use a generated-video provider only when the website role earns it and the executing host can authenticate, generate, import and inspect the result.",
+      "preferred_provider": null,
+      "paid_generation": false,
+      "max_attempts": 1,
+      "auto_regenerate": false,
+      "credit_budget": null,
+      "approval_boundary": "No paid generation is authorized by this empty template.",
+      "tool_discovery_required": true,
+      "provider_inspection_required": true,
+      "separate_generation_authority": true,
+      "max_status_polls_per_attempt": 12,
+      "stop_conditions": ["Stop when the declared attempt, provider-interaction, or spend authority is exhausted."],
+      "prompt_pack_path": null,
+      "attempt_ledger_path": null
+    },
+    "quality_gate": {
+      "hard_floors": ["The actual generated asset must be inspected before it can be accepted."],
+      "review_dimensions": ["Website-role adherence", "Temporal and visual integrity", "Responsive and accessibility fit"],
+      "acceptance_rule": "All declared hard floors must pass; an average score cannot hide a hard failure.",
+      "regeneration_rule": "Regenerate only for a diagnosed fixable failure and only within the declared attempt and spend budget."
+    },
+    "delivery": ["No generated or sourced video production is currently required."],
+    "accessibility": ["Provide a deliberate poster or static/reduced-motion equivalent for any future non-essential generated video."],
+    "performance": [],
+    "lineage": [],
+    "evidence": ["Video scope and generation authority must be reviewed before paid generation or web integration."]
+  },
+  "motion_system": {
+    "scope": "none",
+    "motion_depth": "quiet",
+    "roles": [],
+    "emotional_temperature": "",
+    "narrative_beats": [],
+    "narrative_chapters": [],
+    "continuity_devices": [],
+    "living_media_rules": [],
+    "hero_variation_rules": [],
+    "temporal_grammar": {
+      "duration_roles": [],
+      "easing_roles": [],
+      "sequence_rules": [],
+      "spatial_rules": [],
+      "loop_rules": []
+    },
+    "kinetic_typography": [],
+    "compositing_rules": [],
+    "delivery_routes": [],
+    "playback_rules": [],
+    "accessibility_equivalents": ["No additional motion beyond normal interface feedback is currently required."],
+    "performance_budget": [],
+    "ownership": [],
+    "evidence": ["Motion scope must be reviewed before Compose / Choreograph is approved."]
+  },
+  "responsive_contract": {
+    "compositions": [
+      {
+        "name": "narrow",
+        "trigger": "",
+        "layout_changes": [],
+        "interaction_changes": [],
+        "content_priority_changes": []
+      }
+    ],
+    "reflow_320_css_px": [""],
+    "intrinsic_media_rules": []
+  },
+  "implementation": {
+    "architecture": "",
+    "framework": null,
+    "conventions": [""],
+    "protected_foundations": [""],
+    "editable_areas": [],
+    "capability_plan": [],
+    "runtime_orchestration": {
+      "mode": "not_needed",
+      "ownership": [],
+      "bridges": [],
+      "shared_rules": ["Do not add cross-runtime coordination until more than one consequential runtime interacts on the same surface or concern."],
+      "prohibited_conflicts": ["Do not allow two owners to control the same concern in the same scope without an explicit redesign of the orchestration plan."]
+    },
+    "dependencies": [],
+    "browser_support": [],
+    "public_private_boundary": [""],
+    "rollback_boundary": ""
+  },
+  "evidence_contract": {
+    "required_views": [""],
+    "required_interactions": [""],
+    "accessibility_checks": [""],
+    "performance_checks": [""],
+    "security_checks": [""],
+    "visual_baselines": [],
+    "reviewers": [],
+    "environment_matrix": [],
+    "support_claim_rule": "Evidence applies only to the exact environment rows observed; untested support remains planned or explicitly excluded.",
+    "freshness_rule": ""
+  },
+  "release_state": {
+    "approval": "not_requested",
+    "verification": "not_started",
+    "blockers": [],
+    "approved_revision": null,
+    "release_evidence": []
+  },
+  "revision_history": []
+}

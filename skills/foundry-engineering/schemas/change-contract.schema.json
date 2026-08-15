@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundry.engineering/schemas/change-contract.schema.json",
+  "title": "FOUNDRY Change Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "contract_id",
+    "revision",
+    "project_ref",
+    "state_ref",
+    "mode",
+    "status",
+    "objective",
+    "baseline",
+    "target",
+    "invariants",
+    "ownership",
+    "surfaces",
+    "risks",
+    "verification_plan",
+    "recovery",
+    "authority",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "artifact_type": { "const": "foundry-change-contract" },
+    "contract_id": { "$ref": "#/$defs/id" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "project_ref": { "$ref": "#/$defs/nonempty" },
+    "state_ref": { "$ref": "#/$defs/nonempty" },
+    "system_map_ref": { "type": "string" },
+    "mode": { "enum": ["design", "implement", "debug", "repair", "refactor", "test", "performance", "security", "migration", "release", "incident", "recovery", "research", "mixed"] },
+    "status": { "enum": ["draft", "ready", "in_progress", "implemented_unverified", "verified", "blocked", "complete"] },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome", "non_goals"],
+      "properties": {
+        "outcome": { "$ref": "#/$defs/nonempty" },
+        "non_goals": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_behaviour", "evidence_refs", "reproduction_status"],
+      "properties": {
+        "current_behaviour": { "$ref": "#/$defs/string_list_nonempty" },
+        "evidence_refs": { "$ref": "#/$defs/string_list" },
+        "reproduction_status": { "enum": ["reproduced", "partially_reproduced", "not_reproduced", "not_applicable"] },
+        "limitations": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected_behaviour", "failure_cases"],
+      "properties": {
+        "expected_behaviour": { "$ref": "#/$defs/string_list_nonempty" },
+        "failure_cases": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/invariant" },
+      "minItems": 1
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["behaviour_owner", "state_or_data_owners", "integration_boundaries"],
+      "properties": {
+        "behaviour_owner": { "$ref": "#/$defs/nonempty" },
+        "state_or_data_owners": { "$ref": "#/$defs/string_list" },
+        "integration_boundaries": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "affected", "forbidden", "generated_or_external"],
+      "properties": {
+        "allowed": { "$ref": "#/$defs/string_list_nonempty" },
+        "affected": { "$ref": "#/$defs/string_list" },
+        "forbidden": { "$ref": "#/$defs/string_list" },
+        "generated_or_external": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/risk" }
+    },
+    "verification_plan": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/verification_item" },
+      "minItems": 1
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "steps", "data_reconciliation", "abort_conditions"],
+      "properties": {
+        "strategy": { "enum": ["source_rollback", "configuration_disable", "deployment_rollback", "restore", "compensate", "forward_fix", "not_needed"] },
+        "steps": { "$ref": "#/$defs/string_list" },
+        "data_reconciliation": { "$ref": "#/$defs/string_list" },
+        "abort_conditions": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_scope", "additional_approval_required", "permissions_carried_by_contract"],
+      "properties": {
+        "current_scope": { "$ref": "#/$defs/string_list" },
+        "additional_approval_required": { "$ref": "#/$defs/string_list" },
+        "permissions_carried_by_contract": { "const": false }
+      }
+    },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$" },
+    "nonempty": { "type": "string", "minLength": 1 },
+    "string_list": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "string_list_nonempty": { "type": "array", "items": { "$ref": "#/$defs/nonempty" }, "minItems": 1, "uniqueItems": true },
+    "invariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["invariant_id", "statement", "evidence_required"],
+      "properties": {
+        "invariant_id": { "$ref": "#/$defs/id" },
+        "statement": { "$ref": "#/$defs/nonempty" },
+        "evidence_required": { "$ref": "#/$defs/string_list_nonempty" }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_id", "condition", "consequence", "mitigation", "evidence_required"],
+      "properties": {
+        "risk_id": { "$ref": "#/$defs/id" },
+        "condition": { "$ref": "#/$defs/nonempty" },
+        "consequence": { "$ref": "#/$defs/nonempty" },
+        "mitigation": { "$ref": "#/$defs/nonempty" },
+        "evidence_required": { "$ref": "#/$defs/string_list_nonempty" }
+      }
+    },
+    "verification_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "claim", "evidence_kind", "pass_condition"],
+      "properties": {
+        "claim_id": { "$ref": "#/$defs/id" },
+        "claim": { "$ref": "#/$defs/nonempty" },
+        "risk_ids": { "$ref": "#/$defs/string_list" },
+        "invariant_ids": { "$ref": "#/$defs/string_list" },
+        "evidence_kind": { "$ref": "#/$defs/string_list_nonempty" },
+        "pass_condition": { "$ref": "#/$defs/nonempty" }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "new-product-website",
+    "request": "Turn this product brief into a distinctive responsive website and prove the important states work.",
+    "expected_skills": ["sitecraft"],
+    "forbidden_skills": ["foundry-engineering"],
+    "reason": "The primary outcome is a web experience; broader software engineering is unnecessary unless system-level work emerges."
+  },
+  {
+    "id": "website-accessibility-audit",
+    "request": "Audit this existing site for responsive composition, keyboard behavior, reduced motion, and release evidence.",
+    "expected_skills": ["sitecraft"],
+    "forbidden_skills": [],
+    "reason": "The request names experience observation and web release responsibilities."
+  },
+  {
+    "id": "visual-repair-no-rewrite",
+    "request": "Repair the broken mobile layout and visual hierarchy without replacing the framework or redesigning unrelated screens.",
+    "expected_skills": ["sitecraft"],
+    "forbidden_skills": ["foundry-engineering"],
+    "reason": "This is bounded web-experience repair with explicit preservation constraints."
+  },
+  {
+    "id": "unfamiliar-repository-map",
+    "request": "Map this unfamiliar monorepo, trace the billing behavior, and explain what owns state before changing anything.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "The primary need is progressive codebase understanding and ownership mapping."
+  },
+  {
+    "id": "debug-race",
+    "request": "Reproduce and fix this intermittent lost-update race without hiding it behind retries or sleeps.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "The request needs causal debugging, concurrency reasoning, regression proof, and wider verification."
+  },
+  {
+    "id": "safe-database-migration",
+    "request": "Plan and implement a backward-compatible database migration with concurrent writers, rollback, and state verification.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "The task is persistence and migration engineering with material operational risk."
+  },
+  {
+    "id": "web-checkout-full-stack",
+    "request": "Redesign the checkout experience and safely change the API and persisted checkout state that support it.",
+    "expected_skills": ["sitecraft", "foundry-engineering"],
+    "forbidden_skills": [],
+    "reason": "SITECRAFT owns the experience while FOUNDRY owns cross-boundary software change and persistence safety."
+  },
+  {
+    "id": "music-streaming-product",
+    "request": "Design and build a web application for streaming licensed music, including its backend and playback states.",
+    "expected_skills": ["sitecraft", "foundry-engineering"],
+    "forbidden_skills": [],
+    "reason": "The task combines product-experience and software-system responsibilities."
+  },
+  {
+    "id": "backend-only-negation",
+    "request": "Do not change the website. Diagnose the backend API timeout and its database query plan.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "Explicit negation prevents a web-experience route; the work is backend diagnosis."
+  },
+  {
+    "id": "standalone-cover-design",
+    "request": "Design a finished album cover from this approved visual brief; no website or software work is needed.",
+    "expected_skills": [],
+    "forbidden_skills": ["sitecraft", "foundry-engineering"],
+    "reason": "Neither skill owns final standalone cover design."
+  },
+  {
+    "id": "generic-poem",
+    "request": "Write a short page poem about winter light.",
+    "expected_skills": [],
+    "forbidden_skills": ["sitecraft", "foundry-engineering"],
+    "reason": "The request does not need either skill in this collection."
+  },
+  {
+    "id": "spreadsheet-analysis",
+    "request": "Analyze this sales spreadsheet and summarize the quarterly variance.",
+    "expected_skills": [],
+    "forbidden_skills": ["sitecraft", "foundry-engineering"],
+    "reason": "The task belongs to spreadsheet analysis, not these domains."
+  },
+  {
+    "id": "campaign-landing-page",
+    "request": "Create a distinctive campaign landing page from this approved brief, including responsive and reduced-motion states.",
+    "expected_skills": ["sitecraft"],
+    "forbidden_skills": ["foundry-engineering"],
+    "reason": "The requested outcome is a bounded web experience rather than a broader software system."
+  },
+  {
+    "id": "api-security-boundary",
+    "request": "Review and harden this API authorization boundary, preserving compatibility and proving the exploit is closed.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "The task requires security-boundary reasoning, compatibility analysis, and adversarial verification."
+  },
+  {
+    "id": "measured-performance-repair",
+    "request": "Find why this batch processor regressed, establish a baseline, improve it, and report only measured gains.",
+    "expected_skills": ["foundry-engineering"],
+    "forbidden_skills": ["sitecraft"],
+    "reason": "The primary work is causal performance engineering with baseline and post-change evidence."
+  },
+  {
+    "id": "interactive-design-system",
+    "request": "Design the interaction model for a reusable component system and safely implement its state and package API.",
+    "expected_skills": ["sitecraft", "foundry-engineering"],
+    "forbidden_skills": [],
+    "reason": "SITECRAFT owns the interaction experience while FOUNDRY owns the reusable software and compatibility surface."
+  },
+  {
+    "id": "legal-opinion",
+    "request": "Give me a definitive legal opinion about whether this third-party code license permits our planned distribution.",
+    "expected_skills": [],
+    "forbidden_skills": ["sitecraft", "foundry-engineering"],
+    "reason": "Engineering can identify license metadata but neither skill substitutes for jurisdiction-specific legal advice."
+  },
+  {
+    "id": "database-report-only",
+    "request": "Summarize the supplied database export into a management report; do not change any software or design a web experience.",
+    "expected_skills": [],
+    "forbidden_skills": ["sitecraft", "foundry-engineering"],
+    "reason": "The request is document and data summarization with explicit exclusion of software changes and web design."
+  }
+]

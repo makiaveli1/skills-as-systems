@@ -1,0 +1,44 @@
+[
+  {
+    "id": "document-writing-only",
+    "request": "Write a standalone executive memo. No website or web interface is needed.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "document writing"
+  },
+  {
+    "id": "cover-only-explicit-no-web",
+    "request": "Create a square single cover and image prompt. No website or web page is needed.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "no website or web page is needed"
+  },
+  {
+    "id": "standalone-logo",
+    "request": "Design a standalone logo only, with no website placement or implementation.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "visual asset creation only"
+  },
+  {
+    "id": "standalone-motion-video",
+    "request": "Create a standalone motion-graphics music visualizer video. It will not be used in a website or web interface.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "no website or web page is needed"
+  },
+  {
+    "id": "backend-only",
+    "request": "Optimise this database replication topology. There is no web interface or user experience work.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "backend infrastructure"
+  },
+  {
+    "id": "native-mobile-only",
+    "request": "Build a native iOS application with SwiftUI. No website or web interface is in scope.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "native mobile application"
+  },
+  {
+    "id": "factual-lookup-only",
+    "request": "What year was CSS Grid first standardised? I do not need design, implementation, or audit work.",
+    "expected": "exclude_sitecraft",
+    "reason_contains": "factual web lookup"
+  }
+]

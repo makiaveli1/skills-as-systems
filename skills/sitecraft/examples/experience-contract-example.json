@@ -1,0 +1,1002 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "fieldhouse-workshops-web-v1",
+  "project": "Fieldhouse Workshops",
+  "revision": 1,
+  "status": "buildable",
+  "workflow_state": {
+    "frame_map": "passed",
+    "compose_choreograph": "passed",
+    "build_observe": "not_started",
+    "harden_release": "not_started"
+  },
+  "owner": "Example project owner",
+  "target_release": null,
+  "updated_at": "2026-08-04",
+  "purpose": {
+    "public_purpose": "Help adults discover and book small in-person craft workshops without feeling overwhelmed by a course marketplace.",
+    "primary_outcome": "A visitor finds a suitable workshop and completes a booking request.",
+    "secondary_outcomes": [
+      "Understand the teaching approach",
+      "Trust the venue and instructors",
+      "Join the workshop mailing list"
+    ],
+    "success_signals": [
+      "Visitors can compare upcoming workshops by date, skill level, and available places",
+      "The booking path is understandable without account creation",
+      "The full primary journey remains usable by keyboard and at 320 CSS pixels"
+    ],
+    "trust_requirements": [
+      "Show real instructors and venue details",
+      "State price, materials, accessibility, cancellation, and duration before booking",
+      "Do not use false scarcity"
+    ]
+  },
+  "audience": {
+    "primary": "Adults interested in trying a practical craft workshop locally",
+    "secondary": [
+      "Gift buyers",
+      "Returning attendees"
+    ],
+    "context_of_use": "Browsing on a phone after seeing a social post or searching for a weekend activity",
+    "needs": [
+      "Quick date and availability scan",
+      "Confidence that beginners are welcome",
+      "Clear venue and access information"
+    ],
+    "risks": [
+      "Unclear skill-level language",
+      "Overly artistic layout hiding practical details",
+      "Mobile booking controls obscured by sticky elements"
+    ]
+  },
+  "experience_map": {
+    "surfaces": [
+      {
+        "id": "home",
+        "route": "/",
+        "purpose": "Explain the workshop concept and route visitors to suitable upcoming sessions.",
+        "primary_action": "Browse upcoming workshops",
+        "secondary_actions": [
+          "Learn how sessions work",
+          "View venue access information"
+        ],
+        "states": [
+          "default",
+          "no-upcoming-workshops",
+          "newsletter-success",
+          "newsletter-error"
+        ],
+        "content_authority": [
+          "Approved workshop catalogue",
+          "Venue access statement"
+        ]
+      },
+      {
+        "id": "workshop-list",
+        "route": "/workshops",
+        "purpose": "Let visitors compare current sessions without losing important practical information.",
+        "primary_action": "Open a workshop",
+        "secondary_actions": [
+          "Filter by date",
+          "Filter by skill level"
+        ],
+        "states": [
+          "loading",
+          "results",
+          "filtered-empty",
+          "request-error"
+        ],
+        "content_authority": [
+          "Workshop catalogue API"
+        ]
+      },
+      {
+        "id": "workshop-detail",
+        "route": "/workshops/:slug",
+        "purpose": "Provide every decision detail and start a booking request.",
+        "primary_action": "Request a place",
+        "secondary_actions": [
+          "Return to workshops",
+          "Read accessibility information"
+        ],
+        "states": [
+          "available",
+          "low-availability",
+          "full-waitlist",
+          "booking-dialog",
+          "booking-success",
+          "booking-error"
+        ],
+        "content_authority": [
+          "Workshop catalogue API",
+          "Instructor profiles",
+          "Booking policy"
+        ]
+      }
+    ],
+    "primary_journeys": [
+      "Social or search entry → upcoming workshop scan → detail → booking request → confirmation",
+      "Home → how it works → workshop list → detail",
+      "Full workshop → join waitlist → confirmation"
+    ],
+    "completion_path": "A booking or waitlist request returns a visible confirmation, sends an email receipt, and offers a clear next step.",
+    "navigation_model": "Simple top-level navigation with Home, Workshops, How it works, and Visit; workshop detail preserves a clear return to the filtered list.",
+    "content_hierarchy": [
+      "Date and workshop identity",
+      "Availability, price, duration, and level",
+      "What the attendee makes",
+      "Instructor and venue proof",
+      "Materials, access, and cancellation detail",
+      "Booking action"
+    ]
+  },
+  "visual_grammar": {
+    "dominant_idea": "A contemporary workshop noticeboard combining tactile paper detail with clear editorial scheduling.",
+    "typography_roles": [
+      "Warm display serif for workshop names",
+      "Highly legible sans serif for schedules, forms, and practical details",
+      "Tabular numerals for dates, duration, price, and places"
+    ],
+    "colour_roles": [
+      "Warm paper canvas",
+      "Charcoal text",
+      "Deep green action and focus colour",
+      "Clay accent reserved for dates and availability",
+      "Semantic status colours with text labels"
+    ],
+    "layout_rules": [
+      "Date and availability remain visually adjacent",
+      "Practical details appear before long editorial description",
+      "Artwork may overlap frames but never booking controls",
+      "Desktop uses asymmetric editorial columns; narrow screens use a direct single-column decision order"
+    ],
+    "spacing_density": "Airy around editorial imagery, compact and regular around schedule and booking information.",
+    "imagery_treatment": "Real workshop process photography with natural crop, visible materials, and no artificial yellow grading.",
+    "component_language": [
+      "Workshop cards behave as schedule entries rather than generic floating cards",
+      "Filters use native controls with explicit applied-state summary",
+      "Booking appears in a focused dialog on wide screens and a full route or full-height sheet on narrow screens"
+    ],
+    "anti_patterns": [
+      "Generic course-platform card grid",
+      "Purple gradient",
+      "Decorative glass panels",
+      "False countdown or scarcity badge",
+      "Stock classroom photography"
+    ],
+    "creative_distinction": {
+      "intent": "task_specific",
+      "project_drivers": [
+        "Visitors must compare date, availability, price and level before committing attention to editorial description.",
+        "The workshops are physical making experiences, so real materials, hands and process are more trustworthy than generic classroom imagery.",
+        "Booking confidence depends on practical clarity rather than luxury or technology spectacle."
+      ],
+      "mechanisms": [
+        {
+          "mechanism_id": "editorial-schedule",
+          "mechanism": "Treat workshop discovery as an editorial noticeboard whose strongest visual units are date, availability and the object being made rather than a generic course-card grid.",
+          "project_reason": "The primary user decision is schedule-and-fit comparison, while the craft context benefits from tactile editorial framing.",
+          "surfaces": ["Home campaign panel", "Workshop list", "Workshop detail"],
+          "must_not_become": ["A decorative collage that obscures dates or actions", "A repeated floating-card layout with editorial styling applied only as surface decoration"]
+        },
+        {
+          "mechanism_id": "making-as-proof",
+          "mechanism": "Use real making-process imagery as trust evidence and visual punctuation around practical information.",
+          "project_reason": "Visible tools, hands and materials prove the physical nature of the workshop more credibly than stock lifestyle photography.",
+          "surfaces": ["Home", "Workshop list", "Workshop detail", "Visit"],
+          "must_not_become": ["Atmospheric imagery that pushes practical details below the fold", "A generated craft aesthetic presented as documentary evidence"]
+        }
+      ],
+      "category_contrasts": [
+        "Avoid presenting every workshop as an interchangeable online-course tile.",
+        "Avoid false urgency and growth-marketing language; availability should read as practical information."
+      ],
+      "familiar_patterns_kept": [
+        "Keep conventional top-level navigation because orientation is more valuable than novel navigation here.",
+        "Keep native or semantically standard form controls for filters and booking.",
+        "Keep dates, prices, availability and error states explicit rather than turning them into visual metaphors."
+      ],
+      "reference_map_path": "research/reference-role-map.csv",
+      "anti_repetition_rules": [
+        "Do not inherit a previous SITECRAFT project's hero composition, recurring motif, chapter sequence or signature transition unless this workshop brief independently justifies it.",
+        "Do not add motion, 3D, generated video or unusual navigation merely to make the site feel more premium."
+      ]
+    },
+    "direction_selection": {
+      "mode": "not_needed",
+      "reason": "The workshop brief already establishes a clear content-first editorial scheduling direction, so manufacturing alternative concepts would add ceremony rather than improve the experience.",
+      "directions": [],
+      "selected_id": null,
+      "reopen_conditions": [
+        "The project owner rejects the approved editorial scheduling direction.",
+        "New user or content evidence shows that the current structure does not support workshop comparison or booking confidence."
+      ]
+    }
+  },
+  "behaviour": {
+    "interaction_rules": [
+      "Filtering updates the result summary and URL without moving keyboard focus unexpectedly",
+      "Booking state is recoverable after validation errors",
+      "Availability is always expressed with text, not colour alone"
+    ],
+    "transition_grammar": [
+      "Workshop thumbnail may transition into the detail hero as progressive enhancement",
+      "Filter changes use a short local cross-fade without moving the page",
+      "Dialog entry is a restrained opacity and vertical offset"
+    ],
+    "scroll_rules": [
+      "Native scrolling only",
+      "No pinned storytelling section",
+      "Sticky booking summary is disabled when viewport height is constrained"
+    ],
+    "motion_purposes": [
+      "Preserve continuity from list to detail",
+      "Confirm filtering and booking state changes"
+    ],
+    "reduced_motion": [
+      "Remove shared-element travel and use an immediate route change",
+      "Replace dialog travel with an immediate opacity change",
+      "Keep focus movement and status announcements unchanged"
+    ],
+    "focus_behaviour": [
+      "Detail route focus moves to the workshop heading after navigation",
+      "Booking dialog receives focus on its heading and returns focus to the invoking button on close",
+      "Validation errors focus the summary, with linked fields"
+    ],
+    "loading_error_feedback": [
+      "List loading preserves layout height",
+      "Errors explain what failed and provide retry",
+      "Booking submission prevents duplicate requests while retaining entered values"
+    ],
+    "prohibited_motion": [
+      "Scroll hijacking",
+      "Continuous floating cards",
+      "Parallax photography",
+      "Layout-shifting availability banners"
+    ]
+  },
+  "continuity_system": {
+    "anchors": [
+      {
+        "id": "workshop-editorial-identity",
+        "kind": "visual",
+        "preserve": ["Warm paper / charcoal / deep-green visual family", "Date and availability remain adjacent", "Making-process imagery remains documentary rather than decorative"],
+        "applies_to": ["Home", "Workshop list", "Workshop detail", "Booking states"]
+      }
+    ],
+    "state_dimensions": [
+      {
+        "id": "workshop-selection-state",
+        "values": ["unfiltered", "filtered", "detail", "booking"],
+        "authority": "The URL, selected workshop record and booking state own the current experience state; motion and imagery may reflect it but may not invent a different state.",
+        "change_triggers": ["User changes filters", "User opens a workshop detail", "User starts or exits booking"],
+        "applies_to": ["Workshop list", "Workshop detail", "Booking"]
+      }
+    ],
+    "family_checks": ["Review Home, workshop list and workshop detail together to confirm they feel like one workshop service rather than three independently styled pages."],
+    "stale_conditions": ["A page or generated asset is stale if it preserves the visual brand but depicts or implies a workshop, availability, booking, or route state that is no longer authoritative."]
+  },
+  "asset_lineage": {
+    "ledger_path": "assets/asset-ledger.csv",
+    "records": [
+      {
+        "asset_id": "workshop-process-photography",
+        "kind": "image",
+        "stage": "source",
+        "parent_asset_ids": [],
+        "reference_asset_ids": [],
+        "external_source_refs": ["approved-workshop-photo-set"],
+        "declared_systems": ["image_system", "asset_ledger"],
+        "artifact_ref": "asset-ledger:workshop-process-photography",
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-workshop-photo-responsive"],
+        "approval_state": "approved",
+        "notes": ["Documentary source media; generated campaign assets must never be represented as descendants of this evidence asset."]
+      },
+      {
+        "asset_id": "programme-mark-key-art",
+        "kind": "image",
+        "stage": "master",
+        "parent_asset_ids": [],
+        "reference_asset_ids": [],
+        "external_source_refs": ["noticeboard-layout-study", "paper-and-clay-material-board"],
+        "declared_systems": ["image_system", "asset_ledger"],
+        "artifact_ref": "asset-ledger:programme-mark-key-art",
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-programme-mark-master"],
+        "approval_state": "approved",
+        "notes": ["Approved still master and protected identity anchor for later motion/video branches."]
+      },
+      {
+        "asset_id": "programme-mark-static-poster",
+        "kind": "image",
+        "stage": "poster",
+        "parent_asset_ids": ["programme-mark-key-art"],
+        "reference_asset_ids": [],
+        "external_source_refs": [],
+        "declared_systems": ["video_system", "motion_system", "asset_ledger"],
+        "artifact_ref": "asset-ledger:programme-mark-static-poster",
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-programme-mark-poster"],
+        "approval_state": "approved",
+        "notes": ["Static and reduced-motion fallback derived directly from the approved key art."]
+      },
+      {
+        "asset_id": "programme-mark-motion-svg",
+        "kind": "vector",
+        "stage": "delivery",
+        "parent_asset_ids": ["programme-mark-key-art"],
+        "reference_asset_ids": [],
+        "external_source_refs": [],
+        "declared_systems": ["motion_system", "asset_ledger"],
+        "artifact_ref": null,
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-programme-mark-motion"],
+        "approval_state": "planned",
+        "notes": ["Lightweight authored motion branch; not the same artifact as the generated video branch."]
+      },
+      {
+        "asset_id": "programme-mark-ambient-loop",
+        "kind": "video",
+        "stage": "master",
+        "parent_asset_ids": ["programme-mark-key-art"],
+        "reference_asset_ids": [],
+        "external_source_refs": [],
+        "declared_systems": ["video_system", "asset_ledger"],
+        "artifact_ref": null,
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-programme-mark-loop-master"],
+        "approval_state": "planned",
+        "notes": ["Generated video master must preserve the approved key-art identity and remain separate from the web-delivery derivative."]
+      },
+      {
+        "asset_id": "programme-mark-ambient-loop-web",
+        "kind": "video",
+        "stage": "delivery",
+        "parent_asset_ids": ["programme-mark-ambient-loop"],
+        "reference_asset_ids": [],
+        "external_source_refs": [],
+        "declared_systems": ["video_system", "asset_ledger"],
+        "artifact_ref": null,
+        "capability_decision_ids": [],
+        "evidence_refs": ["ev-programme-mark-loop-web"],
+        "approval_state": "planned",
+        "notes": ["Compressed website derivative; acceptance depends on the generated master and real-page delivery evidence."]
+      }
+    ],
+    "rules": [
+      "parent_asset_ids mean direct derivation; reference_asset_ids mean influence without direct derivation.",
+      "Every consequential image/video/motion asset named by the contract must use the same stable asset ID in the lineage spine and asset ledger.",
+      "Delivered derivatives retain their own IDs so approval and performance evidence cannot be confused with the source master."
+    ]
+  },
+  "image_system": {
+    "scope": "mixed",
+    "asset_roles": [
+      {
+        "id": "workshop-process-photography",
+        "surface": "Home, list, and workshop detail",
+        "purpose": "Show real materials, instructors, and making activity so visitors can judge the experience accurately.",
+        "semantic_role": "evidence",
+        "subject": "Owner-approved real workshop process photography.",
+        "focal_rule": "Keep hands, tools, and the making action intact; do not crop to generic smiling portraits.",
+        "text_relationship": "Practical details remain in HTML beside the image rather than embedded in it.",
+        "variants": ["wide editorial", "narrow portrait", "thumbnail"],
+        "loading_priority": "high",
+        "motion_planned": false
+      },
+      {
+        "id": "programme-mark-key-art",
+        "surface": "Rare campaign entry moment and social preview",
+        "purpose": "Extend the tactile noticeboard identity with one original paper-form motif without pretending it is documentary workshop evidence.",
+        "semantic_role": "identity",
+        "subject": "An abstract folded-paper programme mark built from simple original shapes.",
+        "focal_rule": "The complete mark remains recognisable at small sizes and preserves a clean text-free zone.",
+        "text_relationship": "Website copy remains semantic DOM text; social-preview text is added in the layout tool from approved copy.",
+        "variants": ["square master", "wide social preview", "static reduced-motion frame"],
+        "loading_priority": "normal",
+        "motion_planned": true
+      }
+    ],
+    "reference_roles": [
+      {
+        "reference_id": "approved-workshop-photo-set",
+        "role": "identity",
+        "contribution": "Preserve the real venue, materials, instructors, and making actions.",
+        "ignore": ["Incidental crop", "Camera exposure differences", "Unapproved colour casts"],
+        "rights_status": "Owner-supplied and approved for this example contract."
+      },
+      {
+        "reference_id": "noticeboard-layout-study",
+        "role": "composition",
+        "contribution": "Inform asymmetrical framing and the relationship between image, date, and practical information.",
+        "ignore": ["Original subject matter", "Typography", "Branding", "Exact proportions"],
+        "rights_status": "Mechanism-only internal study; not publishable as an asset."
+      },
+      {
+        "reference_id": "paper-and-clay-material-board",
+        "role": "palette_material",
+        "contribution": "Inform warm paper, clay, charcoal, and deep-green material relationships for the generated programme mark.",
+        "ignore": ["Any logos", "Any text", "Exact object forms"],
+        "rights_status": "Owner-approved internal material study."
+      }
+    ],
+    "production_stages": [
+      "Map every image to a named surface and user-facing purpose.",
+      "Approve documentary photography separately from generated campaign assets.",
+      "Generate and approve the still programme-mark master before motion.",
+      "Prepare responsive and social derivatives with explicit crop rules.",
+      "Integrate and observe the assets in wide, short-laptop, narrow, and reduced-motion states."
+    ],
+    "generation_routes": [
+      {
+        "asset_id": "programme-mark-key-art",
+        "capability_class": "Graphic and vector-system output with strong instruction and edit fidelity",
+        "selected_route": "Provider-neutral image or illustration workflow selected at production time",
+        "reason": "The asset needs original simple geometry, material control, a text-free master, and reliable derivative creation.",
+        "prompt_path": "prompts/programme-mark-image-pack.md",
+        "fallback": "Human-built SVG or layered design-tool composition using the same approved brief.",
+        "limitations": ["No provider is assumed to remain permanently best", "Generated geometry must be inspected and may require manual cleanup"]
+      }
+    ],
+    "execution_policy": {
+      "production_pack_path": "prompts/programme-mark-image-pack.md",
+      "distinct_asset_per_job": true,
+      "independent_jobs_may_parallelize": true,
+      "dependent_jobs_require_approved_inputs": true,
+      "derivatives_restart_from_declared_parent": true,
+      "iteration_rule": "Repair one diagnosed defect at a time and repeat protected invariants on every edit iteration.",
+      "project_bound_persistence": true,
+      "non_destructive_outputs": true,
+      "host_reference_rule": "A local path is not automatically an image-model input; the executing host must confirm each required reference is actually available to the generator before the job is ready."
+    },
+    "production_jobs": [
+      {
+        "job_id": "generate-programme-mark-master",
+        "asset_id": "programme-mark-key-art",
+        "intent": "generate",
+        "depends_on_job_ids": [],
+        "required_approved_asset_ids": [],
+        "source_asset_ids": [],
+        "reference_ids": ["noticeboard-layout-study", "paper-and-clay-material-board"],
+        "parallel_group": null,
+        "prompt_path": "prompts/programme-mark-image-pack.md",
+        "output_ref": null,
+        "acceptance_gate": "The programme mark must preserve the approved visual brief, remain text-free, read clearly at small size, and pass full-resolution inspection before any dependent derivative or motion work begins.",
+        "notes": ["This is a generation job using bounded references, not an edit of either reference image."]
+      }
+    ],
+    "preservation_rules": [
+      "Generated assets must never alter or fabricate documentary workshop evidence.",
+      "The approved programme-mark silhouette, paper palette, and text-free master are protected after approval.",
+      "Important typography is added outside the generated image."
+    ],
+    "derivative_rules": [
+      "Use art-directed wide and narrow crops when the making action changes by aspect ratio.",
+      "Declare intrinsic dimensions and focal guidance for every derivative.",
+      "Keep a square text-free programme-mark master for future repair."
+    ],
+    "motion_handoff": [
+      "Motion begins only from the approved programme-mark still master.",
+      "The handoff names protected geometry, palette, poster frame, stable end state, reduced-motion frame, and prohibited deformation.",
+      "A motion reference may control timing or folding behaviour only; it may not replace the mark's design."
+    ],
+    "delivery": [
+      "Serve responsive workshop photography with picture/srcset and declared dimensions.",
+      "Deliver the generated programme mark as the lightest maintainable format that preserves the approved appearance.",
+      "Provide static poster and social-preview derivatives."
+    ],
+    "accessibility": [
+      "Documentary images receive concise purpose-led alt text.",
+      "The programme mark is decorative unless it communicates programme identity not already present in text.",
+      "No essential copy is embedded only in an image."
+    ],
+    "performance": [
+      "Do not lazy-load the actual LCP workshop image.",
+      "Bound image dimensions and compression by surface.",
+      "Animated derivatives must not cause layout shift or continuous offscreen work."
+    ],
+    "lineage": [
+      "Record source, rights, prompt or edit instruction, references, model or human route, date, checksum, derivatives, owner, and approval state in the asset ledger."
+    ],
+    "evidence": [
+      "Full-resolution asset inspection",
+      "Wide, short-laptop, narrow, 320 CSS-pixel, social-preview, and reduced-motion captures",
+      "LCP, CLS, crop, alt-text, rights, and owner-approval review"
+    ]
+  },
+  "video_system": {
+    "scope": "generated",
+    "asset_roles": [
+      {
+        "id": "programme-mark-ambient-loop",
+        "surface": "Home campaign panel",
+        "purpose": "Give the generated programme identity a short tactile paper-fold motion moment without implying documentary workshop footage.",
+        "semantic_role": "identity",
+        "duration_seconds": 8,
+        "aspect_ratios": ["16:9", "4:5"],
+        "loop": true,
+        "audio_policy": "none",
+        "first_frame_requirement": "Begin on the approved programme-mark silhouette in a stable poster-compatible state so failed autoplay, poster display, and the generated clip describe the same identity.",
+        "last_frame_requirement": "Return to the same approved silhouette, framing, material state, and visual weight closely enough to create a clean loop and a stable handoff back to the static fallback.",
+        "continuity_requirements": [
+          "Preserve the approved programme-mark silhouette, paper material, palette, and centre-weighted crop throughout the clip.",
+          "Do not introduce a different workshop, booking state, logo, text, or documentary-looking footage while the generated identity loop is playing."
+        ],
+        "copy_crop_rules": ["Keep the mark in the centre 60 percent so wide and narrow derivatives remain usable", "Do not place essential text inside the generated video"],
+        "poster_asset_id": "programme-mark-static-poster",
+        "fallback": "Approved static programme-mark poster frame",
+        "fallback_asset_id": "programme-mark-static-poster",
+        "capability_decision_id": null
+      }
+    ],
+    "reference_roles": [
+      {
+        "reference_id": "programme-mark-key-art",
+        "role": "identity",
+        "contribution": "Controls the exact approved mark silhouette, paper material and palette.",
+        "preserve": ["Silhouette", "Paper material", "Palette"],
+        "ignore": ["Any accidental background or presentation framing from the reference export"],
+        "rights_status": "Project-owned generated campaign asset approved for this example"
+      }
+    ],
+    "generation_policy": {
+      "provider_strategy": "Choose an authenticated video generator that can preserve the approved mark, produce a short controlled loop, return an inspectable artifact, and support bounded regeneration.",
+      "preferred_provider": null,
+      "paid_generation": true,
+      "max_attempts": 3,
+      "auto_regenerate": true,
+      "credit_budget": 120,
+      "approval_boundary": "Provider inspection is authorized separately from generation. After inspection, the example authorizes at most three generation attempts and 120 provider credits; increasing either requires owner approval.",
+      "tool_discovery_required": true,
+      "provider_inspection_required": true,
+      "separate_generation_authority": true,
+      "max_status_polls_per_attempt": 12,
+      "stop_conditions": ["Stop at three generation attempts", "Stop when 120 reported provider credits are reached", "Stop when the provider-interaction budget is exhausted", "Stop after two attempts fail the same hard floor without material improvement", "Stop if the approved mark would need to be redesigned rather than animated"],
+      "prompt_pack_path": "prompts/programme-mark-video-pack.md",
+      "attempt_ledger_path": "evidence/programme-mark-video-attempts.json"
+    },
+    "quality_gate": {
+      "hard_floors": ["Approved programme-mark silhouette remains recognizable and stable", "No unwanted text, watermark or logo artifact", "Loop seam is visually acceptable", "Static/reduced-motion poster remains available"],
+      "review_dimensions": ["Website-role adherence", "Identity and material preservation", "Motion and camera coherence", "Temporal stability", "Responsive crop safety", "Delivery/performance suitability"],
+      "acceptance_rule": "Accept only when every hard floor passes on the actual generated artifact; a strong average impression cannot override identity drift or a broken loop.",
+      "regeneration_rule": "Change only the diagnosed failing prompt, reference-role or generation setting while preserving dimensions that already passed."
+    },
+    "delivery": ["Create a compressed web derivative and poster rather than shipping the generation master directly", "Verify the loop inside the real home composition before approval"],
+    "accessibility": ["Treat the loop as non-essential identity media", "Use the static approved programme mark for reduced motion and failed media loading"],
+    "performance": ["Do not preload the loop when it is not the LCP candidate", "Pause or avoid continuous offscreen playback", "Keep the delivered video within the page media budget"],
+    "lineage": ["Record provider/model/tool when known, prompt/reference revision, attempt ID, reported credits, artifact hash, review decision and accepted derivative lineage"],
+    "evidence": ["Actual full-clip review", "Loop-seam review", "Wide and narrow rendered captures", "Reduced-motion/static fallback", "Delivered payload and playback review"]
+  },
+  "motion_system": {
+    "scope": "hybrid",
+    "motion_depth": "polished",
+    "narrative_chapters": [],
+    "continuity_devices": [
+      "Shared workshop imagery and quiet paper-texture treatment maintain orientation without forcing a recurring motif."
+    ],
+    "living_media_rules": [],
+    "hero_variation_rules": [],
+    "roles": [
+      "Interface feedback for filtering and booking",
+      "Continuity between workshop list and detail",
+      "A restrained animated programme mark for rare campaign moments"
+    ],
+    "emotional_temperature": "Tactile, calm, human, and quietly celebratory rather than energetic or theatrical.",
+    "narrative_beats": [
+      "Establish the workshop identity",
+      "Reveal one making gesture",
+      "Hold the practical workshop information",
+      "Settle into a static, fully readable end frame"
+    ],
+    "temporal_grammar": {
+      "duration_roles": [
+        "70–120 ms for direct control feedback",
+        "150–240 ms for filters and compact disclosure",
+        "240–400 ms for list-to-detail continuity",
+        "One 500–650 ms expressive programme-mark sequence used only at rare entry moments"
+      ],
+      "easing_roles": [
+        "Enter quickly and settle",
+        "Exit decisively",
+        "Use standard easing when an element remains visible throughout",
+        "No bounce or elastic overshoot"
+      ],
+      "sequence_rules": [
+        "Practical information is readable before decorative motion begins",
+        "No more than two coordinated moving groups",
+        "The important content finishes in the stable end frame"
+      ],
+      "spatial_rules": [
+        "Shared workshop imagery preserves identity between list and detail",
+        "Large background movement is prohibited",
+        "Direction may distinguish forward and back navigation"
+      ],
+      "loop_rules": [
+        "The programme mark plays once and does not loop",
+        "No ambient motion continues while the visitor reads booking information"
+      ]
+    },
+    "kinetic_typography": [
+      "Workshop names remain semantic DOM text",
+      "No essential copy is revealed character by character",
+      "Animated type settles before the primary action becomes the focal point"
+    ],
+    "compositing_rules": [
+      "Approved photography proportions are preserved",
+      "Transparent edges are reviewed on warm paper and charcoal backgrounds",
+      "Texture and motion blur remain subtle and do not reduce legibility"
+    ],
+    "delivery_routes": [
+      {
+        "asset": "Workshop list-to-detail continuity",
+        "route": "view-transitions",
+        "reason": "Preserve identity between a selected workshop and its detail while keeping navigation progressive.",
+        "runtime": "Browser View Transition API when supported",
+        "fallback": "Immediate navigation with focus moved to the detail heading.",
+        "budget": [
+          "No route is blocked by transition failure",
+          "No duplicate view-transition names"
+        ]
+      },
+      {
+        "asset": "Campaign programme mark",
+        "asset_id": "programme-mark-motion-svg",
+        "route": "svg",
+        "reason": "The mark uses a small number of scalable paper shapes and simple masks.",
+        "runtime": "CSS keyframes with no external library",
+        "fallback": "Static approved SVG poster frame.",
+        "fallback_asset_id": "programme-mark-static-poster",
+        "budget": [
+          "One request",
+          "No continuous playback",
+          "Transform and opacity only"
+        ]
+      }
+    ],
+    "playback_rules": [
+      "Motion begins only after the relevant asset is ready",
+      "Long sequences can be skipped",
+      "Offscreen decorative playback stops"
+    ],
+    "accessibility_equivalents": [
+      "Reduced motion removes shared-element travel and shows the stable end frame",
+      "The programme mark is decorative and has a static equivalent",
+      "Focus movement and status announcements remain unchanged"
+    ],
+    "performance_budget": [
+      "No animation causes layout shifts",
+      "No continuous frame callback remains active after settling",
+      "Input responsiveness is measured while motion is active"
+    ],
+    "ownership": [
+      "The Experience Contract owns motion intent and evidence",
+      "The approved asset ledger owns source, rights, and revision",
+      "Implementation owns runtime integration and fallback"
+    ],
+    "evidence": [
+      "Storyboard and style frame for the programme mark",
+      "Wide, short-laptop, narrow, and reduced-motion recordings",
+      "Start, key beat, and settled-state screenshots",
+      "Keyboard and back-navigation run",
+      "Frame pacing and input responsiveness review"
+    ]
+  },
+  "responsive_contract": {
+    "compositions": [
+      {
+        "name": "wide editorial",
+        "trigger": "The main content container can support imagery and decision information side by side.",
+        "layout_changes": [
+          "Use asymmetric two-column detail layout",
+          "Keep booking summary visible in the secondary column"
+        ],
+        "interaction_changes": [
+          "Booking opens in a modal dialog"
+        ],
+        "content_priority_changes": []
+      },
+      {
+        "name": "short laptop",
+        "trigger": "Viewport height is too small for a persistent secondary booking column.",
+        "layout_changes": [
+          "Disable sticky booking summary",
+          "Keep action inline after practical details"
+        ],
+        "interaction_changes": [
+          "Dialog height is bounded with internal content scrolling only when necessary"
+        ],
+        "content_priority_changes": []
+      },
+      {
+        "name": "narrow",
+        "trigger": "Available inline size no longer supports two decision columns.",
+        "layout_changes": [
+          "Use one-column content order",
+          "Place availability and primary action before the long description",
+          "Use full-width media with approved crop"
+        ],
+        "interaction_changes": [
+          "Booking becomes a dedicated route or full-height sheet",
+          "Hover previews are removed"
+        ],
+        "content_priority_changes": [
+          "Practical details move before instructor biography"
+        ]
+      }
+    ],
+    "reflow_320_css_px": [
+      "No horizontal page scrolling",
+      "Filter controls wrap or stack",
+      "Workshop cards fit the viewport",
+      "Long venue links wrap",
+      "Sticky controls do not obscure focused content"
+    ],
+    "intrinsic_media_rules": [
+      "All workshop images declare intrinsic dimensions",
+      "Use art-directed sources where the focal making action differs by crop",
+      "Media never stretches"
+    ]
+  },
+  "implementation": {
+    "architecture": "Server-rendered content site with progressively enhanced filtering and booking interactions.",
+    "framework": "Provider-neutral example",
+    "conventions": [
+      "Semantic HTML and native controls first",
+      "Design tokens own colour, type, spacing, and focus",
+      "Booking and catalogue state have explicit loading and error models"
+    ],
+    "protected_foundations": [
+      "Approved workshop photography",
+      "Booking policy copy",
+      "Venue access statement",
+      "Experience Contract revision 1"
+    ],
+    "editable_areas": [
+      "Layout implementation",
+      "Component details within the visual grammar",
+      "Motion timing within the declared ranges"
+    ],
+    "capability_plan": [
+      {
+        "id": "list-detail-continuity",
+        "need": "Preserve orientation when moving between workshop list and detail without making navigation dependent on animation.",
+        "capability_class": "navigation-transition",
+        "selected_route": "Browser-native View Transition API as progressive enhancement where supported.",
+        "reason": "The platform feature can provide shared visual continuity while ordinary document navigation remains the authoritative route behaviour.",
+        "rejected_routes": [
+          "Convert the public programme into a client-only SPA solely to obtain animated route transitions.",
+          "Add a general animation framework only for this one navigation effect."
+        ],
+        "integration_boundary": [
+          "The routing layer owns URLs, history, loading and focus.",
+          "The transition layer may animate approved visual continuity but may not own navigation state."
+        ],
+        "loading_strategy": [
+          "No additional transition runtime is loaded; unsupported browsers use ordinary navigation."
+        ],
+        "fallback": "Normal navigation with the same semantic destination, focus movement and content.",
+        "risks": [
+          "Cross-browser rendering differences must not affect navigation or focus.",
+          "Reduced motion must remove travel without removing orientation."
+        ],
+        "evidence_required": [
+          "Normal and reduced-motion list-to-detail navigation recording.",
+          "Keyboard focus and browser-history check.",
+          "Environment-scoped fallback evidence in a browser without the enhanced transition."
+        ]
+      },
+      {
+        "id": "programme-filter-state",
+        "need": "Provide fast filtering and recoverable booking interaction while keeping the public programme readable and useful before client enhancement.",
+        "capability_class": "client-state",
+        "selected_route": "Small progressively enhanced client state inside the existing project architecture.",
+        "reason": "The interaction needs local state and immediate feedback, but does not justify replacing server-rendered public content or introducing a second application architecture.",
+        "rejected_routes": [
+          "Client-render the entire public catalogue.",
+          "Introduce a second state-management runtime for the bounded filter and booking state."
+        ],
+        "integration_boundary": [
+          "Server-rendered content remains the content authority.",
+          "Client state owns only active filters, local booking interaction state and status feedback.",
+          "URLs remain shareable and browser history remains meaningful."
+        ],
+        "loading_strategy": [
+          "Enhancement initializes after semantic controls and programme content are available."
+        ],
+        "fallback": "Server routes and native form behaviour preserve the core programme and booking path when enhancement is unavailable.",
+        "risks": [
+          "Client and server filter state can drift if URL ownership is unclear.",
+          "Loading and validation feedback must remain accessible."
+        ],
+        "evidence_required": [
+          "Filter, empty-state, back-navigation and URL-state checks.",
+          "Booking validation and recovery keyboard run.",
+          "Input-responsiveness observation for filter and booking actions."
+        ]
+      }
+    ],
+    "runtime_orchestration": {
+      "mode": "coordinated_multi_runtime",
+      "ownership": [
+        {
+          "concern": "route-navigation",
+          "scope": "Public workshop list-to-detail navigation",
+          "owner": "Server/document navigation layer",
+          "related_decision_ids": ["list-detail-continuity"],
+          "rule": "URLs, browser history, loading and focus remain authoritative in normal navigation; the visual transition may observe the route change but may not replace it."
+        },
+        {
+          "concern": "application-state",
+          "scope": "Workshop filters and local booking interaction",
+          "owner": "Bounded client enhancement",
+          "related_decision_ids": ["programme-filter-state"],
+          "rule": "Client state owns only active filters and local booking interaction state; public programme content remains server-authoritative."
+        },
+        {
+          "concern": "focus-keyboard",
+          "scope": "Public routes, filters and booking controls",
+          "owner": "Semantic DOM and native control layer",
+          "related_decision_ids": ["list-detail-continuity", "programme-filter-state"],
+          "rule": "Transitions and client state must preserve native focus order, visible focus and keyboard completion paths."
+        }
+      ],
+      "bridges": [
+        {
+          "scope": "Workshop list-to-detail transition",
+          "parties": ["Server/document navigation layer", "View-transition enhancement"],
+          "mechanism": "Progressive-enhancement handoff after an approved navigation change",
+          "related_decision_ids": ["list-detail-continuity"],
+          "contract": "Navigation commits the destination and focus semantics; the transition layer only supplies visual continuity when supported."
+        },
+        {
+          "scope": "Filter state and shareable URL",
+          "parties": ["Bounded client enhancement", "Server/document navigation layer"],
+          "mechanism": "Explicit URL-state synchronization",
+          "related_decision_ids": ["programme-filter-state"],
+          "contract": "Client filter changes update the approved URL representation without creating a second routing authority."
+        }
+      ],
+      "shared_rules": [
+        "The Experience Contract and design tokens remain the visual authority across every runtime.",
+        "Native scrolling, semantic reading order and browser history remain intact.",
+        "Reduced-motion behaviour is coordinated across transitions and local client enhancement rather than implemented independently by each layer."
+      ],
+      "prohibited_conflicts": [
+        "No second route manager may be introduced solely for animation.",
+        "No second client-state runtime may own the same filter or booking state.",
+        "No transition layer may move keyboard focus independently of the semantic navigation result."
+      ]
+    },
+    "dependencies": [
+      "Workshop catalogue source",
+      "Transactional email service"
+    ],
+    "browser_support": [
+      "Current evergreen browsers",
+      "Full function without View Transition API"
+    ],
+    "public_private_boundary": [
+      "Private attendee details remain server-side and are not embedded in public pages",
+      "Email-service credentials remain server-only",
+      "Internal capacity notes are excluded from public API responses"
+    ],
+    "rollback_boundary": "Each implementation batch must be reversible without replacing approved photography or catalogue data."
+  },
+  "evidence_contract": {
+    "required_views": [
+      "1440x900 home, list, and detail",
+      "1366x768 detail and booking dialog",
+      "768x1024 list and detail",
+      "390x844 primary journey",
+      "320 CSS-pixel reflow for home, list, detail, and booking"
+    ],
+    "required_interactions": [
+      "Keyboard navigation from home to booking confirmation",
+      "Filter apply, clear, and empty result",
+      "Booking validation error and recovery",
+      "Dialog or sheet open, close, escape, and focus return",
+      "Reduced-motion list-to-detail navigation"
+    ],
+    "accessibility_checks": [
+      "Automated scan on primary surfaces",
+      "Keyboard and focus review",
+      "Visible labels and error associations",
+      "Contrast and target review",
+      "Zoom, text spacing, and 320 CSS-pixel reflow",
+      "Reduced-motion system preference"
+    ],
+    "performance_checks": [
+      "LCP resource and hero image review",
+      "CLS during image, filter, and availability loading",
+      "INP for filters and booking submission",
+      "Initial JavaScript and third-party review"
+    ],
+    "security_checks": [
+      "Public bundle and API response inspection",
+      "Secret and source-map review",
+      "Duplicate booking and validation tests",
+      "Direct access and authorization review for private booking data"
+    ],
+    "visual_baselines": [
+      "Home default",
+      "Workshop list results and empty",
+      "Workshop detail available and full",
+      "Booking dialog or sheet"
+    ],
+    "reviewers": [
+      "Project owner"
+    ],
+    "environment_matrix": [
+      {
+        "id": "macos-safari-desktop",
+        "operating_system": "macOS",
+        "architecture": null,
+        "browser": "Safari",
+        "browser_engine": "WebKit",
+        "browser_version": null,
+        "form_factor": "desktop and short laptop",
+        "input_modes": ["keyboard", "pointer"],
+        "assistive_technology": ["VoiceOver spot check"],
+        "motion_preference": "default and reduced",
+        "capture_provider": null,
+        "status": "planned",
+        "evidence": [],
+        "limitations": ["No environment evidence has been collected for this buildable example."]
+      },
+      {
+        "id": "windows-chromium-desktop",
+        "operating_system": "Windows",
+        "architecture": null,
+        "browser": "Managed Chromium-family browser",
+        "browser_engine": "Chromium",
+        "browser_version": null,
+        "form_factor": "desktop and short laptop",
+        "input_modes": ["keyboard", "pointer"],
+        "assistive_technology": ["Representative Windows screen-reader spot check"],
+        "motion_preference": "default and reduced",
+        "capture_provider": null,
+        "status": "planned",
+        "evidence": [],
+        "limitations": ["The exact managed browser and assistive technology must be selected from the deployment context."]
+      },
+      {
+        "id": "linux-firefox-desktop",
+        "operating_system": "Linux",
+        "architecture": null,
+        "browser": "Firefox",
+        "browser_engine": "Gecko",
+        "browser_version": null,
+        "form_factor": "desktop",
+        "input_modes": ["keyboard", "pointer"],
+        "assistive_technology": [],
+        "motion_preference": "default and reduced",
+        "capture_provider": null,
+        "status": "planned",
+        "evidence": [],
+        "limitations": ["This row is required only if Linux desktop support remains in the approved browser promise."]
+      }
+    ],
+    "support_claim_rule": "Current evergreen browser support is not verified until every material environment row is passed, marked not required, or explicitly accepted as a bounded exclusion by the owner.",
+    "freshness_rule": "Any change to layout, content priority, booking behaviour, protected imagery, responsive rules, browser support, or platform-specific behaviour stales the affected evidence rows."
+  },
+  "release_state": {
+    "approval": "not_requested",
+    "verification": "not_started",
+    "blockers": [],
+    "approved_revision": null,
+    "release_evidence": []
+  },
+  "revision_history": [
+    {
+      "revision": 1,
+      "summary": "Initial buildable contract for the example workshop booking experience.",
+      "authority": "Example project owner",
+      "evidence": [
+        "Example brief"
+      ],
+      "staled_evidence": []
+    }
+  ]
+}

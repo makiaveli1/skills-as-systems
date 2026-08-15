@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-continuation-record",
+  "continuation_id": "continuation-example-cli-timeout",
+  "project_ref": "example-sync-tool",
+  "objective": "Finish cross-platform verification for the bounded CLI timeout feature.",
+  "status": "ready",
+  "state_ref": "working-tree-example-7b31",
+  "system_map_ref": "examples/system-map-example.json",
+  "change_contract_ref": "examples/change-contract-example.json",
+  "changed_surfaces": ["src/sync_tool/cli.py", "tests/cli/test_timeout.py"],
+  "established_findings": [
+    {
+      "finding_id": "finding-linux-package",
+      "statement": "The built Linux wheel exposes and validates the timeout flag.",
+      "status": "KNOWN",
+      "evidence_refs": ["examples/verification-receipt-example.json#check-installed-cli"]
+    },
+    {
+      "finding_id": "finding-cross-platform",
+      "statement": "The installed artifact behaves identically on macOS and Windows.",
+      "status": "NEEDS_VERIFICATION",
+      "evidence_refs": []
+    }
+  ],
+  "verification_refs": ["examples/verification-receipt-example.json"],
+  "unresolved": ["Run installed-wheel smoke checks on macOS and Windows."],
+  "dependencies": [
+    {
+      "dependency_id": "dependency-platform-runners",
+      "status": "ready",
+      "blocks": ["cross-platform-release-claim"],
+      "evidence_ref": "CI platform matrix configuration"
+    }
+  ],
+  "ownership": {
+    "current_owner": "release verification worker",
+    "write_surfaces": ["verification evidence only"],
+    "coordination_state": "Implementation files are frozen pending verification; refresh before any edit."
+  },
+  "invariants": ["Do not change SyncClient defaults or retry behaviour.", "Do not publish without release authority."],
+  "next_eligible_work": [
+    {
+      "work_id": "work-macos-smoke",
+      "action": "Install the exact wheel and run CLI help/invalid-value smoke checks on macOS.",
+      "eligibility": "ready",
+      "dependency_ids": ["dependency-platform-runners"]
+    },
+    {
+      "work_id": "work-windows-smoke",
+      "action": "Install the exact wheel and run CLI help/invalid-value smoke checks on Windows.",
+      "eligibility": "ready",
+      "dependency_ids": ["dependency-platform-runners"]
+    }
+  ],
+  "exact_references": ["example-sync-tool-0.8.1.dev0-py3-none-any.whl", "examples/verification-receipt-example.json"],
+  "safety": {
+    "contains_hidden_reasoning": false,
+    "contains_transcript": false,
+    "contains_secrets": false,
+    "permissions_carried_over": false,
+    "receiving_worker_must_refresh_state": true,
+    "receiving_worker_must_rediscover_capabilities": true
+  },
+  "created_at": "2026-08-15T10:35:00Z"
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "foundry-system-map",
+  "map_id": "map-example-cli-timeout",
+  "project": {
+    "name": "example-sync-tool",
+    "root_ref": ".",
+    "repository_ref": "example-repository"
+  },
+  "captured_state": {
+    "state_ref": "revision-example-4f2a",
+    "revision": "4f2a-example",
+    "branch_or_worktree": "feature/bounded-timeout",
+    "dirty_state": "clean",
+    "dirty_summary": [],
+    "coordination_ref": "",
+    "freshness": "current"
+  },
+  "scope": {
+    "objective": "Add a request timeout flag to the sync CLI without changing library defaults.",
+    "included": ["CLI argument parsing", "client construction", "timeout tests"],
+    "excluded": ["retry policy", "transport replacement", "library default timeout"]
+  },
+  "repository": {
+    "languages_runtimes": ["Python 3.11+"],
+    "build_package_systems": ["pyproject.toml", "locked test environment"],
+    "boundaries": ["sync_tool.cli", "sync_tool.client", "tests"],
+    "entry_points": ["sync-tool console script"],
+    "tests_and_verification": ["pytest tests/cli", "package install smoke test"],
+    "deployment_release": ["Python wheel and source distribution"],
+    "generated_or_external": ["distribution artifacts under dist/ are generated"]
+  },
+  "subsystems": [
+    {
+      "subsystem_id": "cli",
+      "purpose": "Parse user options and construct one client invocation.",
+      "entry_points": ["src/sync_tool/cli.py:main"],
+      "owns": ["CLI flag names", "CLI validation", "exit codes"],
+      "dependencies": ["client"],
+      "state_and_data": ["parsed timeout value for one process invocation"],
+      "external_interfaces": ["shell command line"],
+      "tests_and_operations": ["tests/cli/test_timeout.py"],
+      "evidence_refs": ["src/sync_tool/cli.py", "tests/cli"]
+    },
+    {
+      "subsystem_id": "client",
+      "purpose": "Execute synchronization requests through the configured transport.",
+      "entry_points": ["src/sync_tool/client.py:SyncClient"],
+      "owns": ["transport call", "library default timeout"],
+      "dependencies": ["external HTTP transport"],
+      "state_and_data": [],
+      "external_interfaces": ["HTTP transport"],
+      "tests_and_operations": ["tests/client"],
+      "evidence_refs": ["src/sync_tool/client.py"]
+    }
+  ],
+  "behavioural_paths": [
+    {
+      "path_id": "cli-timeout-path",
+      "trigger": "User invokes sync-tool --timeout 10.",
+      "owner": "cli",
+      "steps": ["Parser validates positive seconds", "CLI passes timeout to SyncClient", "Client passes timeout to transport call"],
+      "state_and_side_effects": ["No persistent state change", "One outbound request may be cancelled at the configured deadline"],
+      "failure_paths": ["Non-positive values fail before client construction", "Transport timeout keeps the existing timeout error mapping"],
+      "evidence_refs": ["src/sync_tool/cli.py", "src/sync_tool/client.py", "tests/cli/test_timeout.py"]
+    }
+  ],
+  "change_surface": {
+    "direct": ["src/sync_tool/cli.py", "tests/cli/test_timeout.py"],
+    "affected": ["src/sync_tool/client.py constructor call contract", "packaged console entry point"],
+    "protected": ["library default timeout", "existing exit-code mapping", "retry behaviour"],
+    "generated_or_external": ["dist/"]
+  },
+  "risk_surface": [
+    {
+      "risk_id": "risk-default-drift",
+      "area": "compatibility",
+      "condition": "CLI implementation changes the library default instead of passing an explicit value.",
+      "consequence": "Existing library consumers observe a behavioural change.",
+      "evidence_needed": ["client default regression test", "CLI construction test"]
+    }
+  ],
+  "knowledge": [
+    {
+      "claim_id": "knowledge-cli-owner",
+      "statement": "The CLI is the natural owner of the new flag and validation.",
+      "status": "KNOWN",
+      "evidence_refs": ["src/sync_tool/cli.py", "tests/cli"],
+      "impact_if_wrong": "The library public API could change unnecessarily.",
+      "next_check": ""
+    },
+    {
+      "claim_id": "knowledge-platform",
+      "statement": "The installed console entry point behaves the same on every supported platform.",
+      "status": "NEEDS_VERIFICATION",
+      "evidence_refs": [],
+      "impact_if_wrong": "Release support claims would be too broad.",
+      "next_check": "Run installed-artifact smoke tests in the supported platform matrix."
+    }
+  ],
+  "sufficiency": {
+    "sufficient_for_action": true,
+    "reason": "The owner, call path, protected default, direct files, and focused proof are identified.",
+    "remaining_material_unknowns": ["Cross-platform installed-artifact verification remains a release concern, not an implementation blocker."]
+  },
+  "updated_at": "2026-08-15T10:00:00Z"
+}

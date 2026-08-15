@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundry.engineering/schemas/system-map.schema.json",
+  "title": "FOUNDRY System Map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "map_id",
+    "project",
+    "captured_state",
+    "scope",
+    "repository",
+    "subsystems",
+    "behavioural_paths",
+    "change_surface",
+    "risk_surface",
+    "knowledge",
+    "sufficiency",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "artifact_type": { "const": "foundry-system-map" },
+    "map_id": { "$ref": "#/$defs/id" },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "root_ref"],
+      "properties": {
+        "name": { "$ref": "#/$defs/nonempty" },
+        "root_ref": { "$ref": "#/$defs/nonempty" },
+        "repository_ref": { "type": "string" }
+      }
+    },
+    "captured_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_ref", "dirty_state", "freshness"],
+      "properties": {
+        "state_ref": { "$ref": "#/$defs/nonempty" },
+        "revision": { "type": "string" },
+        "branch_or_worktree": { "type": "string" },
+        "dirty_state": { "enum": ["clean", "dirty", "unknown"] },
+        "dirty_summary": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "coordination_ref": { "type": "string" },
+        "freshness": { "enum": ["current", "stale", "unknown"] }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "included", "excluded"],
+      "properties": {
+        "objective": { "$ref": "#/$defs/nonempty" },
+        "included": { "$ref": "#/$defs/string_list" },
+        "excluded": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["languages_runtimes", "build_package_systems", "boundaries", "entry_points", "generated_or_external"],
+      "properties": {
+        "languages_runtimes": { "$ref": "#/$defs/string_list" },
+        "build_package_systems": { "$ref": "#/$defs/string_list" },
+        "boundaries": { "$ref": "#/$defs/string_list" },
+        "entry_points": { "$ref": "#/$defs/string_list" },
+        "tests_and_verification": { "$ref": "#/$defs/string_list" },
+        "deployment_release": { "$ref": "#/$defs/string_list" },
+        "generated_or_external": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "subsystems": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/subsystem" },
+      "minItems": 1
+    },
+    "behavioural_paths": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/behavioural_path" },
+      "minItems": 1
+    },
+    "change_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["direct", "affected", "protected", "generated_or_external"],
+      "properties": {
+        "direct": { "$ref": "#/$defs/string_list" },
+        "affected": { "$ref": "#/$defs/string_list" },
+        "protected": { "$ref": "#/$defs/string_list" },
+        "generated_or_external": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "risk_surface": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["risk_id", "area", "condition", "consequence", "evidence_needed"],
+        "properties": {
+          "risk_id": { "$ref": "#/$defs/id" },
+          "area": { "$ref": "#/$defs/nonempty" },
+          "condition": { "$ref": "#/$defs/nonempty" },
+          "consequence": { "$ref": "#/$defs/nonempty" },
+          "evidence_needed": { "$ref": "#/$defs/string_list" }
+        }
+      }
+    },
+    "knowledge": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim_id", "statement", "status", "evidence_refs", "impact_if_wrong"],
+        "properties": {
+          "claim_id": { "$ref": "#/$defs/id" },
+          "statement": { "$ref": "#/$defs/nonempty" },
+          "status": { "enum": ["KNOWN", "INFERRED", "UNKNOWN", "NEEDS_VERIFICATION"] },
+          "evidence_refs": { "$ref": "#/$defs/string_list" },
+          "impact_if_wrong": { "$ref": "#/$defs/nonempty" },
+          "next_check": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "sufficiency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sufficient_for_action", "reason", "remaining_material_unknowns"],
+      "properties": {
+        "sufficient_for_action": { "type": "boolean" },
+        "reason": { "$ref": "#/$defs/nonempty" },
+        "remaining_material_unknowns": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$" },
+    "nonempty": { "type": "string", "minLength": 1 },
+    "string_list": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "subsystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subsystem_id", "purpose", "entry_points", "owns", "dependencies", "state_and_data", "external_interfaces", "tests_and_operations", "evidence_refs"],
+      "properties": {
+        "subsystem_id": { "$ref": "#/$defs/id" },
+        "purpose": { "$ref": "#/$defs/nonempty" },
+        "entry_points": { "$ref": "#/$defs/string_list" },
+        "owns": { "$ref": "#/$defs/string_list" },
+        "dependencies": { "$ref": "#/$defs/string_list" },
+        "state_and_data": { "$ref": "#/$defs/string_list" },
+        "external_interfaces": { "$ref": "#/$defs/string_list" },
+        "tests_and_operations": { "$ref": "#/$defs/string_list" },
+        "evidence_refs": { "$ref": "#/$defs/string_list" }
+      }
+    },
+    "behavioural_path": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path_id", "trigger", "owner", "steps", "state_and_side_effects", "failure_paths", "evidence_refs"],
+      "properties": {
+        "path_id": { "$ref": "#/$defs/id" },
+        "trigger": { "$ref": "#/$defs/nonempty" },
+        "owner": { "$ref": "#/$defs/id" },
+        "steps": { "$ref": "#/$defs/string_list" },
+        "state_and_side_effects": { "$ref": "#/$defs/string_list" },
+        "failure_paths": { "$ref": "#/$defs/string_list" },
+        "evidence_refs": { "$ref": "#/$defs/string_list" }
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "new-marketing-site",
+    "request": "Create a distinctive website for a local architecture studio from this brand brief and project photography.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe", "Harden"],
+    "required_references": ["interaction-and-routing", "experience-mapping", "visual-system", "responsive-layout", "accessibility", "evidence-and-qa"],
+    "must_not": ["default to generic SaaS sections", "invent project claims", "copy a reference studio"]
+  },
+  {
+    "id": "content-first-public-site",
+    "request": "Create a content-first community workshop website with practical information, a no-network form, responsive reflow, metadata, and a fail-closed release review.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Build", "Observe", "Harden"],
+    "required_references": ["experience-contract", "experience-mapping", "content-and-discoverability", "responsive-layout", "accessibility", "evidence-and-qa"],
+    "must_not": ["route to the animated microsite packet", "hide practical details behind imagery", "claim release readiness without browser evidence"]
+  },
+  {
+    "id": "existing-codebase-regression-repair",
+    "request": "Repair this existing editorial website without rewriting it. Fix the deliberate mobile overflow, broken skip-link target, invisible keyboard focus, protected illustration crop and reduced-motion regression with the narrowest diff. Preserve content, routes, design tokens, source asset bytes and unaffected behaviour, then provide browser evidence.",
+    "mode": "Repair",
+    "routes": ["Build", "Observe", "Harden"],
+    "required_references": ["existing-codebase-repair-compact", "implementation-routing", "failure-tests", "evidence-and-qa"],
+    "must_not": ["route primarily to generated-image production", "rewrite the site", "hide overflow or remove content", "claim release readiness without exact evidence"]
+  },
+  {
+    "id": "bounded-spacing-repair",
+    "request": "The bottom-right caption is too high on desktop. Move it down without changing the artwork or mobile layout.",
+    "mode": "Repair",
+    "routes": ["Build", "Observe"],
+    "required_references": ["interaction-and-routing", "evidence-and-qa"],
+    "must_not": ["redesign the page", "regenerate the artwork", "change mobile without evidence"]
+  },
+  {
+    "id": "animated-reference",
+    "request": "Use this animated website as inspiration for our album microsite.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe"],
+    "required_references": ["tutorial-pattern-study", "visual-system", "motion-and-interaction", "responsive-layout"],
+    "must_not": ["clone the reference", "copy protected assets", "treat the preview as production approval"]
+  },
+  {
+    "id": "motion-graphics-web-system",
+    "request": "Design a kinetic typography and animated identity system for this music website, including storyboards, style frames, an animatic, Lottie or Rive format selection, responsive variants, reduced motion, performance budgets and recording evidence.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe", "Harden"],
+    "required_references": ["motion-design-and-graphics", "motion-and-interaction", "asset-and-media-pipeline", "performance", "accessibility", "evidence-and-qa"],
+    "must_not": ["treat motion as generic fade-up decoration", "choose a runtime before defining the motion brief", "ship essential text only inside animation", "claim approval from still frames"]
+  },
+  {
+    "id": "narrative-motion-living-media",
+    "request": "Create an original chapter-led campaign site with scroll storytelling, ambient looping background video, three approved hero variations on refresh, readable hold states, a calm mobile composition, real reduced motion, and motion evidence. Do not make it look like the reference site.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe", "Harden"],
+    "required_references": ["narrative-motion-and-living-media", "motion-design-and-graphics", "performance", "accessibility", "evidence-and-qa"],
+    "must_not": ["copy the reference visual identity", "require one recurring motif", "randomise core copy or conversion logic", "autoplay audio", "claim motion approval from screenshots"]
+  },
+  {
+    "id": "ai-builder-prompt",
+    "request": "Write the best prompt to build this product in Lovable.",
+    "mode": "Sketch",
+    "routes": ["Frame", "Map", "Compose", "Build"],
+    "required_references": ["experience-contract", "ai-builder-translation", "responsive-layout", "failure-tests"],
+    "must_not": ["send one vague giant prompt", "assume builder memory", "include secrets"]
+  },
+  {
+    "id": "existing-codebase-redesign",
+    "request": "Redesign the operations desk in this existing React project without breaking its tools.",
+    "mode": "Evolve",
+    "routes": ["Frame", "Map", "Compose", "Build", "Observe", "Harden"],
+    "required_references": ["implementation-routing", "visual-system", "experience-mapping", "evidence-and-qa", "harness-integration"],
+    "must_not": ["replace the stack without reason", "remove existing functionality", "overwrite user changes"]
+  },
+  {
+    "id": "accessibility-audit",
+    "request": "Audit this deployed checkout flow for accessibility issues.",
+    "mode": "Audit",
+    "routes": ["Observe", "Harden"],
+    "required_references": ["accessibility", "responsive-layout", "evidence-and-qa"],
+    "must_not": ["claim conformance from automation", "modify without permission", "ignore error states"]
+  },
+  {
+    "id": "motion-repair",
+    "request": "The scroll animation feels sickening and the menu jumps. Fix the motion while keeping the visual identity.",
+    "mode": "Repair",
+    "routes": ["Choreograph", "Build", "Observe"],
+    "required_references": ["motion-and-interaction", "accessibility", "performance", "evidence-and-qa"],
+    "must_not": ["remove essential feedback", "keep scroll hijacking", "approve from a still image"]
+  },
+  {
+    "id": "cross-platform-validation",
+    "request": "Verify this website across macOS, Windows and Linux using Safari, Chromium and Firefox where available, and keep each result scoped to the exact operating system, browser engine and capture provider tested.",
+    "mode": "Verify",
+    "routes": ["Build", "Observe", "Harden"],
+    "required_references": ["platform-portability-compact", "platform-and-browser-portability", "evidence-and-qa", "harness-integration", "release-audit-compact"],
+    "must_not": ["treat one Mac result as universal evidence", "hard-code a user home path or shell", "claim real Windows or Linux execution from simulation"]
+  },
+  {
+    "id": "release-review",
+    "request": "Is this website ready to deploy publicly?",
+    "mode": "Audit",
+    "routes": ["Observe", "Harden"],
+    "required_references": ["accessibility", "performance", "security-and-boundaries", "evidence-and-qa"],
+    "must_not": ["equate build success with release readiness", "ignore private files", "publish without authority"]
+  },
+  {
+    "id": "protected-artwork",
+    "request": "Make the album artwork fill the hero on all devices.",
+    "mode": "Evolve",
+    "routes": ["Compose", "Build", "Observe"],
+    "required_references": ["visual-system", "responsive-layout", "evidence-and-qa"],
+    "must_not": ["stretch the artwork", "crop without an approved focal point", "use one composition for every aspect ratio"]
+  },
+  {
+    "id": "private-control-centre",
+    "request": "Turn our private control centre into a public marketing site using the same repository.",
+    "mode": "Evolve",
+    "routes": ["Frame", "Map", "Compose", "Build", "Observe", "Harden"],
+    "required_references": ["security-and-boundaries", "implementation-routing", "experience-contract", "evidence-and-qa"],
+    "must_not": ["ship and hide private tools", "expose owner metadata", "reuse privileged API responses"]
+  },
+  {
+    "id": "hybrid-capability-stack",
+    "request": "Design an original campaign site that may combine semantic editorial DOM content, an authored Rive interaction, a Three.js or WebGPU 3D product scene, scroll choreography using native timelines or GSAP, and normal route navigation. Decide which capabilities actually justify specialized runtimes, define which layer owns scrolling, timing, state, focus and rendering, and keep simpler routes where they are stronger.",
+    "mode": "Make",
+    "routes": ["Frame", "Map", "Compose", "Choreograph", "Build", "Observe", "Harden"],
+    "required_references": ["capability-palette-and-orchestration", "implementation-routing", "motion-design-and-graphics", "performance", "accessibility", "evidence-and-qa"],
+    "must_not": ["choose libraries by fashion", "put essential content only in canvas", "run competing scroll or timeline systems without an explicit owner", "treat one technology as the site design"]
+  },
+  {
+    "id": "generated-video-website-asset",
+    "request": "Create a short AI-generated hero video for this website using Kling if it is available. Plan the references and shots first, cap paid attempts, inspect every actual output, regenerate only for specific failed quality criteria, provide a poster and reduced-motion fallback, and do not spend credits indefinitely.",
+    "mode": "Make",
+    "routes": ["Frame", "Compose", "Choreograph", "Build", "Observe", "Harden"],
+    "required_references": ["generated-video-production-compact", "generated-video-production", "evidence-and-qa", "performance", "accessibility"],
+    "must_not": ["assume Kling is authenticated", "guess remote MCP tool names", "accept from a prompt or thumbnail alone", "regenerate without an attempt or spend boundary", "ship the generation master without web-delivery review"]
+  },
+  {
+    "id": "cross-harness-capability-handoff",
+    "request": "Plan the website in ChatGPT, implement the approved capability plan in Codex, inspect temporal evidence through PC Bridge or another observing host, and make the work resumable in Claude without assuming the same tools or permissions. Keep the website decisions provider-neutral and carry exact verification evidence and blockers between hosts.",
+    "mode": "Evolve",
+    "routes": ["Frame", "Build", "Observe", "Harden"],
+    "required_references": ["capability-palette-and-orchestration", "harness-integration", "implementation-routing", "evidence-and-qa", "platform-and-browser-portability"],
+    "must_not": ["carry host permissions between agents", "transfer hidden reasoning or private transcripts", "assume every host can edit or observe", "change the runtime plan merely because the receiving host has different tools"]
+  }
+]

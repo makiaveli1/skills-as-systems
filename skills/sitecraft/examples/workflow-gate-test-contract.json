@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "fieldhouse-workshops-web-v1",
+  "project": "Fieldhouse Workshops",
+  "revision": 1,
+  "status": "implemented_unverified",
+  "workflow_state": {
+    "frame_map": "passed",
+    "compose_choreograph": "passed",
+    "build_observe": "passed",
+    "harden_release": "not_started"
+  },
+  "owner": "Example project owner",
+  "target_release": null,
+  "updated_at": "2026-08-04",
+  "purpose": {
+    "public_purpose": "Help adults discover and book small in-person craft workshops without feeling overwhelmed by a course marketplace.",
+    "primary_outcome": "A visitor finds a suitable workshop and completes a booking request.",
+    "secondary_outcomes": [
+      "Understand the teaching approach",
+      "Trust the venue and instructors",
+      "Join the workshop mailing list"
+    ],
+    "success_signals": [
+      "Visitors can compare upcoming workshops by date, skill level, and available places",
+      "The booking path is understandable without account creation",
+      "The full primary journey remains usable by keyboard and at 320 CSS pixels"
+    ],
+    "trust_requirements": [
+      "Show real instructors and venue details",
+      "State price, materials, accessibility, cancellation, and duration before booking",
+      "Do not use false scarcity"
+    ]
+  },
+  "audience": {
+    "primary": "Adults interested in trying a practical craft workshop locally",
+    "secondary": [
+      "Gift buyers",
+      "Returning attendees"
+    ],
+    "context_of_use": "Browsing on a phone after seeing a social post or searching for a weekend activity",
+    "needs": [
+      "Quick date and availability scan",
+      "Confidence that beginners are welcome",
+      "Clear venue and access information"
+    ],
+    "risks": [
+      "Unclear skill-level language",
+      "Overly artistic layout hiding practical details",
+      "Mobile booking controls obscured by sticky elements"
+    ]
+  },
+  "experience_map": {
+    "surfaces": [
+      {
+        "id": "home",
+        "route": "/",
+        "purpose": "Explain the workshop concept and route visitors to suitable upcoming sessions.",
+        "primary_action": "Browse upcoming workshops",
+        "secondary_actions": [
+          "Learn how sessions work",
+          "View venue access information"
+        ],
+        "states": [
+          "default",
+          "no-upcoming-workshops",
+          "newsletter-success",
+          "newsletter-error"
+        ],
+        "content_authority": [
+          "Approved workshop catalogue",
+          "Venue access statement"
+        ]
+      },
+      {
+        "id": "workshop-list",
+        "route": "/workshops",
+        "purpose": "Let visitors compare current sessions without losing important practical information.",
+        "primary_action": "Open a workshop",
+        "secondary_actions": [
+          "Filter by date",
+          "Filter by skill level"
+        ],
+        "states": [
+          "loading",
+          "results",
+          "filtered-empty",
+          "request-error"
+        ],
+        "content_authority": [
+          "Workshop catalogue API"
+        ]
+      },
+      {
+        "id": "workshop-detail",
+        "route": "/workshops/:slug",
+        "purpose": "Provide every decision detail and start a booking request.",
+        "primary_action": "Request a place",
+        "secondary_actions": [
+          "Return to workshops",
+          "Read accessibility information"
+        ],
+        "states": [
+          "available",
+          "low-availability",
+          "full-waitlist",
+          "booking-dialog",
+          "booking-success",
+          "booking-error"
+        ],
+        "content_authority": [
+          "Workshop catalogue API",
+          "Instructor profiles",
+          "Booking policy"
+        ]
+      }
+    ],
+    "primary_journeys": [
+      "Social or search entry → upcoming workshop scan → detail → booking request → confirmation",
+      "Home → how it works → workshop list → detail",
+      "Full workshop → join waitlist → confirmation"
+    ],
+    "completion_path": "A booking or waitlist request returns a visible confirmation, sends an email receipt, and offers a clear next step.",
+    "navigation_model": "Simple top-level navigation with Home, Workshops, How it works, and Visit; workshop detail preserves a clear return to the filtered list.",
+    "content_hierarchy": [
+      "Date and workshop identity",
+      "Availability, price, duration, and level",
+      "What the attendee makes",
+      "Instructor and venue proof",
+      "Materials, access, and cancellation detail",
+      "Booking action"
+    ]
+  },
+  "visual_grammar": {
+    "dominant_idea": "A contemporary workshop noticeboard combining tactile paper detail with clear editorial scheduling.",
+    "typography_roles": [
+      "Warm display serif for workshop names",
+      "Highly legible sans serif for schedules, forms, and practical details",
+      "Tabular numerals for dates, duration, price, and places"
+    ],
+    "colour_roles": [
+      "Warm paper canvas",
+      "Charcoal text",
+      "Deep green action and focus colour",
+      "Clay accent reserved for dates and availability",
+      "Semantic status colours with text labels"
+    ],
+    "layout_rules": [
+      "Date and availability remain visually adjacent",
+      "Practical details appear before long editorial description",
+      "Artwork may overlap frames but never booking controls",
+      "Desktop uses asymmetric editorial columns; narrow screens use a direct single-column decision order"
+    ],
+    "spacing_density": "Airy around editorial imagery, compact and regular around schedule and booking information.",
+    "imagery_treatment": "Real workshop process photography with natural crop, visible materials, and no artificial yellow grading.",
+    "component_language": [
+      "Workshop cards behave as schedule entries rather than generic floating cards",
+      "Filters use native controls with explicit applied-state summary",
+      "Booking appears in a focused dialog on wide screens and a full route or full-height sheet on narrow screens"
+    ],
+    "anti_patterns": [
+      "Generic course-platform card grid",
+      "Purple gradient",
+      "Decorative glass panels",
+      "False countdown or scarcity badge",
+      "Stock classroom photography"
+    ]
+  },
+  "behaviour": {
+    "interaction_rules": [
+      "Filtering updates the result summary and URL without moving keyboard focus unexpectedly",
+      "Booking state is recoverable after validation errors",
+      "Availability is always expressed with text, not colour alone"
+    ],
+    "transition_grammar": [
+      "Workshop thumbnail may transition into the detail hero as progressive enhancement",
+      "Filter changes use a short local cross-fade without moving the page",
+      "Dialog entry is a restrained opacity and vertical offset"
+    ],
+    "scroll_rules": [
+      "Native scrolling only",
+      "No pinned storytelling section",
+      "Sticky booking summary is disabled when viewport height is constrained"
+    ],
+    "motion_purposes": [
+      "Preserve continuity from list to detail",
+      "Confirm filtering and booking state changes"
+    ],
+    "reduced_motion": [
+      "Remove shared-element travel and use an immediate route change",
+      "Replace dialog travel with an immediate opacity change",
+      "Keep focus movement and status announcements unchanged"
+    ],
+    "focus_behaviour": [
+      "Detail route focus moves to the workshop heading after navigation",
+      "Booking dialog receives focus on its heading and returns focus to the invoking button on close",
+      "Validation errors focus the summary, with linked fields"
+    ],
+    "loading_error_feedback": [
+      "List loading preserves layout height",
+      "Errors explain what failed and provide retry",
+      "Booking submission prevents duplicate requests while retaining entered values"
+    ],
+    "prohibited_motion": [
+      "Scroll hijacking",
+      "Continuous floating cards",
+      "Parallax photography",
+      "Layout-shifting availability banners"
+    ]
+  },
+  "responsive_contract": {
+    "compositions": [
+      {
+        "name": "wide editorial",
+        "trigger": "The main content container can support imagery and decision information side by side.",
+        "layout_changes": [
+          "Use asymmetric two-column detail layout",
+          "Keep booking summary visible in the secondary column"
+        ],
+        "interaction_changes": [
+          "Booking opens in a modal dialog"
+        ],
+        "content_priority_changes": []
+      },
+      {
+        "name": "short laptop",
+        "trigger": "Viewport height is too small for a persistent secondary booking column.",
+        "layout_changes": [
+          "Disable sticky booking summary",
+          "Keep action inline after practical details"
+        ],
+        "interaction_changes": [
+          "Dialog height is bounded with internal content scrolling only when necessary"
+        ],
+        "content_priority_changes": []
+      },
+      {
+        "name": "narrow",
+        "trigger": "Available inline size no longer supports two decision columns.",
+        "layout_changes": [
+          "Use one-column content order",
+          "Place availability and primary action before the long description",
+          "Use full-width media with approved crop"
+        ],
+        "interaction_changes": [
+          "Booking becomes a dedicated route or full-height sheet",
+          "Hover previews are removed"
+        ],
+        "content_priority_changes": [
+          "Practical details move before instructor biography"
+        ]
+      }
+    ],
+    "reflow_320_css_px": [
+      "No horizontal page scrolling",
+      "Filter controls wrap or stack",
+      "Workshop cards fit the viewport",
+      "Long venue links wrap",
+      "Sticky controls do not obscure focused content"
+    ],
+    "intrinsic_media_rules": [
+      "All workshop images declare intrinsic dimensions",
+      "Use art-directed sources where the focal making action differs by crop",
+      "Media never stretches"
+    ]
+  },
+  "implementation": {
+    "architecture": "Server-rendered content site with progressively enhanced filtering and booking interactions.",
+    "framework": "Provider-neutral example",
+    "conventions": [
+      "Semantic HTML and native controls first",
+      "Design tokens own colour, type, spacing, and focus",
+      "Booking and catalogue state have explicit loading and error models"
+    ],
+    "protected_foundations": [
+      "Approved workshop photography",
+      "Booking policy copy",
+      "Venue access statement",
+      "Experience Contract revision 1"
+    ],
+    "editable_areas": [
+      "Layout implementation",
+      "Component details within the visual grammar",
+      "Motion timing within the declared ranges"
+    ],
+    "dependencies": [
+      "Workshop catalogue source",
+      "Transactional email service"
+    ],
+    "browser_support": [
+      "Current evergreen browsers",
+      "Full function without View Transition API"
+    ],
+    "public_private_boundary": [
+      "Private attendee details remain server-side and are not embedded in public pages",
+      "Email-service credentials remain server-only",
+      "Internal capacity notes are excluded from public API responses"
+    ],
+    "rollback_boundary": "Each implementation batch must be reversible without replacing approved photography or catalogue data."
+  },
+  "evidence_contract": {
+    "required_views": [
+      "1440x900 home, list, and detail",
+      "1366x768 detail and booking dialog",
+      "768x1024 list and detail",
+      "390x844 primary journey",
+      "320 CSS-pixel reflow for home, list, detail, and booking"
+    ],
+    "required_interactions": [
+      "Keyboard navigation from home to booking confirmation",
+      "Filter apply, clear, and empty result",
+      "Booking validation error and recovery",
+      "Dialog or sheet open, close, escape, and focus return",
+      "Reduced-motion list-to-detail navigation"
+    ],
+    "accessibility_checks": [
+      "Automated scan on primary surfaces",
+      "Keyboard and focus review",
+      "Visible labels and error associations",
+      "Contrast and target review",
+      "Zoom, text spacing, and 320 CSS-pixel reflow",
+      "Reduced-motion system preference"
+    ],
+    "performance_checks": [
+      "LCP resource and hero image review",
+      "CLS during image, filter, and availability loading",
+      "INP for filters and booking submission",
+      "Initial JavaScript and third-party review"
+    ],
+    "security_checks": [
+      "Public bundle and API response inspection",
+      "Secret and source-map review",
+      "Duplicate booking and validation tests",
+      "Direct access and authorization review for private booking data"
+    ],
+    "visual_baselines": [
+      "Home default",
+      "Workshop list results and empty",
+      "Workshop detail available and full",
+      "Booking dialog or sheet"
+    ],
+    "reviewers": [
+      "Project owner"
+    ],
+    "freshness_rule": "Any change to layout, content priority, booking behaviour, protected imagery, or responsive rules stales the affected evidence."
+  },
+  "release_state": {
+    "approval": "not_requested",
+    "verification": "not_started",
+    "blockers": [],
+    "approved_revision": null,
+    "release_evidence": []
+  },
+  "revision_history": [
+    {
+      "revision": 1,
+      "summary": "Initial buildable contract for the example workshop booking experience.",
+      "authority": "Example project owner",
+      "evidence": [
+        "Example brief"
+      ],
+      "staled_evidence": []
+    }
+  ]
+}

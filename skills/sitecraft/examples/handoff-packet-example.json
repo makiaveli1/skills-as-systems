@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "packet_type": "sitecraft-handoff",
+  "handoff_id": "common-ground-workshops-handoff-v1",
+  "generated_at": "2026-08-07",
+  "project": {
+    "name": "Common Ground Workshops",
+    "identity": "example-project-identity",
+    "workspace_reference": "."
+  },
+  "contract": {
+    "reference": "contracts/experience-contract.json",
+    "revision": 1,
+    "status": "buildable",
+    "build_fingerprint": "example-build-fingerprint",
+    "capability_decision_ids": [
+      "list-detail-continuity",
+      "programme-filter-state"
+    ],
+    "continuity_anchor_ids": ["workshop-editorial-identity"],
+    "continuity_state_dimension_ids": ["workshop-selection-state"]
+  },
+  "scope": {
+    "mode": "Make",
+    "objective": "Continue the approved content-first workshop experience without changing the visual grammar or server-rendered content authority.",
+    "current_routes": ["Build", "Observe"],
+    "protected_foundations": [
+      "Approved workshop photography",
+      "Booking policy copy",
+      "Venue access statement"
+    ],
+    "change_boundary": [
+      "Implement only the approved list/detail transition and progressively enhanced filter state.",
+      "Do not convert the public programme into a client-only application."
+    ]
+  },
+  "execution": {
+    "source_host": "chatgpt",
+    "intended_target_host": "codex",
+    "source_host_profile_summary": [
+      "Project inspection was available.",
+      "Current-source research was available.",
+      "The receiving host must independently confirm file writes, test execution and browser observation before acting."
+    ],
+    "receiving_host_must_rediscover_capabilities": true
+  },
+  "coordination": {
+    "workspace_mode": "shared",
+    "checkout_reference": ".",
+    "checkout_status": "free",
+    "current_owner": null,
+    "receiver_write_policy": "allowed_after_revalidation",
+    "coordination_receipts": [
+      "The source host explicitly released the shared checkout for this handoff after recording the current contract revision, build fingerprint and change boundary."
+    ],
+    "receiving_host_must_confirm_checkout_before_write": true
+  },
+  "state": {
+    "changed_paths": [],
+    "verification_receipts": [
+      "Experience Contract example validated against the bundled schema."
+    ],
+    "evidence_refs": [],
+    "blockers": [],
+    "unverified": [
+      "Rendered desktop and mobile behaviour has not yet been observed in the receiving host.",
+      "Reduced-motion transition behaviour remains unverified."
+    ],
+    "next_action": "Read the Experience Contract and relevant capability decisions, re-discover the Codex host capabilities, inspect the existing project, then implement only the approved list/detail continuity batch."
+  },
+  "safety": {
+    "contains_hidden_reasoning": false,
+    "contains_private_transcript": false,
+    "contains_secrets": false,
+    "permissions_carried_over": false
+  }
+}
