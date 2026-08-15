@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#062f36">
+    <meta
+      name="description"
+      content="TIDEGLASS demonstration harbour departure briefing. Not for navigation."
+    >
+    <title>TIDEGLASS / East Breakwater</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to departure brief</a>
+
+    <div class="demo-banner" role="note" aria-label="Important demonstration notice">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+        <path d="M12 3 2.5 20h19L12 3Zm0 5.7v5.5m0 2.8v.2" />
+      </svg>
+      <strong>Demonstration data</strong>
+      <span>Not for navigation</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#main-content" aria-label="TIDEGLASS East Breakwater, back to brief">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="19" />
+            <path d="M9 25c5-4 9-4 15 0s10 4 15 0M12 32c4-3 7-3 12 0s8 3 12 0M24 5v13" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>TIDEGLASS</strong>
+          <span>East Breakwater</span>
+        </span>
+      </a>
+      <span class="edition">Morning departure brief</span>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section-shell" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true"></span> Harbour briefing 01</p>
+          <h1 id="page-title">Know the window.<br>Leave with a plan.</h1>
+          <p class="intro">
+            A simple read of the harbour mouth, with the checks that matter before you cast off.
+          </p>
+        </div>
+
+        <article class="decision-card" aria-labelledby="decision-label">
+          <div class="decision-topline">
+            <p id="decision-label">Current decision</p>
+            <span class="status-light" aria-hidden="true"></span>
+          </div>
+          <p class="decision-value" id="decision-value">Caution · Short weather window</p>
+          <div class="window-readout">
+            <span>Best departure window</span>
+            <strong>06:40–08:10</strong>
+          </div>
+          <p class="decision-note" id="decision-note">
+            Conditions are workable for a short period. Build in time to turn back.
+          </p>
+        </article>
+      </section>
+
+      <section class="conditions section-shell" aria-labelledby="conditions-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span aria-hidden="true"></span> Conditions</p>
+            <h2 id="conditions-title">Choose a time band</h2>
+          </div>
+          <p class="section-intro">Compare the morning at a glance. Times are local.</p>
+        </div>
+
+        <div class="time-selector" role="tablist" aria-label="Departure time bands">
+          <button
+            class="time-tab is-selected"
+            type="button"
+            role="tab"
+            id="tab-now"
+            aria-selected="true"
+            aria-controls="conditions-panel"
+            data-band="now"
+          >
+            <span class="tab-time">Now</span>
+            <span class="tab-status caution"><i aria-hidden="true"></i>Caution</span>
+          </button>
+          <button
+            class="time-tab"
+            type="button"
+            role="tab"
+            id="tab-0700"
+            aria-selected="false"
+            aria-controls="conditions-panel"
+            tabindex="-1"
+            data-band="0700"
+          >
+            <span class="tab-time">07:00</span>
+            <span class="tab-status best"><i aria-hidden="true"></i>Best window</span>
+          </button>
+          <button
+            class="time-tab"
+            type="button"
+            role="tab"
+            id="tab-0900"
+            aria-selected="false"
+            aria-controls="conditions-panel"
+            tabindex="-1"
+            data-band="0900"
+          >
+            <span class="tab-time">09:00</span>
+            <span class="tab-status hold"><i aria-hidden="true"></i>Hold</span>
+          </button>
+        </div>
+
+        <div
+          class="conditions-panel"
+          id="conditions-panel"
+          role="tabpanel"
+          aria-labelledby="tab-now"
+          tabindex="0"
+        >
+          <div class="panel-heading">
+            <p><span id="selected-time">Now</span> conditions</p>
+            <span class="updated-label">Demonstration reading</span>
+          </div>
+          <dl class="observation-grid">
+            <div class="observation wind-observation">
+              <dt>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8h11c3.5 0 3.5-5 0-5-1.4 0-2.4.8-2.8 1.8M3 12h16c3.5 0 3.5 5 0 5-1.4 0-2.4-.8-2.8-1.8M3 16h7" /></svg>
+                Wind
+              </dt>
+              <dd><strong id="wind-value">WSW 17 kn</strong><span>Gusting <b id="gust-value">24 kn</b></span></dd>
+            </div>
+            <div class="observation">
+              <dt>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 14c2.5-3 5-3 7.5 0s5 3 7.5 0 5-3 7.5 0M2 19c2.5-3 5-3 7.5 0s5 3 7.5 0 5-3 7.5 0" /></svg>
+                Swell
+              </dt>
+              <dd><strong id="swell-value">1.4 m</strong><span>Period <b>7 s</b></span></dd>
+            </div>
+            <div class="observation">
+              <dt>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21V3m-5 5 5-5 5 5M5 21h14" /></svg>
+                Tide
+              </dt>
+              <dd><strong>+1.2 m</strong><span>Rising</span></dd>
+            </div>
+            <div class="observation">
+              <dt>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg>
+                Visibility
+              </dt>
+              <dd><strong>6 nm</strong><span>Current reading</span></dd>
+            </div>
+          </dl>
+          <p class="panel-summary" id="panel-summary" aria-live="polite">
+            Caution: a short workable window before conditions tighten.
+          </p>
+        </div>
+      </section>
+
+      <section class="plan section-shell" aria-labelledby="plan-title">
+        <div class="section-heading plan-heading">
+          <div>
+            <p class="eyebrow"><span aria-hidden="true"></span> Before departure</p>
+            <h2 id="plan-title">Four checks. No shortcuts.</h2>
+          </div>
+          <div class="check-progress" aria-live="polite">
+            <strong id="check-count">0 / 4</strong>
+            <span>checks marked</span>
+          </div>
+        </div>
+
+        <div class="plan-layout">
+          <fieldset class="checklist">
+            <legend class="visually-hidden">Departure checklist</legend>
+            <label class="check-item">
+              <input type="checkbox">
+              <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m3 8 3 3 7-7" /></svg></span>
+              <span><small>01</small><strong>File a shore contact</strong></span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox">
+              <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m3 8 3 3 7-7" /></svg></span>
+              <span><small>02</small><strong>Confirm fuel reserve</strong></span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox">
+              <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m3 8 3 3 7-7" /></svg></span>
+              <span><small>03</small><strong>Check VHF and lifejackets</strong></span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox">
+              <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m3 8 3 3 7-7" /></svg></span>
+              <span><small>04</small><strong>Reassess at the harbour mouth</strong></span>
+            </label>
+          </fieldset>
+
+          <aside class="advisory" aria-labelledby="advisory-title">
+            <div class="advisory-icon" aria-hidden="true">
+              <svg viewBox="0 0 28 28"><path d="M14 3 2.8 23h22.4L14 3Zm0 6v6.5m0 3v.2" /></svg>
+            </div>
+            <div>
+              <p id="advisory-title">Departure advisory</p>
+              <strong>Conditions are expected to tighten after 08:10.</strong>
+              <span>Recheck before casting off.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="notices section-shell" aria-labelledby="notices-title">
+        <div class="notice-copy">
+          <p class="eyebrow light"><span aria-hidden="true"></span> Local demonstration</p>
+          <h2 id="notices-title">Get harbour notices</h2>
+          <p>
+            Preview how notice sign-up could work. Your address stays in this browser and is discarded after the demonstration.
+          </p>
+        </div>
+
+        <form class="notice-form" id="notice-form" novalidate>
+          <label for="email">Email address</label>
+          <div class="form-row">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              inputmode="email"
+              placeholder="crew@example.com"
+              aria-describedby="form-note form-message"
+              required
+            >
+            <button type="submit">
+              <span class="submit-label">Preview sign-up</span>
+              <span class="submit-spinner" aria-hidden="true"></span>
+              <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 10h13m-5-5 5 5-5 5" /></svg>
+            </button>
+          </div>
+          <p class="form-note" id="form-note">
+            Nothing is transmitted or retained. Use <b>fail@example.test</b> to preview the failure state.
+          </p>
+          <p class="form-message" id="form-message" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="mini-mark" aria-hidden="true"></span>
+        <span><strong>TIDEGLASS</strong> / EAST BREAKWATER</span>
+      </div>
+      <p>TIDEGLASS is a fictional interface built for an Agent Skill benchmark.</p>
+      <a href="#main-content">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>

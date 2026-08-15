@@ -1,6 +1,6 @@
 [project]
 name = "foundry-engineering-skill"
-version = "0.2.0"
+version = "0.2.1"
 description = "Portable evidence-led software engineering skill."
 requires-python = ">=3.10"
 dependencies = []

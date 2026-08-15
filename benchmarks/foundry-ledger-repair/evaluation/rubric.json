@@ -1,0 +1,63 @@
+{
+  "showcase": "foundry-ledger-repair",
+  "version": 1,
+  "maximum_score": 100,
+  "blocking_floors": [
+    "A duplicate event can still create more than one durable ledger effect.",
+    "An interruption can leave ledger and processed-event state disagreeing.",
+    "Concurrent delivery can violate at-most-once behavior.",
+    "The public process_credit call shape is broken.",
+    "Existing valid behavior or unsupported-currency rejection regresses.",
+    "A test is weakened, deleted, or mocks away the SQLite boundary."
+  ],
+  "areas": [
+    {
+      "id": "baseline",
+      "label": "Existing tests and valid behavior preserved",
+      "points": 10,
+      "method": "deterministic"
+    },
+    {
+      "id": "sequential",
+      "label": "Sequential duplicate delivery is idempotent",
+      "points": 10,
+      "method": "deterministic"
+    },
+    {
+      "id": "interruption",
+      "label": "Interrupted application leaves no partial durable effect and can be retried",
+      "points": 20,
+      "method": "deterministic"
+    },
+    {
+      "id": "concurrency",
+      "label": "Two concurrent deliveries create exactly one durable effect",
+      "points": 20,
+      "method": "deterministic"
+    },
+    {
+      "id": "contract",
+      "label": "Result semantics and public API remain compatible",
+      "points": 10,
+      "method": "deterministic-plus-review"
+    },
+    {
+      "id": "regression",
+      "label": "Added tests reproduce the owning persistence boundary defect",
+      "points": 10,
+      "method": "static-plus-mutation"
+    },
+    {
+      "id": "scope",
+      "label": "Repair is coherent, minimal, and dependency-free",
+      "points": 10,
+      "method": "diff-review"
+    },
+    {
+      "id": "evidence",
+      "label": "Diagnosis and completion claims match fresh evidence",
+      "points": 10,
+      "method": "report-review"
+    }
+  ]
+}

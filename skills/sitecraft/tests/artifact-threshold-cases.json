@@ -1,0 +1,26 @@
+[
+  {
+    "id": "single-static-page",
+    "request": "Build one dependency-free informational page with three local states.",
+    "expected": "compact_working_contract",
+    "reason": "One bounded surface, one runtime, no durable approval or continuity need."
+  },
+  {
+    "id": "bounded-component-repair",
+    "request": "Fix keyboard focus and mobile overflow in one existing menu component.",
+    "expected": "compact_working_contract",
+    "reason": "A bounded repair should extend existing documentation rather than create a new contract system."
+  },
+  {
+    "id": "multi-surface-release",
+    "request": "Build and release a six-route product site with generated campaign media and owner approvals.",
+    "expected": "full_experience_contract",
+    "reason": "Routes, asset lineage, approval state, and release evidence need durable machine-readable authority."
+  },
+  {
+    "id": "existing-contract",
+    "request": "Change a checkout flow in a project whose Experience Contract is already canonical.",
+    "expected": "update_existing_contract",
+    "reason": "The threshold never permits silently bypassing existing authority."
+  }
+]

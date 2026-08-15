@@ -67,6 +67,14 @@ The Experience Contract owns consequential experience decisions. It can cover:
 
 Optional systems stay optional. A project without generated video should not complete a generated-video form merely because the schema supports it.
 
+The whole artifact is also conditional. A bounded single-surface build can keep
+a compact working contract in its run report: purpose, protected boundaries,
+states, responsive transformations, material implementation choices, evidence,
+and the remaining release condition. Full schema-shaped JSON earns its cost when
+work has several surfaces, shared runtimes, generated-asset lineage, repeated
+handoffs, approval history, or staged release. An existing canonical contract is
+always updated rather than bypassed.
+
 ### SITECRAFT Review
 
 The review records observed defects, blocking floors, evidence, confidence boundaries, and repair priority. It does not silently rewrite the Experience Contract.

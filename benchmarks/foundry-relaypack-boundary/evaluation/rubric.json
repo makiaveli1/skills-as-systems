@@ -1,0 +1,24 @@
+{
+  "title": "Relaypack installed-artifact repair rubric",
+  "maximum_score": 100,
+  "blocking_failures": [
+    "the supplied source tests regress",
+    "the wheel cannot be built or installed",
+    "the installed API or command fails outside the checkout",
+    "route data is absent from the wheel",
+    "the public API or command contract changes",
+    "the regression test also passes against the original defect",
+    "a runtime dependency is added"
+  ],
+  "areas": [
+    {"id": "source_baseline", "points": 10, "criterion": "Supplied behavior remains green."},
+    {"id": "wheel_build", "points": 10, "criterion": "A wheel builds and installs without dependency resolution."},
+    {"id": "installed_api", "points": 15, "criterion": "Installed Python API works after the build checkout is removed."},
+    {"id": "installed_cli", "points": 15, "criterion": "Installed console command works from an unrelated directory."},
+    {"id": "package_data", "points": 15, "criterion": "Route data is present inside the wheel package."},
+    {"id": "unknown_route", "points": 5, "criterion": "Unknown-route API and CLI behavior remains compatible."},
+    {"id": "regression_mutation", "points": 10, "criterion": "The candidate tests fail against the original broken implementation."},
+    {"id": "scope", "points": 10, "criterion": "The repair is focused and adds no runtime dependency."},
+    {"id": "evidence", "points": 10, "criterion": "The report distinguishes tested facts from unverified boundaries."}
+  ]
+}

@@ -13,7 +13,7 @@ from typing import Any
 from validate_artifact import validate_file
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 REQUIRED_FILES = {
     "SKILL.md",
     "VERSION",

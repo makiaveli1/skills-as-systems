@@ -124,6 +124,23 @@ Release candidates should be exercised against tasks such as:
 
 The receiving model and host version, supplied context, tools, exact prompt, output, evaluator, and evidence should be recorded.
 
+## Gate 7: paired public showcases
+
+The [`benchmarks/`](../benchmarks/) directory adds outcome-level checks with a
+baseline condition and a skill condition. Each showcase freezes its seed,
+prompt, rubric, and evaluator before the agents run; isolates the workspaces;
+publishes final artifacts rather than private reasoning; and separates
+deterministic checks from subjective review.
+
+The first three runs produced parity rather than a universal uplift claim. That
+is valid evidence. A benchmark is allowed to show that a strong current model
+solves a bounded task without the skill. Findings may improve a skill, but the
+new version is never retroactively credited with an older output.
+
+Repeat conditions before generalizing. Model sampling, host capability, task
+selection, evaluator coverage, and reviewer judgment all remain sources of
+variance.
+
 ## Release receipt
 
 A public release should state:

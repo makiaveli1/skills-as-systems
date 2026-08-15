@@ -38,6 +38,7 @@ REQUIRED_FILES = {
     "examples/handoff-packet-example.json",
     "tests/routing-cases.json",
     "tests/negative-routing-cases.json",
+    "tests/artifact-threshold-cases.json",
     "references/experience-contract.md",
     "references/interaction-and-routing.md",
     "references/experience-mapping.md",
@@ -184,15 +185,15 @@ def validate_openai_yaml(errors: list[str]) -> None:
 
 def validate_version_metadata(errors: list[str]) -> None:
     version_path = ROOT / "VERSION"
-    if version_path.is_file() and version_path.read_text(encoding="utf-8-sig").strip() != "0.3.0":
-        errors.append("VERSION must be 0.3.0")
+    if version_path.is_file() and version_path.read_text(encoding="utf-8-sig").strip() != "0.3.1":
+        errors.append("VERSION must be 0.3.1")
 
     pyproject_path = ROOT / "pyproject.toml"
     if pyproject_path.is_file():
         text = pyproject_path.read_text(encoding="utf-8-sig")
         required_fragments = [
             'name = "sitecraft-skill"',
-            'version = "0.3.0"',
+            'version = "0.3.1"',
             'test_entry = "bridge_v2_tests.py"',
         ]
         for fragment in required_fragments:
@@ -209,8 +210,8 @@ def validate_manifest(errors: list[str]) -> None:
 
     if manifest.get("schema_version") != "1.1":
         errors.append("pc-bridge.skill.json schema_version must be 1.1")
-    if manifest.get("version") != "0.3.0":
-        errors.append("pc-bridge.skill.json version must be 0.3.0")
+    if manifest.get("version") != "0.3.1":
+        errors.append("pc-bridge.skill.json version must be 0.3.1")
     if "any" not in manifest.get("hosts", []):
         errors.append("pc-bridge.skill.json must support host 'any'")
 
@@ -256,6 +257,7 @@ def validate_json_artifacts(errors: list[str]) -> None:
         "examples/handoff-packet-example.json",
         "tests/routing-cases.json",
         "tests/negative-routing-cases.json",
+        "tests/artifact-threshold-cases.json",
     ]
     artifacts: dict[str, Any] = {}
     for relative in json_paths:
@@ -372,6 +374,29 @@ def validate_json_artifacts(errors: list[str]) -> None:
             negative_ids.add(case_id)
             if case.get("expected") != "exclude_sitecraft" or not case.get("reason_contains"):
                 errors.append(f"Negative routing case lacks exclusion expectation: {case_id}")
+
+    artifact_cases = artifacts["tests/artifact-threshold-cases.json"]
+    allowed_artifact_routes = {
+        "compact_working_contract",
+        "full_experience_contract",
+        "update_existing_contract",
+    }
+    if not isinstance(artifact_cases, list) or len(artifact_cases) < 4:
+        errors.append("tests/artifact-threshold-cases.json must contain at least four cases")
+    else:
+        artifact_ids: set[str] = set()
+        observed_routes: set[str] = set()
+        for case in artifact_cases:
+            case_id = case.get("id")
+            route = case.get("expected")
+            if not case_id or case_id in artifact_ids:
+                errors.append(f"Invalid or duplicate artifact-threshold case id: {case_id!r}")
+            artifact_ids.add(case_id)
+            observed_routes.add(route)
+            if route not in allowed_artifact_routes or not case.get("reason"):
+                errors.append(f"Invalid artifact-threshold expectation: {case_id}")
+        if observed_routes != allowed_artifact_routes:
+            errors.append("Artifact-threshold cases must cover compact, full, and existing-contract routes")
 
 
 def validate_workspace_isolation(errors: list[str]) -> None:

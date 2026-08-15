@@ -1,0 +1,74 @@
+{
+  "blocking_failures": [],
+  "candidate": "foundry-skilled",
+  "checks": {
+    "concurrency": {
+      "errors": [],
+      "passed": true,
+      "results": [
+        "applied",
+        "duplicate"
+      ],
+      "state": {
+        "balance": 1200,
+        "entries": 1,
+        "processed": true
+      }
+    },
+    "contract": {
+      "passed": true,
+      "semantics_ok": true,
+      "signature": "(repository: 'LedgerRepository', event: 'CreditEvent', checkpoint: 'Checkpoint | None' = None) -> 'str'",
+      "signature_ok": true,
+      "state": {
+        "balance": 1000,
+        "currency_rejected": true,
+        "duplicate": "duplicate",
+        "first": "applied",
+        "second": "applied"
+      }
+    },
+    "interruption": {
+      "after_failure": {
+        "balance": 0,
+        "entries": 0,
+        "processed": false
+      },
+      "after_retry": {
+        "balance": 2500,
+        "entries": 1,
+        "processed": true,
+        "result": "applied"
+      },
+      "passed": true,
+      "raised_checkpoint": true
+    },
+    "regression": {
+      "output": "test_applies_credit (test_service.LedgerboxServiceTests) ... ok\ntest_concurrent_duplicate_is_applied_once (test_service.LedgerboxServiceTests) ... ERROR\ntest_distinct_events_apply_independently (test_service.LedgerboxServiceTests) ... ok\ntest_rejects_unsupported_currency (test_service.LedgerboxServiceTests) ... ok\ntest_retry_after_interruption_does_not_duplicate_credit (test_service.LedgerboxServiceTests) ... FAIL\ntest_sequential_duplicate_is_ignored (test_service.LedgerboxServiceTests) ... ok\n\n======================================================================\nERROR: test_concurrent_duplicate_is_applied_once (test_service.LedgerboxServiceTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/tests/test_service.py\", line 77, in test_concurrent_duplicate_is_applied_once\n    results = [delivery.result() for delivery in deliveries]\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/tests/test_service.py\", line 77, in <listcomp>\n    results = [delivery.result() for delivery in deliveries]\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py\", line 445, in result\n    return self.__get_result()\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py\", line 390, in __get_result\n    raise self._exception\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/concurrent/futures/thread.py\", line 52, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/tests/test_service.py\", line 70, in deliver\n    return process_credit(repository, event)\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/src/ledgerbox/service.py\", line 43, in process_credit\n    repository.mark_processed(event.event_id)\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/src/ledgerbox/db.py\", line 57, in mark_processed\n    self.connection.execute(\nsqlite3.IntegrityError: UNIQUE constraint failed: processed_events.event_id\n\n======================================================================\nFAIL: test_retry_after_interruption_does_not_duplicate_credit (test_service.LedgerboxServiceTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/6_/bj_8x5gx11s1vflwvnlm3pfh0000gn/T/ledgerbox-mutation-t9q0dql5/project/tests/test_service.py\", line 58, in test_retry_after_interruption_does_not_duplicate_credit\n    self.assertEqual(self.repository.entry_count(event.event_id), 1)\nAssertionError: 2 != 1\n\n----------------------------------------------------------------------\nRan 6 tests in 0.026s\n\nFAILED (failures=1, errors=1)\n",
+      "passed": true,
+      "returncode": 1,
+      "seed_rejected_by_candidate_tests": true
+    },
+    "report": {
+      "exists": true,
+      "mentions_limit": true,
+      "mentions_tests": true
+    },
+    "scope": {
+      "changed_files": [
+        "src/ledgerbox/db.py",
+        "src/ledgerbox/service.py",
+        "tests/test_service.py"
+      ],
+      "no_dependency_files": true,
+      "passed": true
+    },
+    "supplied_suite": {
+      "output": "test_applies_credit (test_service.LedgerboxServiceTests) ... ok\ntest_concurrent_duplicate_is_applied_once (test_service.LedgerboxServiceTests) ... ok\ntest_distinct_events_apply_independently (test_service.LedgerboxServiceTests) ... ok\ntest_rejects_unsupported_currency (test_service.LedgerboxServiceTests) ... ok\ntest_retry_after_interruption_does_not_duplicate_credit (test_service.LedgerboxServiceTests) ... ok\ntest_sequential_duplicate_is_ignored (test_service.LedgerboxServiceTests) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.022s\n\nOK\n",
+      "passed": true,
+      "returncode": 0
+    }
+  },
+  "maximum_score": 100,
+  "score": 100
+}
