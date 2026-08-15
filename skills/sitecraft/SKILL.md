@@ -1,6 +1,6 @@
 ---
 name: sitecraft
-description: Use for planning, designing, building, repairing, auditing, or hardening websites and web apps when visual coherence, responsive behaviour, accessibility, motion, implementation, performance, privacy, or release evidence matters.
+description: Use throughout planning, designing, building, repairing, auditing, or hardening websites and web apps when visual coherence, responsive behaviour, accessibility, motion, implementation, performance, privacy, or release evidence matters; re-enter when scope, evidence, project state, failures, or handoffs change and before completion.
 ---
 
 # SITECRAFT
@@ -21,11 +21,22 @@ Build coherent working experiences, not generic sections with effects.
 
 Routes: **Frame**, **Map**, **Compose**, **Choreograph**, **Build**, **Observe**, **Harden**. Modes: **Sketch**, **Make**, **Repair**, **Audit**, **Evolve**. Use only what the task needs. For work spanning more than one route, or when routing is unclear, read [interaction and routing](references/interaction-and-routing.md) before loading deeper material.
 
+## Lifecycle control
+
+SITECRAFT remains active for the governed experience; it is not consumed after
+the opening plan. Read [lifecycle re-entry](references/lifecycle-reentry.md).
+Re-enter before the first substantial edit, whenever new intent, evidence,
+state, failure, ownership, capability, or handoff invalidates a decision, and
+before completion. Reopen only the affected routes. A consequential discovery
+opens a bounded child loop, which must be evidenced before returning to the
+parent objective. Preserve still-valid decisions; do not restart or reload the
+whole system ceremonially.
+
 ## Authority + references
 
 For substantial work, [schemas/experience-contract.schema.json](schemas/experience-contract.schema.json) is authoritative. Brainstorms, builder output, reviews, and handoffs never replace it silently. A full contract file is not mandatory for every build: bounded single-surface work should use the compact contract threshold in [interaction and routing](references/interaction-and-routing.md) and must not create schema-shaped paperwork without a durability need. Use `continuity_system` only for genuine shared continuity.
 
-Load only matching material. Start with [architecture](references/architecture-maintenance-compact.md), [routing](references/interaction-and-routing.md), [visual](references/visual-system.md), [evidence](references/evidence-and-qa.md), [harness](references/harness-integration.md), or [handoff](references/handoff-and-continuity.md). Compacts: [images](references/generated-image-production-compact.md), [video](references/generated-video-production-compact.md), [motion](references/motion-design-and-graphics-compact.md), [capabilities](references/capability-palette-compact.md). Specialized routes: [character identity boards](references/character-identity-board.md), [Creative DNA reference analysis](references/creative-dna-reference-analysis.md), [interactive generated motion](references/interactive-generated-motion.md), [MiniMax H3](references/minimax-h3-video.md), and [PC Bridge creative integration](references/pc-bridge-integration-upgrade.md).
+Load only matching material. Start with [architecture](references/architecture-maintenance-compact.md), [routing](references/interaction-and-routing.md), [visual](references/visual-system.md), [evidence](references/evidence-and-qa.md), [harness](references/harness-integration.md), [handoff](references/handoff-and-continuity.md), or [lifecycle re-entry](references/lifecycle-reentry.md). Compacts: [images](references/generated-image-production-compact.md), [video](references/generated-video-production-compact.md), [motion](references/motion-design-and-graphics-compact.md), [capabilities](references/capability-palette-compact.md). Specialized routes: [character identity boards](references/character-identity-board.md), [Creative DNA reference analysis](references/creative-dna-reference-analysis.md), [interactive generated motion](references/interactive-generated-motion.md), [MiniMax H3](references/minimax-h3-video.md), and [PC Bridge creative integration](references/pc-bridge-integration-upgrade.md).
 
 ## Work
 
@@ -61,4 +72,4 @@ One success never creates doctrine. Promote `sitecraft-learning-candidate` only 
 
 ## Delivery
 
-Return the smallest useful package: current state, relevant rules, bounded work, changed paths, evidence/findings, unresolved risks, exact next approval/release condition, and Handoff only when needed. Do not emit a full Experience Contract merely to demonstrate compliance. Explain consequential decisions simply.
+Return the smallest useful package: current state, relevant rules, bounded work, changed paths, material re-entry events, evidence/findings, unresolved risks, exact next approval/release condition, and Handoff only when needed. Do not emit a full Experience Contract merely to demonstrate compliance. Explain consequential decisions simply.

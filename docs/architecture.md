@@ -33,7 +33,7 @@ The goal is not to make a model follow more instructions. It is to help a capabl
 
 This architecture is used by SITECRAFT and FOUNDRY. Their domains differ, but the systems share the same structural responsibilities.
 
-## The eight layers
+## The nine layers
 
 ### 1. Discovery metadata
 
@@ -68,6 +68,10 @@ Each skill has one thin orchestration responsibility:
 - FOUNDRY routes engineering modes and applies its target-understand-contract-intervene-verify-challenge-close loop.
 
 The director does not contain every specialist answer. It decides what needs answering and who or what owns the answer.
+
+The director stays available throughout the work. A skill that is read only at
+the beginning cannot respond when the project changes underneath its first
+plan.
 
 ### 4. Progressive specialist knowledge
 
@@ -132,7 +136,23 @@ A continuation record carries only durable working truth:
 
 It carries no hidden reasoning, secret, private transcript, or transferred permission.
 
-### 8. Optional host enhancement
+### 8. Lifecycle re-entry
+
+Activation starts the skill; it does not consume it. The operating loop re-enters
+at a small number of material boundaries:
+
+- before the first consequential production change;
+- after changed intent, evidence, project state, failure, ownership,
+  environment, capability, or handoff assumptions;
+- before a completion or release claim.
+
+Re-entry is selective. The agent reloads the affected route, checks whether its
+contract and evidence still hold, and keeps unaffected conclusions. A new issue
+may open a bounded child loop, but that loop inherits the parent's authority and
+cannot silently expand scope. This makes lifecycle use testable without forcing
+the host to reload an entire manual after every edit.
+
+### 9. Optional host enhancement
 
 The skill discovers the host's capabilities at runtime. A host may add:
 

@@ -97,6 +97,18 @@ travels with the package.
 
 Run relevant vetoes: wrong owner, hidden scope, compatibility drift, weakened tests, unhappy paths, concurrency, stale state, recovery, security, integration reality, and rollback feasibility. Inspect the final diff and leave exact evidence, limitations, residual risk, and next action.
 
+## Lifecycle re-entry
+
+FOUNDRY remains active for the governed objective. It is reopened before the
+first consequential edit, when requirements, evidence, state, failures,
+ownership, environment, or handoff assumptions change, and before completion.
+
+Only the affected engineering mode is reopened. A consequential discovery
+creates a bounded child loop that inherits the parent objective, invariants, and
+authority. It must close with evidence or an explicit verification gap before
+the parent task continues. Valid earlier understanding is preserved rather than
+rebuilding the whole repository map without cause.
+
 ## Specialist routing
 
 FOUNDRY uses compact references for understanding, change discipline, and verification, then routes deeper material only when required:
@@ -115,6 +127,15 @@ FOUNDRY uses compact references for understanding, change discipline, and verifi
 - research, collaboration, and continuity.
 
 Later language or framework packs can deepen these routes without changing the core ownership and evidence model.
+
+## Current public evidence
+
+The repository keeps two earlier bounded FOUNDRY examples that ended in
+correctness parity with a strong baseline. A deeper three-stage study has been
+designed to test concurrency, migration, recovery, and installed-package
+boundaries with two clean runs per condition. Its scenario and evaluator are
+public, but the interrupted pilot is excluded and no deeper result is claimed
+yet. See the [study status](../benchmarks/deep-baseline-study/).
 
 ## Debugging
 

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAIRN / Field Plan</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <p class="eyebrow">CAIRN</p>
+      <div class="masthead-copy">
+        <h1>Choose one walk. Leave with one clear plan.</h1>
+        <p>
+          A field-plan board for mixed-experience groups: compare the routes,
+          check the essentials, and settle the shared brief before you set off.
+        </p>
+      </div>
+      <dl class="masthead-notes" aria-label="Planning notes">
+        <div>
+          <dt>Purpose</dt>
+          <dd>One route, one plan, no guidebook digressions.</dd>
+        </div>
+        <div>
+          <dt>Signal</dt>
+          <dd>Surface the risky bits early.</dd>
+        </div>
+        <div>
+          <dt>Mode</dt>
+          <dd>Calm field intelligence.</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main class="page-shell">
+      <section
+        class="planner"
+        id="planner-app"
+        aria-labelledby="planner-title"
+        hidden
+      >
+        <div class="panel panel-intro">
+          <p class="panel-kicker">Route selector</p>
+          <h2 id="planner-title">Build the day’s shared brief.</h2>
+          <p class="panel-copy">
+            Filter by effort, compare the terrain and signal risk, then confirm
+            the checks the group needs before moving.
+          </p>
+        </div>
+
+        <section class="panel panel-controls" aria-label="Route controls">
+          <div class="control-row">
+            <label class="field-label" for="group-needs">Group needs</label>
+            <select id="group-needs" name="group-needs" data-testid="group-needs">
+              <option value="mixed">Mixed group</option>
+              <option value="child">Child with adults</option>
+              <option value="experienced">Experienced walkers</option>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <label class="field-label" for="difficulty-filter">
+              Filter by difficulty
+            </label>
+            <select
+              id="difficulty-filter"
+              name="difficulty-filter"
+              data-testid="difficulty-filter"
+            >
+              <option value="all">All routes</option>
+              <option value="easy">Easy</option>
+              <option value="steady">Steady</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <p class="control-note">
+            Route grade combines effort, roughness, and commitment. Group needs
+            changes the guidance, not the ascent, terrain, signal, or timing facts.
+          </p>
+
+          <div
+            class="route-list"
+            data-testid="route-list"
+            role="list"
+            aria-label="Available routes"
+          ></div>
+        </section>
+
+        <section class="plan-column" aria-label="Selected route plan">
+          <article class="panel plan-summary" data-testid="plan-summary">
+            <p class="panel-kicker">Selected route</p>
+            <div id="summary-content"></div>
+          </article>
+
+          <article class="panel essentials" data-testid="essentials">
+            <div class="essentials-head">
+              <div>
+                <p class="panel-kicker">Essential checks</p>
+                <h3>Confirm the group has covered the basics.</h3>
+                <p class="essentials-note" id="essentials-note">
+                  The reasons under each check explain why it matters for this group.
+                </p>
+              </div>
+              <p class="essentials-progress" id="essentials-progress">
+                0 / 0 ready
+              </p>
+            </div>
+            <form id="essentials-form">
+              <div class="checklist" id="checklist-items"></div>
+            </form>
+          </article>
+
+          <article class="panel confirm-panel">
+            <button type="button" class="confirm-button" data-testid="confirm-plan">
+              Confirm group plan
+            </button>
+            <p
+              class="plan-status"
+              data-testid="plan-status"
+              id="plan-status"
+              role="status"
+              aria-live="polite"
+              tabindex="-1"
+            >
+              Select a route and work through the essentials.
+            </p>
+          </article>
+        </section>
+      </section>
+
+      <section class="fallback" aria-labelledby="fallback-title">
+        <div class="panel panel-intro">
+          <p class="panel-kicker">Static route notes</p>
+          <h2 id="fallback-title">Route comparison remains available without JavaScript.</h2>
+          <p class="panel-copy">
+            These notes preserve the key route facts and planning cues if the
+            interactive planner does not load.
+          </p>
+        </div>
+
+        <div class="fallback-grid">
+          <article class="panel fallback-route">
+            <p class="route-meta">Easy / 4.8 km / 1 h 45 / +120 m</p>
+            <h3>Rowan Loop</h3>
+            <p class="fallback-reason">
+              Open. Best fit for mixed groups and children; a gentle option for experienced walkers.
+            </p>
+            <dl>
+              <div>
+                <dt>Weather</dt>
+                <dd>Sheltered, light rain likely</dd>
+              </div>
+              <div>
+                <dt>Terrain</dt>
+                <dd>Woodland path and boardwalk</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd>Reliable</dd>
+              </div>
+              <div>
+                <dt>Why it suits</dt>
+                <dd>Frequent landmarks, a sheltered return, and two early turn-back points.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="panel fallback-route">
+            <p class="route-meta">Steady / 8.4 km / 3 h 10 / +410 m</p>
+            <h3>Bracken Rise</h3>
+            <p class="fallback-reason">
+              Closed. Kept here for comparison only.
+            </p>
+            <dl>
+              <div>
+                <dt>Status</dt>
+                <dd>A damaged footbridge has closed the north approach.</dd>
+              </div>
+              <div>
+                <dt>Weather</dt>
+                <dd>Cloud lifting after 10:30</dd>
+              </div>
+              <div>
+                <dt>Terrain</dt>
+                <dd>Open ridge, wet stone on descent</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd>Patchy beyond the north shoulder</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="panel fallback-route">
+            <p class="route-meta">Hard / 12.6 km / 5 h 20 / +780 m</p>
+            <h3>Tor Line</h3>
+            <p class="fallback-reason">
+              Open. Strong fit for experienced walkers; not advised for mixed groups or children.
+            </p>
+            <dl>
+              <div>
+                <dt>Weather</dt>
+                <dd>Exposed gusts after 14:00</dd>
+              </div>
+              <div>
+                <dt>Terrain</dt>
+                <dd>Loose rock, two steep scrambles</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd>None for 6 km</dd>
+              </div>
+              <div>
+                <dt>Why it suits</dt>
+                <dd>Long exposure and scrambling demand confident movement and an early start.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <article class="panel fallback-plan">
+          <p class="panel-kicker">Default shared plan</p>
+          <h3>Rowan Loop is the safest default for a mixed group today.</h3>
+          <ul>
+            <li>Brief the group on distance, pace, and wet boardwalk footing.</li>
+            <li>Carry waterproofs even on the sheltered route.</li>
+            <li>Set a simple turnaround point before leaving the car park.</li>
+            <li>Use the reliable signal to confirm the finish estimate with the group.</li>
+            <li>Do not plan Bracken Rise while the footbridge closure remains in force.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

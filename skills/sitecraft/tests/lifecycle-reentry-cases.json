@@ -1,0 +1,44 @@
+[
+  {
+    "id": "brief-changes-after-build",
+    "event": "The stakeholder changes the primary audience after the first implementation.",
+    "expected_reentry": ["Frame", "Map", "Observe"],
+    "must_preserve": "Still-valid implementation and evidence",
+    "must_not": "Restart every route or silently patch copy"
+  },
+  {
+    "id": "browser-evidence-contradicts-plan",
+    "event": "The narrow viewport hides the selected state despite passing static checks.",
+    "expected_reentry": ["Observe", "Build", "Harden"],
+    "must_preserve": "The approved visual grammar",
+    "must_not": "Treat the static pass as visual proof"
+  },
+  {
+    "id": "overlapping-worker-change",
+    "event": "Another worker modifies the same navigation component before integration.",
+    "expected_reentry": ["Map", "Build", "Observe"],
+    "must_preserve": "Unrelated approved work",
+    "must_not": "Apply a stale patch"
+  },
+  {
+    "id": "resume-before-release",
+    "event": "Work resumes from a handoff immediately before release.",
+    "expected_reentry": ["Observe", "Harden"],
+    "must_preserve": "Verified evidence whose exact state is still current",
+    "must_not": "Trust the handoff as authority or current state"
+  },
+  {
+    "id": "nested-accessibility-defect",
+    "event": "A keyboard defect is discovered while verifying a booking flow.",
+    "expected_reentry": ["Observe", "Build", "Harden"],
+    "must_preserve": "The parent booking objective and unaffected visual decisions",
+    "must_not": "Close the parent objective before the child defect is proved fixed"
+  },
+  {
+    "id": "trivial-uninterrupted-correction",
+    "event": "A local typo is corrected with no changed behaviour or evidence boundary.",
+    "expected_reentry": ["Observe"],
+    "must_preserve": "All current decisions",
+    "must_not": "Reload the full SITECRAFT reference library"
+  }
+]

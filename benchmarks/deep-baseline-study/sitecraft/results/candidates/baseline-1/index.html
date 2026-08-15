@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAIRN Field Plan</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">CAIRN / field plan</p>
+        <h1>Choose one route, brief the group, leave with a usable plan.</h1>
+        <p class="hero-copy">
+          Compare the three available walks, check the conditions that matter,
+          and produce a clear summary before anyone sets off.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="panel panel-intro" aria-labelledby="field-note-title">
+          <div class="panel-heading">
+            <p class="section-mark">01</p>
+            <h2 id="field-note-title">Field note</h2>
+          </div>
+          <p>
+            One route is now closed after a ranger update. The group decision
+            should still favor the slowest walker, the least confident footing,
+            and the weakest weather window.
+          </p>
+          <dl class="signal-strip" aria-label="How to use this plan">
+            <div>
+              <dt>Compare</dt>
+              <dd>Status, suitability, ascent, terrain, signal, timing</dd>
+            </div>
+            <div>
+              <dt>Select</dt>
+              <dd>Review any route, but only open routes can become the plan</dd>
+            </div>
+            <div>
+              <dt>Confirm</dt>
+              <dd>Leave with a short plan everyone can repeat back</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel planner" aria-labelledby="planner-title">
+          <div class="panel-heading">
+            <p class="section-mark">02</p>
+            <h2 id="planner-title">Route picker</h2>
+          </div>
+
+          <div class="controls-row">
+            <fieldset
+              class="group-needs"
+              data-testid="group-needs"
+              aria-describedby="group-needs-help"
+            >
+              <legend class="control-label">Group needs</legend>
+              <div class="group-needs-options">
+                <label class="need-option" for="needs-mixed">
+                  <input
+                    id="needs-mixed"
+                    type="radio"
+                    name="groupNeeds"
+                    value="mixed"
+                    checked
+                  />
+                  <span>Mixed</span>
+                </label>
+                <label class="need-option" for="needs-child">
+                  <input
+                    id="needs-child"
+                    type="radio"
+                    name="groupNeeds"
+                    value="child"
+                  />
+                  <span>Child</span>
+                </label>
+                <label class="need-option" for="needs-experienced">
+                  <input
+                    id="needs-experienced"
+                    type="radio"
+                    name="groupNeeds"
+                    value="experienced"
+                  />
+                  <span>Experienced</span>
+                </label>
+              </div>
+              <p id="group-needs-help" class="control-note">
+                Use this to reframe the guidance for a mixed group, a child in
+                the party, or a confident experienced team.
+              </p>
+            </fieldset>
+            <label class="control-block" for="difficulty-filter">
+              <span class="control-label">Difficulty filter</span>
+              <select id="difficulty-filter" data-testid="difficulty-filter">
+                <option value="all">All routes</option>
+                <option value="easy">Easy</option>
+                <option value="steady">Steady</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+            <p class="control-note">
+              Easy means shorter with simpler terrain and clearer navigation.
+              Steady means more time, ascent, or exposure. Hard means a more
+              committing day with technical terrain or navigation consequences.
+            </p>
+          </div>
+
+          <div
+            class="route-list"
+            data-testid="route-list"
+            aria-label="Available walking routes"
+          >
+            <button
+              type="button"
+              class="route-choice"
+              data-route-id="bracken-rise"
+              data-difficulty="steady"
+              data-distance-km="8.4"
+              data-duration="3 h 10"
+              data-ascent-m="410"
+              data-weather="Cloud lifting after 10:30"
+              data-terrain="Open ridge, wet stone on descent"
+              data-signal="Patchy beyond the north shoulder"
+              data-status="closed"
+              data-why="A damaged footbridge has closed the north approach."
+              data-suitability-mixed="not today"
+              data-suitability-child="not today"
+              data-suitability-experienced="not today"
+              aria-pressed="false"
+            >
+              <span class="route-choice-header">
+                <strong>Bracken Rise</strong>
+                <span class="route-choice-badges">
+                  <span class="chip">Steady</span>
+                  <span class="status-chip status-chip-closed">Closed</span>
+                </span>
+              </span>
+              <span class="route-choice-meta">8.4 km · 3 h 10 · 410 m ascent</span>
+              <span class="route-choice-note"
+                >Open ridge, wet stone on descent, patchy signal</span
+              >
+              <span class="route-choice-fit">All groups: not today</span>
+            </button>
+            <button
+              type="button"
+              class="route-choice"
+              data-route-id="rowan-loop"
+              data-difficulty="easy"
+              data-distance-km="4.8"
+              data-duration="1 h 45"
+              data-ascent-m="120"
+              data-weather="Sheltered, light rain likely"
+              data-terrain="Woodland path and boardwalk"
+              data-signal="Reliable"
+              data-status="open"
+              data-why="Frequent landmarks, a sheltered return, and two early turn-back points."
+              data-suitability-mixed="best fit"
+              data-suitability-child="best fit"
+              data-suitability-experienced="gentle option"
+              aria-pressed="true"
+            >
+              <span class="route-choice-header">
+                <strong>Rowan Loop</strong>
+                <span class="route-choice-badges">
+                  <span class="chip">Easy</span>
+                  <span class="status-chip status-chip-open">Open</span>
+                </span>
+              </span>
+              <span class="route-choice-meta">4.8 km · 1 h 45 · 120 m ascent</span>
+              <span class="route-choice-note"
+                >Sheltered woodland path, reliable signal, light rain likely</span
+              >
+              <span class="route-choice-fit">Mixed group: best fit</span>
+            </button>
+            <button
+              type="button"
+              class="route-choice"
+              data-route-id="tor-line"
+              data-difficulty="hard"
+              data-distance-km="12.6"
+              data-duration="5 h 20"
+              data-ascent-m="780"
+              data-weather="Exposed gusts after 14:00"
+              data-terrain="Loose rock, two steep scrambles"
+              data-signal="None for 6 km"
+              data-status="open"
+              data-why="Long exposure and scrambling demand confident movement and an early start."
+              data-suitability-mixed="not advised"
+              data-suitability-child="not advised"
+              data-suitability-experienced="strong fit"
+              aria-pressed="false"
+            >
+              <span class="route-choice-header">
+                <strong>Tor Line</strong>
+                <span class="route-choice-badges">
+                  <span class="chip">Hard</span>
+                  <span class="status-chip status-chip-open">Open</span>
+                </span>
+              </span>
+              <span class="route-choice-meta">12.6 km · 5 h 20 · 780 m ascent</span>
+              <span class="route-choice-note"
+                >Loose rock, steep scrambles, no signal for 6 km</span
+              >
+              <span class="route-choice-fit">Mixed group: not advised</span>
+            </button>
+          </div>
+
+          <article class="route-card" aria-live="polite">
+            <div class="route-card-topline">
+              <p class="route-card-kicker" id="selected-route-kicker">
+                Best fit for mixed experience
+              </p>
+              <p class="route-status" id="selected-route-status">Open</p>
+            </div>
+            <h3 id="selected-route-name">Rowan Loop</h3>
+            <p class="route-card-summary" id="selected-route-summary">
+              The shortest and most forgiving option, with shelter and reliable
+              signal for a mixed-experience group.
+            </p>
+            <div class="guidance-strip">
+              <div class="guidance-box">
+                <p class="condition-label">Current group fit</p>
+                <p id="selected-route-fit">Best fit for mixed groups today</p>
+              </div>
+              <div class="guidance-box">
+                <p class="condition-label">Planning status</p>
+                <p id="selected-route-plan-note">Available for planning today</p>
+              </div>
+            </div>
+            <dl class="route-facts" id="route-facts">
+              <div>
+                <dt>Distance</dt>
+                <dd>4.8 km</dd>
+              </div>
+              <div>
+                <dt>Duration</dt>
+                <dd>1 h 45</dd>
+              </div>
+              <div>
+                <dt>Ascent</dt>
+                <dd>120 m</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd>Reliable</dd>
+              </div>
+            </dl>
+            <div class="condition-grid">
+              <div>
+                <p class="condition-label">Weather</p>
+                <p id="selected-route-weather">Sheltered, light rain likely</p>
+              </div>
+              <div>
+                <p class="condition-label">Terrain</p>
+                <p id="selected-route-terrain">Woodland path and boardwalk</p>
+              </div>
+              <div>
+                <p class="condition-label">Signal</p>
+                <p id="selected-route-signal">Reliable</p>
+              </div>
+              <div>
+                <p class="condition-label">Why this matters</p>
+                <p id="selected-route-why">
+                  Frequent landmarks, a sheltered return, and two early turn-back
+                  points.
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel plan-builder" aria-labelledby="plan-title">
+          <div class="panel-heading">
+            <p class="section-mark">03</p>
+            <h2 id="plan-title">Group plan</h2>
+          </div>
+
+          <form id="plan-form" novalidate>
+            <div class="form-grid">
+              <label class="control-block" for="group-size">
+                <span class="control-label">Walkers</span>
+                <input
+                  id="group-size"
+                  name="groupSize"
+                  type="number"
+                  min="2"
+                  max="20"
+                  value="4"
+                  inputmode="numeric"
+                />
+              </label>
+
+              <label class="control-block" for="departure-time">
+                <span class="control-label">Departure time</span>
+                <input
+                  id="departure-time"
+                  name="departureTime"
+                  type="time"
+                  value="09:30"
+                />
+              </label>
+
+              <label class="control-block" for="meeting-point">
+                <span class="control-label">Meet at</span>
+                <input
+                  id="meeting-point"
+                  name="meetingPoint"
+                  type="text"
+                  value="Lower gate car park"
+                />
+              </label>
+
+              <label class="control-block" for="turnaround-time">
+                <span class="control-label">Turnaround time</span>
+                <input
+                  id="turnaround-time"
+                  name="turnaroundTime"
+                  type="time"
+                  value="12:00"
+                />
+              </label>
+            </div>
+
+            <fieldset
+              class="essentials"
+              data-testid="essentials"
+              aria-describedby="essentials-help"
+            >
+              <legend>Essential checks</legend>
+              <p id="essentials-help" class="control-note">
+                Confirm the basics before the route is locked in. Each note
+                explains the failure it is trying to avoid.
+              </p>
+              <label class="check-row" for="check-layers">
+                <input
+                  id="check-layers"
+                  name="essentials"
+                  type="checkbox"
+                  value="Layer and waterproof packed"
+                />
+                <span class="check-copy">
+                  <span>Layer and waterproof packed</span>
+                  <span class="check-reason"
+                    >Weather can turn before the group can turn back.</span
+                  >
+                </span>
+              </label>
+              <label class="check-row" for="check-water">
+                <input
+                  id="check-water"
+                  name="essentials"
+                  type="checkbox"
+                  value="Water and food accounted for"
+                />
+                <span class="check-copy">
+                  <span>Water and food accounted for</span>
+                  <span class="check-reason"
+                    >Low energy is often the first thing that slows the weakest walker.</span
+                  >
+                </span>
+              </label>
+              <label class="check-row" for="check-battery">
+                <input
+                  id="check-battery"
+                  name="essentials"
+                  type="checkbox"
+                  value="At least one charged phone shared"
+                />
+                <span class="check-copy">
+                  <span>At least one charged phone shared</span>
+                  <span class="check-reason"
+                    >Signal quality changes by route, but a dead phone fails everywhere.</span
+                  >
+                </span>
+              </label>
+              <label class="check-row" for="check-brief">
+                <input
+                  id="check-brief"
+                  name="essentials"
+                  type="checkbox"
+                  value="Everyone knows the turnaround rule"
+                />
+                <span class="check-copy">
+                  <span>Everyone knows the turnaround rule</span>
+                  <span class="check-reason"
+                    >A shared rule prevents the strongest walker from silently stretching the day.</span
+                  >
+                </span>
+              </label>
+            </fieldset>
+
+            <label class="control-block" for="group-notes">
+              <span class="control-label">Coordinator notes</span>
+              <textarea
+                id="group-notes"
+                name="groupNotes"
+                rows="4"
+              >Keep the pace conversational. Regroup at every junction and before the descent.</textarea>
+            </label>
+
+            <section
+              class="plan-summary"
+              data-testid="plan-summary"
+              aria-live="polite"
+            >
+              <p class="summary-label">Live plan summary</p>
+              <div id="plan-summary-content">
+                Rowan Loop for a mixed group of 4 walkers. Meet at Lower gate
+                car park by 09:30, keep a 12:00 turnaround, and expect sheltered
+                woodland with reliable signal.
+              </div>
+            </section>
+
+            <div class="action-row">
+              <button
+                type="submit"
+                class="confirm-button"
+                data-testid="confirm-plan"
+              >
+                Confirm field plan
+              </button>
+              <button type="button" class="secondary-button" id="print-plan">
+                Print summary
+              </button>
+            </div>
+
+            <p
+              class="plan-status"
+              data-testid="plan-status"
+              id="plan-status"
+              role="status"
+              aria-atomic="true"
+              aria-live="polite"
+              tabindex="-1"
+            >
+              Complete the essentials and confirm to lock the plan.
+            </p>
+          </form>
+        </section>
+
+        <section class="panel fallback-panel" aria-labelledby="fallback-title">
+          <div class="panel-heading">
+            <p class="section-mark">04</p>
+            <h2 id="fallback-title">Paper backup</h2>
+          </div>
+          <p>
+            Keep this section as a low-tech comparison and briefing card. If
+            the scripted planner is unavailable, the group can still pick a
+            route and repeat a manual plan from here.
+          </p>
+          <div class="backup-routes" aria-label="Static route comparison">
+            <article class="backup-route">
+              <h3>Rowan Loop</h3>
+              <p>Open · Easy · 4.8 km · 1 h 45 · 120 m ascent</p>
+              <p>Sheltered, light rain likely. Woodland path and boardwalk.</p>
+              <p>Reliable signal. Best fit for mixed groups and children.</p>
+            </article>
+            <article class="backup-route">
+              <h3>Bracken Rise</h3>
+              <p>Closed · Steady · 8.4 km · 3 h 10 · 410 m ascent</p>
+              <p>Cloud lifting after 10:30. Open ridge, wet stone on descent.</p>
+              <p>Damaged footbridge on the north approach. Compare only today.</p>
+            </article>
+            <article class="backup-route">
+              <h3>Tor Line</h3>
+              <p>Open · Hard · 12.6 km · 5 h 20 · 780 m ascent</p>
+              <p>Exposed gusts after 14:00. Loose rock, two steep scrambles.</p>
+              <p>No signal for 6 km. Strong fit for experienced walkers only.</p>
+            </article>
+          </div>
+          <div class="manual-plan">
+            <p class="summary-label">Manual briefing</p>
+            <p>
+              For the safest default, choose Rowan Loop. Bracken Rise is closed.
+              State the meeting point, departure time, turnaround time, and who
+              carries the charged phone before setting off.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <noscript>
+      <div class="noscript-banner">
+        JavaScript is off. Route notes remain available, but the live planning
+        summary and confirmation flow need scripting.
+      </div>
+    </noscript>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "host": "Codex CLI",
+  "host_version": "0.147.0",
+  "model": "gpt-5.4",
+  "reasoning_effort": "high",
+  "conditions": ["baseline", "named_skill"],
+  "replicates_per_condition": 2,
+  "turns_per_run": 3,
+  "sandbox": "workspace-write with automatic approval review",
+  "user_config": "ignored; globally available plugin metadata remains a shared host constant",
+  "skill_install_scope": ".agents/skills/<name> in named_skill workspaces only",
+  "raw_reasoning_published": false,
+  "public_execution_metadata": [
+    "turn token usage",
+    "skill and routed-reference read events",
+    "commands grouped by purpose",
+    "final acceptance evidence"
+  ],
+  "decision_rule": "Report dimensions separately. Call a skill advantage only when both named-skill repetitions improve that dimension or avoid a baseline failure without a material regression elsewhere."
+}

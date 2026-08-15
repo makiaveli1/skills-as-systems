@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "intents": [
     "use FOUNDRY or the FOUNDRY engineering system for substantial software work",
     "understand an unfamiliar repository codebase subsystem or behavioural path before changing it",
@@ -59,6 +59,10 @@
   "hosts": ["any", "chatgpt", "generic-mcp", "claude-desktop", "claude-code", "codex"],
   "priority": 72,
   "reference_hints": [
+    {
+      "terms": ["re-enter FOUNDRY", "scope changed", "new evidence", "test contradicted plan", "stale worktree", "resume engineering work", "before completion", "nested defect"],
+      "paths": ["references/lifecycle-reentry.md", "references/understanding-compact.md", "references/verification-compact.md"]
+    },
     {
       "terms": ["understand repository", "unfamiliar codebase", "repository map", "subsystem map", "behavioural path", "change surface", "codebase archaeology", "large monorepo"],
       "paths": ["references/understanding-compact.md", "references/codebase-understanding.md", "assets/system-map-template.json"]
@@ -160,7 +164,7 @@
         {
           "id": "understand-contract",
           "label": "Map the system and establish the change contract",
-          "required_references": ["references/routing.md", "references/understanding-compact.md", "references/codebase-understanding.md", "references/change-compact.md"],
+          "required_references": ["references/routing.md", "references/lifecycle-reentry.md", "references/understanding-compact.md", "references/codebase-understanding.md", "references/change-compact.md"],
           "artifact_schema": "schemas/change-contract.schema.json",
           "completion_checks": [
             {"pointer": "/status", "allowed": ["ready", "in_progress"]},
@@ -172,7 +176,7 @@
         {
           "id": "implement-bounded",
           "label": "Implement the smallest coherent intervention",
-          "required_references": ["references/change-discipline.md", "references/testing-and-evidence.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/change-discipline.md", "references/testing-and-evidence.md"],
           "artifact_schema": "schemas/change-contract.schema.json",
           "completion_checks": [
             {"pointer": "/status", "allowed": ["implemented_unverified", "verified"]}
@@ -183,7 +187,7 @@
         {
           "id": "verify-challenge",
           "label": "Verify reality and challenge the result",
-          "required_references": ["references/verification-compact.md", "references/testing-and-evidence.md", "references/failure-tests.md", "references/evaluation-rubric.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/verification-compact.md", "references/testing-and-evidence.md", "references/failure-tests.md", "references/evaluation-rubric.md"],
           "artifact_schema": "schemas/verification-receipt.schema.json",
           "completion_checks": [
             {"pointer": "/state/evidence_freshness", "allowed": ["current"]},
@@ -195,7 +199,7 @@
         {
           "id": "close-continue",
           "label": "Inspect exact state and close or continue",
-          "required_references": ["references/verification-compact.md", "references/collaboration-and-continuity.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/verification-compact.md", "references/collaboration-and-continuity.md"],
           "artifact_schema": "schemas/verification-receipt.schema.json",
           "completion_checks": [
             {"pointer": "/state/evidence_freshness", "allowed": ["current"]},
@@ -213,7 +217,7 @@
         {
           "id": "reproduce-narrow",
           "label": "Reproduce, collect evidence, and narrow hypotheses",
-          "required_references": ["references/debugging-and-repair.md", "references/understanding-compact.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/debugging-and-repair.md", "references/understanding-compact.md"],
           "artifact_schema": "schemas/change-contract.schema.json",
           "completion_checks": [
             {"pointer": "/baseline/reproduction_status", "allowed": ["reproduced", "partially_reproduced", "not_reproduced"]},
@@ -225,7 +229,7 @@
         {
           "id": "repair-cause",
           "label": "Repair the causal owner and add regression protection",
-          "required_references": ["references/debugging-and-repair.md", "references/change-compact.md", "references/testing-and-evidence.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/debugging-and-repair.md", "references/change-compact.md", "references/testing-and-evidence.md"],
           "artifact_schema": "schemas/change-contract.schema.json",
           "completion_checks": [
             {"pointer": "/status", "allowed": ["implemented_unverified", "verified"]}
@@ -236,7 +240,7 @@
         {
           "id": "replay-regress-widen",
           "label": "Replay the failure, regress the cause, and widen verification",
-          "required_references": ["references/testing-and-evidence.md", "references/verification-compact.md", "references/failure-tests.md"],
+          "required_references": ["references/lifecycle-reentry.md", "references/testing-and-evidence.md", "references/verification-compact.md", "references/failure-tests.md"],
           "artifact_schema": "schemas/verification-receipt.schema.json",
           "completion_checks": [
             {"pointer": "/state/evidence_freshness", "allowed": ["current"]},

@@ -39,8 +39,10 @@ REQUIRED_FILES = {
     "tests/routing-cases.json",
     "tests/negative-routing-cases.json",
     "tests/artifact-threshold-cases.json",
+    "tests/lifecycle-reentry-cases.json",
     "references/experience-contract.md",
     "references/interaction-and-routing.md",
+    "references/lifecycle-reentry.md",
     "references/experience-mapping.md",
     "references/content-and-discoverability.md",
     "references/research-and-reference-analysis.md",
@@ -185,15 +187,15 @@ def validate_openai_yaml(errors: list[str]) -> None:
 
 def validate_version_metadata(errors: list[str]) -> None:
     version_path = ROOT / "VERSION"
-    if version_path.is_file() and version_path.read_text(encoding="utf-8-sig").strip() != "0.3.1":
-        errors.append("VERSION must be 0.3.1")
+    if version_path.is_file() and version_path.read_text(encoding="utf-8-sig").strip() != "0.4.0":
+        errors.append("VERSION must be 0.4.0")
 
     pyproject_path = ROOT / "pyproject.toml"
     if pyproject_path.is_file():
         text = pyproject_path.read_text(encoding="utf-8-sig")
         required_fragments = [
             'name = "sitecraft-skill"',
-            'version = "0.3.1"',
+            'version = "0.4.0"',
             'test_entry = "bridge_v2_tests.py"',
         ]
         for fragment in required_fragments:
@@ -210,8 +212,8 @@ def validate_manifest(errors: list[str]) -> None:
 
     if manifest.get("schema_version") != "1.1":
         errors.append("pc-bridge.skill.json schema_version must be 1.1")
-    if manifest.get("version") != "0.3.1":
-        errors.append("pc-bridge.skill.json version must be 0.3.1")
+    if manifest.get("version") != "0.4.0":
+        errors.append("pc-bridge.skill.json version must be 0.4.0")
     if "any" not in manifest.get("hosts", []):
         errors.append("pc-bridge.skill.json must support host 'any'")
 
@@ -258,6 +260,7 @@ def validate_json_artifacts(errors: list[str]) -> None:
         "tests/routing-cases.json",
         "tests/negative-routing-cases.json",
         "tests/artifact-threshold-cases.json",
+        "tests/lifecycle-reentry-cases.json",
     ]
     artifacts: dict[str, Any] = {}
     for relative in json_paths:
@@ -397,6 +400,31 @@ def validate_json_artifacts(errors: list[str]) -> None:
                 errors.append(f"Invalid artifact-threshold expectation: {case_id}")
         if observed_routes != allowed_artifact_routes:
             errors.append("Artifact-threshold cases must cover compact, full, and existing-contract routes")
+
+    lifecycle_cases = artifacts["tests/lifecycle-reentry-cases.json"]
+    if not isinstance(lifecycle_cases, list) or len(lifecycle_cases) < 6:
+        errors.append("tests/lifecycle-reentry-cases.json must contain at least six cases")
+    else:
+        lifecycle_ids: set[str] = set()
+        for case in lifecycle_cases:
+            case_id = case.get("id")
+            if not case_id or case_id in lifecycle_ids:
+                errors.append(f"Invalid or duplicate lifecycle re-entry case id: {case_id!r}")
+            lifecycle_ids.add(case_id)
+            for field in ("event", "expected_reentry", "must_preserve", "must_not"):
+                if not case.get(field):
+                    errors.append(f"Lifecycle re-entry case {case_id!r} lacks {field}")
+
+    lifecycle_text = (ROOT / "references" / "lifecycle-reentry.md").read_text(
+        encoding="utf-8-sig"
+    )
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8-sig")
+    openai_text = (ROOT / "agents" / "openai.yaml").read_text(encoding="utf-8-sig")
+    for phrase in ("before the first substantial edit", "before completion", "bounded child loop"):
+        if phrase.casefold() not in lifecycle_text.casefold():
+            errors.append(f"lifecycle-reentry.md missing governing phrase: {phrase}")
+    if "lifecycle re-entry" not in skill_text.casefold() or "Re-enter" not in openai_text:
+        errors.append("SITECRAFT core and Codex adapter must both enforce lifecycle re-entry")
 
 
 def validate_workspace_isolation(errors: list[str]) -> None:

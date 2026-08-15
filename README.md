@@ -100,8 +100,8 @@ Capable hosts can also activate either skill automatically when the request matc
 
 | Skill | Version | Use it for | Central artifact |
 | --- | ---: | --- | --- |
-| [SITECRAFT](docs/sitecraft.md) | 0.3.1 | Websites, web applications, responsive experience, visual systems, interaction, accessibility, and release evidence | Experience Contract |
-| [FOUNDRY](docs/foundry.md) | 0.2.1 | Codebase understanding, implementation, debugging, testing, review, architecture, migrations, reliability, security, and performance | Change Contract |
+| [SITECRAFT](docs/sitecraft.md) | 0.4.0 | Websites, web applications, responsive experience, visual systems, interaction, accessibility, and release evidence | Experience Contract |
+| [FOUNDRY](docs/foundry.md) | 0.3.0 | Codebase understanding, implementation, debugging, testing, review, architecture, migrations, reliability, security, and performance | Change Contract |
 
 Use both when a task changes a web experience and the software system behind it.
 
@@ -116,28 +116,67 @@ Each skill separates six jobs that ordinary prompts often mix together:
 5. **Verify:** match every completion claim to appropriate evidence.
 6. **Continue:** leave compact state another agent or human can safely resume.
 
+The skill stays active for the whole piece of work. When requirements, evidence,
+project state, failures, or ownership change, the agent reopens only the affected
+part of the skill and checks its decision again. Before claiming completion, it
+returns once more to the relevant verification and failure tests. This keeps the
+method useful after the opening plan without repeatedly loading the whole skill.
+
 Detailed specialist references load only when needed. Failure tests target plausible-looking mistakes such as unnecessary rewrites, guessed capabilities, weakened tests, unsupported visual claims, and fake completion.
 
 Read [the architecture](docs/architecture.md) for the complete model or [the evaluation guide](docs/evaluation.md) for what the test suite does and does not prove.
 
-## See the work, including the inconvenient results
+## Public benchmark evidence
 
-The repository includes frozen prompts, seeds, final projects, screenshots,
-deterministic evaluators, blind review, and machine-readable receipts from fresh
-paired Codex runs.
+These skills are tested against strong baselines, not only against hand-picked
+success cases. The repository publishes frozen prompts, seeds, final projects,
+screenshots, deterministic checks, blind review, and compact machine-readable
+receipts. Mixed results stay mixed.
 
-| Showcase | Baseline | With skill | Honest result |
+### SITECRAFT: CAIRN
+
+[CAIRN](benchmarks/deep-baseline-study/sitecraft/) is the current SITECRAFT
+benchmark. Four fresh Codex runs worked on the same evolving web-product task:
+two without SITECRAFT and two with SITECRAFT 0.4.0. Every candidate passed the
+same static and headless-browser acceptance checks.
+
+| Measure | Baseline | SITECRAFT 0.4.0 |
+| --- | ---: | ---: |
+| Candidates passing functional acceptance | 2/2 | 2/2 |
+| Average blind visual score | 18.5/25 | **22/25** |
+| Repetition 1 | 15/25 | **24/25** |
+| Repetition 2 | **22/25** | 20/25 |
+
+The average favors SITECRAFT, but the two repetitions do not agree. One favored
+SITECRAFT by 9 points and the other favored baseline by 2. Under the benchmark's
+predeclared repeatability rule, that is **promising evidence, not proof of a
+repeatable output-quality advantage**.
+
+Both SITECRAFT runs did reuse the skill when the project changed and again before
+completion. That separately supports the new lifecycle re-entry behavior.
+
+![Highest-ranked blind CAIRN candidate](benchmarks/deep-baseline-study/sitecraft/results/evidence/skilled-1/desktop-1440x1000.png)
+
+Read the [CAIRN benchmark overview](benchmarks/deep-baseline-study/sitecraft/),
+the [full result](benchmarks/deep-baseline-study/sitecraft/results/RESULTS.md),
+or the [benchmark method and limitations](benchmarks/).
+
+### FOUNDRY
+
+The deeper FOUNDRY study is published as a reproducible scenario, but its
+interrupted pilot is excluded. No deeper FOUNDRY result is claimed until every
+candidate can restart from a clean seed.
+
+Two earlier bounded examples remain available while that study is pending:
+
+| Study | Baseline | With FOUNDRY | What the run supports |
 | --- | ---: | ---: | --- |
-| [TIDEGLASS web experience](benchmarks/sitecraft-tideglass/) | 97.5 | 97 | High-quality parity; baseline led by 0.5 in one blind review. |
-| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100 | 100 | Correctness parity; FOUNDRY collected wider crash/concurrency evidence. |
-| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100 | 100 | Correctness parity; baseline carried broader permanent regression coverage. |
+| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100/100 | 100/100 | Correctness parity. FOUNDRY collected wider crash and concurrency evidence. |
+| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100/100 | 100/100 | Correctness parity. The baseline kept broader permanent regression coverage. |
 
-![SITECRAFT TIDEGLASS desktop output](benchmarks/sitecraft-tideglass/evidence/with-sitecraft/desktop-1440x1000.png)
-
-These examples are not a leaderboard and do not prove universal uplift. They do
-show how to test skills without hiding a strong baseline. The first findings led
-to smaller SITECRAFT artifacts and stronger FOUNDRY package regressions. Read the
-[benchmark method and limitations](benchmarks/).
+These studies are evidence for the tasks that were actually run. They are not a
+universal leaderboard and should not be read as a claim that a skill always
+beats an unskilled agent.
 
 ## Portable core, optional adapters
 

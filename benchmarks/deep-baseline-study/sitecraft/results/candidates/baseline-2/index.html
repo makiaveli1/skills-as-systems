@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAIRN / Field Plan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <p class="eyebrow">CAIRN / field plan</p>
+        <h1>Choose one honest route and leave with one shared plan.</h1>
+        <p class="intro">
+          This board is built for a mixed-experience group standing in the
+          weather, not a desk review. Compare the ground, the signal, and the
+          likely turning points, then confirm the basics before anyone sets off.
+        </p>
+        <div class="hero__strip" aria-label="Field framing">
+          <p>Phone-first outdoors</p>
+          <p>Safety without guidebook sprawl</p>
+          <p>Three routes, one clear decision</p>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="board" aria-labelledby="route-board-title">
+          <div class="board__header">
+            <div>
+              <p class="section-label">Compare</p>
+              <h2 id="route-board-title">Route board</h2>
+              <p class="section-copy">
+                Start with the least capable walker in mind, then rule routes up
+                only if the ground, timing, and group experience still align.
+              </p>
+            </div>
+          </div>
+
+          <div class="board__tools">
+            <fieldset
+              class="group-needs enhanced-only"
+              data-testid="group-needs"
+              aria-label="Choose the group needs lens"
+            >
+              <legend>Group needs</legend>
+              <label class="needs-chip is-active">
+                <input type="radio" name="group-needs" value="mixed" checked />
+                <span>Mixed</span>
+              </label>
+              <label class="needs-chip">
+                <input type="radio" name="group-needs" value="child" />
+                <span>Child</span>
+              </label>
+              <label class="needs-chip">
+                <input type="radio" name="group-needs" value="experienced" />
+                <span>Experienced</span>
+              </label>
+            </fieldset>
+
+            <div
+              class="difficulty-filter enhanced-only"
+              data-testid="difficulty-filter"
+              role="toolbar"
+              aria-label="Filter routes by difficulty"
+            >
+              <button type="button" class="filter-chip is-active" data-filter="all">
+                All ground
+              </button>
+              <button type="button" class="filter-chip" data-filter="easy">
+                Easy
+              </button>
+              <button type="button" class="filter-chip" data-filter="steady">
+                Steady
+              </button>
+              <button type="button" class="filter-chip" data-filter="hard">
+                Hard
+              </button>
+            </div>
+          </div>
+
+          <p class="board__legend">
+            Difficulty combines effort, terrain risk, and navigation exposure,
+            not just fitness.
+          </p>
+
+          <div
+            class="route-list"
+            data-testid="route-list"
+            aria-label="Route choices"
+          >
+            <a
+              href="#route-rowan-loop"
+              class="route-choice is-selected"
+              role="button"
+              data-route-id="rowan-loop"
+              aria-pressed="true"
+            >
+              <span>Rowan Loop</span>
+              <small>easy / 4.8 km</small>
+              <em class="route-choice__guide" data-route-guide="rowan-loop">
+                Mixed: best fit
+              </em>
+            </a>
+            <a
+              href="#route-bracken-rise"
+              class="route-choice is-closed"
+              role="button"
+              data-route-id="bracken-rise"
+              aria-pressed="false"
+              aria-disabled="true"
+            >
+              <span>Bracken Rise</span>
+              <small>steady / 8.4 km</small>
+              <em class="route-choice__guide" data-route-guide="bracken-rise">
+                Closed today
+              </em>
+            </a>
+            <a
+              href="#route-tor-line"
+              class="route-choice"
+              role="button"
+              data-route-id="tor-line"
+              aria-pressed="false"
+            >
+              <span>Tor Line</span>
+              <small>hard / 12.6 km</small>
+              <em class="route-choice__guide" data-route-guide="tor-line">
+                Mixed: not advised
+              </em>
+            </a>
+          </div>
+
+          <div class="route-grid" aria-label="Route details">
+            <article
+              id="route-rowan-loop"
+              class="route-sheet is-selected"
+              data-route-card
+              data-route-id="rowan-loop"
+              tabindex="-1"
+            >
+              <div class="route-sheet__head">
+                <div class="route-sheet__head-top">
+                  <p class="route-sheet__difficulty">Easy</p>
+                  <p class="route-sheet__status is-open" data-route-status-badge="rowan-loop">
+                    Open
+                  </p>
+                </div>
+                <h3>Rowan Loop</h3>
+                <p class="route-sheet__measure">4.8 km / 1 h 45 / 120 m ascent</p>
+              </div>
+              <dl class="route-sheet__facts">
+                <div>
+                  <dt>Weather</dt>
+                  <dd>Sheltered, light rain likely</dd>
+                </div>
+                <div>
+                  <dt>Ground</dt>
+                  <dd>Woodland path and boardwalk</dd>
+                </div>
+                <div>
+                  <dt>Signal</dt>
+                  <dd>Reliable</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Open</dd>
+                </div>
+                <div>
+                  <dt>Group fit now</dt>
+                  <dd data-route-fit="rowan-loop">
+                    Mixed: best fit. Child: best fit. Experienced: gentle option.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Why it works</dt>
+                  <dd>Frequent landmarks, a sheltered return, and two early turn-back points.</dd>
+                </div>
+              </dl>
+              <p class="route-sheet__note" data-route-note="rowan-loop">
+                Mixed group: best fit. Frequent landmarks and early turn-back
+                points make this the safest starting option.
+              </p>
+            </article>
+
+            <article
+              id="route-bracken-rise"
+              class="route-sheet is-closed"
+              data-route-card
+              data-route-id="bracken-rise"
+              tabindex="-1"
+            >
+              <div class="route-sheet__head">
+                <div class="route-sheet__head-top">
+                  <p class="route-sheet__difficulty">Steady</p>
+                  <p class="route-sheet__status is-closed" data-route-status-badge="bracken-rise">
+                    Closed
+                  </p>
+                </div>
+                <h3>Bracken Rise</h3>
+                <p class="route-sheet__measure">8.4 km / 3 h 10 / 410 m ascent</p>
+              </div>
+              <dl class="route-sheet__facts">
+                <div>
+                  <dt>Weather</dt>
+                  <dd>Cloud lifting after 10:30</dd>
+                </div>
+                <div>
+                  <dt>Ground</dt>
+                  <dd>Open ridge, wet stone on descent</dd>
+                </div>
+                <div>
+                  <dt>Signal</dt>
+                  <dd>Patchy beyond the north shoulder</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Closed</dd>
+                </div>
+                <div>
+                  <dt>Group fit now</dt>
+                  <dd data-route-fit="bracken-rise">
+                    Mixed: not today. Child: not today. Experienced: not today.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Closure reason</dt>
+                  <dd>A damaged footbridge has closed the north approach.</dd>
+                </div>
+              </dl>
+              <p class="route-sheet__note" data-route-note="bracken-rise">
+                Closed today. Keep it in view for comparison, but it cannot
+                become the active plan.
+              </p>
+            </article>
+
+            <article
+              id="route-tor-line"
+              class="route-sheet"
+              data-route-card
+              data-route-id="tor-line"
+              tabindex="-1"
+            >
+              <div class="route-sheet__head">
+                <div class="route-sheet__head-top">
+                  <p class="route-sheet__difficulty">Hard</p>
+                  <p class="route-sheet__status is-open" data-route-status-badge="tor-line">
+                    Open
+                  </p>
+                </div>
+                <h3>Tor Line</h3>
+                <p class="route-sheet__measure">12.6 km / 5 h 20 / 780 m ascent</p>
+              </div>
+              <dl class="route-sheet__facts">
+                <div>
+                  <dt>Weather</dt>
+                  <dd>Exposed gusts after 14:00</dd>
+                </div>
+                <div>
+                  <dt>Ground</dt>
+                  <dd>Loose rock, two steep scrambles</dd>
+                </div>
+                <div>
+                  <dt>Signal</dt>
+                  <dd>None for 6 km</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Open</dd>
+                </div>
+                <div>
+                  <dt>Group fit now</dt>
+                  <dd data-route-fit="tor-line">
+                    Mixed: not advised. Child: not advised. Experienced: strong fit.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Why it works</dt>
+                  <dd>Long exposure and scrambling demand confident movement and an early start.</dd>
+                </div>
+              </dl>
+              <p class="route-sheet__note" data-route-note="tor-line">
+                Mixed group: not advised. This only becomes a strong call for a
+                fully experienced party prepared for no-signal travel.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="plan-panel" aria-labelledby="plan-panel-title">
+          <div class="plan-panel__inner">
+            <div>
+              <p class="section-label">Shared plan</p>
+              <h2 id="plan-panel-title">Field summary</h2>
+            </div>
+
+            <section class="plan-summary" data-testid="plan-summary" aria-live="polite">
+              <p class="plan-summary__group" data-summary-group>
+                Planning lens: Mixed group
+              </p>
+              <p class="plan-summary__lead">
+                Working pick:
+                <strong data-summary-name>Rowan Loop</strong>
+              </p>
+              <p data-summary-fit>
+                Best fit for mixed experience or uncertain weather windows.
+              </p>
+              <dl class="plan-summary__list">
+                <div>
+                  <dt>Status</dt>
+                  <dd data-summary-status>Open</dd>
+                </div>
+                <div>
+                  <dt>Group fit</dt>
+                  <dd data-summary-suitability>Mixed: best fit</dd>
+                </div>
+                <div>
+                  <dt>Demand</dt>
+                  <dd data-summary-demand>Easy / 4.8 km / 1 h 45 / 120 m ascent</dd>
+                </div>
+                <div>
+                  <dt>Ground note</dt>
+                  <dd data-summary-terrain>Woodland path and boardwalk</dd>
+                </div>
+                <div>
+                  <dt>Weather window</dt>
+                  <dd data-summary-weather>Sheltered, light rain likely</dd>
+                </div>
+                <div>
+                  <dt>Comms</dt>
+                  <dd data-summary-signal>Reliable signal throughout</dd>
+                </div>
+                <div>
+                  <dt>Why this call</dt>
+                  <dd data-summary-why>
+                    Frequent landmarks, a sheltered return, and two early turn-back points.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Departure call</dt>
+                  <dd data-summary-departure>
+                    Good choice when the group wants a shorter outing with less
+                    escalation risk.
+                  </dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="essentials" data-testid="essentials">
+              <div class="essentials__head">
+                <h3>Essentials check</h3>
+                <p>
+                  Confirm the practical basics before leaving the trailhead, and
+                  see why each one matters for this route and group.
+                </p>
+              </div>
+
+              <form id="plan-form" class="essentials__list" novalidate>
+                <label class="check-row">
+                  <input type="checkbox" name="essential" value="layers" />
+                  <span class="check-copy">
+                    <strong>Each walker has waterproof layers and enough water.</strong>
+                    <small>
+                      Even the easier options can turn into a cold stop if rain
+                      or delay catches the slowest walker first.
+                    </small>
+                  </span>
+                </label>
+                <label class="check-row">
+                  <input type="checkbox" name="essential" value="pace" />
+                  <span class="check-copy">
+                    <strong data-essential-pace-label>
+                      The group agrees to walk to the slowest safe pace.
+                    </strong>
+                    <small data-essential-pace-why>
+                      This keeps the mixed group together and stops early fatigue
+                      from turning into poor decisions later.
+                    </small>
+                  </span>
+                </label>
+                <label class="check-row">
+                  <input type="checkbox" name="essential" value="checkin" />
+                  <span class="check-copy">
+                    <strong>A turn-back point and check-in person are agreed.</strong>
+                    <small data-essential-checkin-why>
+                      Reliable signal and two early turn-back points make it
+                      straightforward to close the loop if the group fades.
+                    </small>
+                  </span>
+                </label>
+                <label class="check-row">
+                  <input type="checkbox" name="essential" value="route-note" />
+                  <span class="check-copy">
+                    <strong data-route-essential>
+                      Boardwalk footing is called out before the group sets off.
+                    </strong>
+                    <small data-route-essential-why>
+                      The hazard is modest, but naming it upfront makes the
+                      first technical moment predictable for everyone.
+                    </small>
+                  </span>
+                </label>
+
+                <button type="submit" class="confirm-button" data-testid="confirm-plan">
+                  Confirm field plan
+                </button>
+              </form>
+
+              <p
+                class="plan-status"
+                id="plan-status"
+                data-testid="plan-status"
+                role="status"
+                aria-live="polite"
+                tabindex="-1"
+              >
+                Tick the essentials to produce a ready-to-share plan summary.
+              </p>
+            </section>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <noscript>
+      <p class="noscript-note">
+        JavaScript is unavailable, so filtering and plan confirmation are
+        disabled. The route comparison and essentials guidance remain available.
+      </p>
+    </noscript>
+
+    <script id="route-data" type="application/json">
+      [
+        {
+          "id": "bracken-rise",
+          "name": "Bracken Rise",
+          "difficulty": "steady",
+          "distance_km": 8.4,
+          "duration": "3 h 10",
+          "ascent_m": 410,
+          "weather": "Cloud lifting after 10:30",
+          "terrain": "Open ridge, wet stone on descent",
+          "signal": "Patchy beyond the north shoulder",
+          "status": "closed",
+          "why": "A damaged footbridge has closed the north approach.",
+          "suitability": {"mixed": "not today", "child": "not today", "experienced": "not today"}
+        },
+        {
+          "id": "rowan-loop",
+          "name": "Rowan Loop",
+          "difficulty": "easy",
+          "distance_km": 4.8,
+          "duration": "1 h 45",
+          "ascent_m": 120,
+          "weather": "Sheltered, light rain likely",
+          "terrain": "Woodland path and boardwalk",
+          "signal": "Reliable",
+          "status": "open",
+          "why": "Frequent landmarks, a sheltered return, and two early turn-back points.",
+          "suitability": {"mixed": "best fit", "child": "best fit", "experienced": "gentle option"}
+        },
+        {
+          "id": "tor-line",
+          "name": "Tor Line",
+          "difficulty": "hard",
+          "distance_km": 12.6,
+          "duration": "5 h 20",
+          "ascent_m": 780,
+          "weather": "Exposed gusts after 14:00",
+          "terrain": "Loose rock, two steep scrambles",
+          "signal": "None for 6 km",
+          "status": "open",
+          "why": "Long exposure and scrambling demand confident movement and an early start.",
+          "suitability": {"mixed": "not advised", "child": "not advised", "experienced": "strong fit"}
+        }
+      ]
+    </script>
+  </body>
+</html>

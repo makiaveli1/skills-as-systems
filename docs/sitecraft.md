@@ -49,6 +49,21 @@ Routes describe the responsibility being exercised:
 
 Modes describe the work posture: Sketch, Make, Repair, Audit, or Evolve. A task uses only the routes it needs.
 
+## Lifecycle re-entry
+
+SITECRAFT governs the experience for the full task, not just the first plan. It
+is reopened at decision points:
+
+- before the first substantial edit;
+- when requirements, evidence, project state, failures, ownership, available
+  capabilities, or handoff state change;
+- before completion claims are made.
+
+Only the affected route is reopened. A newly found problem creates a small child
+loop with the same boundaries as the parent task; it does not grant permission
+to widen the project. Still-valid decisions are kept, so this is a targeted
+recheck rather than a ceremonial restart.
+
 ## Canonical artifacts
 
 ### Experience Contract
@@ -116,6 +131,18 @@ Different claims need different evidence:
 | Release readiness | Current contract, review, evidence, public/private separation, rollback, and owner approval |
 
 SITECRAFT begins with ordinary evidence and escalates diagnostics only when a real defect remains unexplained.
+
+## Current public evidence
+
+The deeper CAIRN study ran two fresh baseline builds and two fresh SITECRAFT
+builds through three changing project stages. Every candidate passed the same
+static and headless-browser checks. SITECRAFT averaged 22/25 in blind visual
+review, compared with 18.5/25 for baseline, but the paired results split: one
+favored SITECRAFT by 9 points and one favored baseline by 2.
+
+That is promising, not proof of repeatable output superiority. It does show that
+both skill runs reopened SITECRAFT after new evidence and again for final
+verification. See the [study and complete evidence](../benchmarks/deep-baseline-study/sitecraft/results/RESULTS.md).
 
 ## Failure tests
 

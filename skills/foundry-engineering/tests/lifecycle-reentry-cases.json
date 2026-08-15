@@ -1,0 +1,51 @@
+[
+  {
+    "id": "scope-change-after-implementation",
+    "event": "The user changes a compatibility requirement after the first implementation.",
+    "expected_reentry": ["understand", "contract", "verify"],
+    "must_preserve": "Unchanged invariants and valid evidence",
+    "must_not": "Patch the new requirement into stale assumptions"
+  },
+  {
+    "id": "focused-test-reveals-new-boundary",
+    "event": "A focused test fails inside a persistence boundary not present in the original map.",
+    "expected_reentry": ["debug", "data", "contract", "verify"],
+    "must_preserve": "The parent objective and unrelated changes",
+    "must_not": "Random-edit or widen the entire refactor"
+  },
+  {
+    "id": "concurrent-writer",
+    "event": "Another worker changes an overlapping file after it was inspected.",
+    "expected_reentry": ["target-state", "understand", "contract"],
+    "must_preserve": "The other worker's changes",
+    "must_not": "Apply a stale patch or treat the handoff as authority"
+  },
+  {
+    "id": "environment-contradiction",
+    "event": "Local tests pass but the clean package environment cannot import a build backend.",
+    "expected_reentry": ["debug", "release", "verify"],
+    "must_preserve": "Passing evidence within its local scope",
+    "must_not": "Call the product broken or claim the release works"
+  },
+  {
+    "id": "resume-before-completion",
+    "event": "An interrupted task resumes with a continuation record and a newer worktree.",
+    "expected_reentry": ["target-state", "understand", "verify"],
+    "must_preserve": "Current verified facts only",
+    "must_not": "Inherit permissions or stale completion claims"
+  },
+  {
+    "id": "nested-security-defect",
+    "event": "A path traversal is discovered while repairing an unrelated upload failure.",
+    "expected_reentry": ["security", "contract", "verify", "challenge"],
+    "must_preserve": "The bounded parent repair",
+    "must_not": "Hide the child defect behind the parent test pass"
+  },
+  {
+    "id": "trivial-uninterrupted-edit",
+    "event": "A comment typo changes no behaviour, interface, or evidence boundary.",
+    "expected_reentry": ["exact-change-state"],
+    "must_preserve": "All current understanding",
+    "must_not": "Reload every specialist reference or create a formal contract"
+  }
+]

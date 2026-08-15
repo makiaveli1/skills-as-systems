@@ -1,0 +1,96 @@
+{
+  "project": "cairn",
+  "candidate": "baseline-2",
+  "browser": "Google Chrome via Playwright",
+  "viewports": [
+    {
+      "name": "desktop-1440x1000",
+      "width": 1440,
+      "height": 1000,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "title": "CAIRN / Field Plan",
+      "textLength": 3425,
+      "routes": 3,
+      "visibleControls": 19,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "title": "CAIRN / Field Plan",
+      "textLength": 3425,
+      "routes": 3,
+      "visibleControls": 19,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    },
+    {
+      "name": "narrow-320x800",
+      "width": 320,
+      "height": 800,
+      "reducedMotion": "no-preference",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "title": "CAIRN / Field Plan",
+      "textLength": 3425,
+      "routes": 3,
+      "visibleControls": 19,
+      "noHorizontalOverflow": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "outsideRequests": [],
+      "passed": true
+    }
+  ],
+  "staticFallback": {
+    "routeNames": [
+      "Bracken Rise",
+      "Rowan Loop",
+      "Tor Line"
+    ],
+    "passed": true
+  },
+  "interaction": {
+    "routeCount": 3,
+    "closedDisabled": true,
+    "closedNotSelected": true,
+    "confirmDisabledAfterClosed": false,
+    "confirmDisabledAfterGroup": false,
+    "closedCannotBecomePlan": true,
+    "summaryAfterClosedReview": "PLANNING LENS: MIXED GROUP\n\nWorking pick: Rowan Loop\n\nPlan for the least experienced walker first and treat cohesion as the priority. Rowan Loop is the best fit for this group.\n\nSTATUS\nOpen\nGROUP FIT\nMixed group: Best fit\nDEMAND\nEasy / 4.8 km / 1 h 45 / 120 m ascent\nGROUND NOTE\nWoodland path and boardwalk\nWEATHER WINDOW\nSheltered, light rain likely\nCOMMS\nReliable signal throughout\nWHY THIS CALL\nFrequent landmarks, a sheltered return, and two early turn-back points.\nDEPARTURE CALL\nA good choice when the group needs short duration, shelter, and obvious turn-back options.",
+    "closedReviewStatus": "Rowan Loop confirmed for mixed group: Best fit. 4.8 km, 1 h 45, 120 m ascent. Sheltered, light rain likely. Woodland path and boardwalk. Reliable signal throughout.",
+    "groupUpdatesGuidance": true,
+    "arrowNavigation": true,
+    "activeId": "tor-line",
+    "selectedId": "tor-line",
+    "essentialCount": 4,
+    "invalidGuard": true,
+    "invalidFocus": true,
+    "invalidText": "Complete these essentials: Each walker has waterproof layers and enough water.; The child sets the rhythm and the whole group accepts the slower pace.; A turn-back point and check-in person are agreed.; The scrambles, loose rock, and no-signal stretch are called out before the group commits..",
+    "successSummary": true,
+    "successText": "Tor Line confirmed for group with child: Not advised. 12.6 km, 5 h 20, 780 m ascent. Exposed gusts after 14:00. Loose rock, two steep scrambles. None for 6 km.",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "outsideRequests": [],
+    "passed": true
+  },
+  "reducedMotion": {
+    "offenders": [],
+    "passed": true
+  },
+  "passed": true,
+  "evidenceBoundary": "Headless Chrome covers the listed viewports and scripted interactions; it is not screen-reader, native-device, production, or cross-browser evidence."
+}
