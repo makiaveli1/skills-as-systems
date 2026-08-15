@@ -1,5 +1,7 @@
 # SITECRAFT deep baseline study
 
+For a shorter explanation of the benchmark and where to find each public artifact, start with the [CAIRN overview](../README.md).
+
 ## Plain result
 
 SITECRAFT clearly changed how the agent worked, but this study does **not** prove

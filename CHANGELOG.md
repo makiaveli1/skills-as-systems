@@ -17,6 +17,8 @@
   results split and do not prove a repeatable output advantage.
 - Published the deeper FOUNDRY scenario and evaluator as work in progress. Its
   interrupted pilot is excluded and no result is claimed before clean reruns.
+- Added a dedicated CAIRN benchmark landing page and simplified the README
+  path from collection overview to study method to detailed evidence.
 - Bumped the Claude Code collection plugin to 1.2.0.
 
 ## Collection 1.1.0 — 2026-08-15

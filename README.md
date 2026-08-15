@@ -126,27 +126,57 @@ Detailed specialist references load only when needed. Failure tests target plaus
 
 Read [the architecture](docs/architecture.md) for the complete model or [the evaluation guide](docs/evaluation.md) for what the test suite does and does not prove.
 
-## See the work, including the inconvenient results
+## Public benchmark evidence
 
-The repository includes frozen prompts, seeds, final projects, screenshots,
-deterministic evaluators, blind review, and machine-readable receipts from fresh
-Codex runs. We publish mixed results rather than turning them into marketing.
+These skills are tested against strong baselines, not only against hand-picked
+success cases. The repository publishes frozen prompts, seeds, final projects,
+screenshots, deterministic checks, blind review, and compact machine-readable
+receipts. Mixed results stay mixed.
 
-| Study | Baseline | With skill | Honest result |
-| --- | ---: | ---: | --- |
-| [CAIRN evolving web experience](benchmarks/deep-baseline-study/sitecraft/) | 18.5/25 average | 22/25 average | Both conditions passed every functional check. The two visual comparisons split, so the higher SITECRAFT average is promising but does not prove a repeatable output advantage. |
-| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100/100 | 100/100 | Earlier bounded example: correctness parity; FOUNDRY collected wider crash and concurrency evidence. |
-| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100/100 | 100/100 | Earlier bounded example: correctness parity; baseline carried broader permanent regression coverage. |
+### SITECRAFT: CAIRN
+
+[CAIRN](benchmarks/deep-baseline-study/sitecraft/) is the current SITECRAFT
+benchmark. Four fresh Codex runs worked on the same evolving web-product task:
+two without SITECRAFT and two with SITECRAFT 0.4.0. Every candidate passed the
+same static and headless-browser acceptance checks.
+
+| Measure | Baseline | SITECRAFT 0.4.0 |
+| --- | ---: | ---: |
+| Candidates passing functional acceptance | 2/2 | 2/2 |
+| Average blind visual score | 18.5/25 | **22/25** |
+| Repetition 1 | 15/25 | **24/25** |
+| Repetition 2 | **22/25** | 20/25 |
+
+The average favors SITECRAFT, but the two repetitions do not agree. One favored
+SITECRAFT by 9 points and the other favored baseline by 2. Under the benchmark's
+predeclared repeatability rule, that is **promising evidence, not proof of a
+repeatable output-quality advantage**.
+
+Both SITECRAFT runs did reuse the skill when the project changed and again before
+completion. That separately supports the new lifecycle re-entry behavior.
 
 ![Highest-ranked blind CAIRN candidate](benchmarks/deep-baseline-study/sitecraft/results/evidence/skilled-1/desktop-1440x1000.png)
 
-The deeper CAIRN study used two runs per condition and three changing project
-stages. Both SITECRAFT runs reopened the skill after new evidence arrived and
-again before completion, which supports the new lifecycle behavior. One paired
-visual result favored SITECRAFT by 9 points; the other favored baseline by 2.
-The deeper FOUNDRY scenario is published but its interrupted pilot is excluded;
-no new result is claimed until clean runs are complete. Read the [method,
-evidence, and limitations](benchmarks/).
+Read the [CAIRN benchmark overview](benchmarks/deep-baseline-study/sitecraft/),
+the [full result](benchmarks/deep-baseline-study/sitecraft/results/RESULTS.md),
+or the [benchmark method and limitations](benchmarks/).
+
+### FOUNDRY
+
+The deeper FOUNDRY study is published as a reproducible scenario, but its
+interrupted pilot is excluded. No deeper FOUNDRY result is claimed until every
+candidate can restart from a clean seed.
+
+Two earlier bounded examples remain available while that study is pending:
+
+| Study | Baseline | With FOUNDRY | What the run supports |
+| --- | ---: | ---: | --- |
+| [Ledgerbox transaction repair](benchmarks/foundry-ledger-repair/) | 100/100 | 100/100 | Correctness parity. FOUNDRY collected wider crash and concurrency evidence. |
+| [Relaypack artifact repair](benchmarks/foundry-relaypack-boundary/) | 100/100 | 100/100 | Correctness parity. The baseline kept broader permanent regression coverage. |
+
+These studies are evidence for the tasks that were actually run. They are not a
+universal leaderboard and should not be read as a claim that a skill always
+beats an unskilled agent.
 
 ## Portable core, optional adapters
 
